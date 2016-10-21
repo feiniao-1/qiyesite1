@@ -104,7 +104,7 @@ if(cailei==5){
 	}
 System.out.println(leibie);
 List<Mapx<String,Object>> caipinshow;
-	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,count,yprice,img1 from productmenu where del=? order by productmenuid desc limit 6", new MapxListHandler(), "0");
+	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,count,yprice,img1 from productmenu where del=? order by shoucang desc,productmenuid desc limit 6", new MapxListHandler(), "0");
 System.out.println("caipinshow"+caipinshow);
 %>
 <!DOCTYPE html>
@@ -119,6 +119,42 @@ System.out.println("caipinshow"+caipinshow);
 		<link href="images/top-icon.png" type="image/x-icon" rel="shortcut icon" />	
 		<link href="css/m-style.css" rel="stylesheet">
 		<script src="js/jquery-1.11.1.min.js"></script>
+						<script type="text/javascript">
+	 // var system ={
+	 // 	win : false,
+	 // 	mac : false,
+	 // 	xll : false
+	 // };
+	 // //检测平台
+	 // var p = navigator.platform;
+	 // system.win = p.indexOf("Win") == 0;
+	 // system.mac = p.indexOf("Mac") == 0;
+	 // system.x11 = (p == "X11") || (p.indexOf("Linux") == 0); 
+	 // //跳转语句，如果是手机访问就自动跳转到mobile
+	 // if(system.win||system.mac||system.xll){
+	 // 	window.location.href="http://www.doxue.com/special/plan/";
+	 // }else{
+	 //    window.location.href="http://m.doxue.com/special/plan/";
+	 // }
+
+
+   var browser = {    
+    versions:function(){            
+        var u = navigator.userAgent, app = navigator.appVersion;            
+            return {                             
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/) , //是否为移动终端                
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端                
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器                
+                iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器                
+                iPad: u.indexOf('iPad') > -1, //是否iPad                           
+            };
+        } ()
+    }; 
+ 
+if (!browser.versions.mobile)
+{
+    //window.location.href = 'front_index.jsp';
+} </script>
 	</head>
 	<body>
 		<div class="container" style="position: relative;">
@@ -159,9 +195,9 @@ System.out.println("caipinshow"+caipinshow);
             			</a>
             		</div>
             		<div class="cell_primary">
-            			<a href="yd_front_baike.jsp">
+            			<a href="yd_front_product.jsp">
             				<div class="nav-icon nav-baike"></div>
-            				<h4>饺耳百科</h4>
+            				<h4>店长推荐</h4>
             			</a>
             		</div>
             		<div class="cell_primary">
@@ -171,9 +207,9 @@ System.out.println("caipinshow"+caipinshow);
             			</a>
             		</div>
             		<div class="cell_primary">
-            			<a href="yd_front_boke.jsp" style="border: 0;">
+            			<a href="yd_offline-activity.html" style="border: 0;">
             				<div class="nav-icon nav-blog"></div>
-            				<h4>饺耳博客</h4>
+            				<h4>线下活动</h4>
             			</a>
             		</div>
             	</div>
@@ -183,7 +219,7 @@ System.out.println("caipinshow"+caipinshow);
             <div class="mainbox">
             	<div class="menu-list">
             	<%for(int i=0;i<caipinshow.size();i++){%>
-            		<a href="">
+            		<a href="yd_front_product_inner.jsp?caiid=<%=caipinshow.get(i).getIntView("productmenuid")%>">
             		<div class="cell bg-white">
 	            			<div class="menu-pic">
 	            				<img src="<%=caipinshow.get(i).getStringView("img1")%>">
@@ -192,7 +228,7 @@ System.out.println("caipinshow"+caipinshow);
 	            				<h4><%=caipinshow.get(i).getStringView("productname")%></h4>
 	            				<p class="color-999999"><%=caipinshow.get(i).getStringView("productEname")%></p>
 	            				<p class="color-666666 mb5">月售<%=caipinshow.get(i).getIntView("count")%><span class="ml10">好评率100%</span></p>
-	            				<p><span class="color-dd2727 size16">￥<%=caipinshow.get(i).getIntView("yprice")%></span><del class="color-666666 ml10">38</del></p>
+	            				<p><span class="color-dd2727 size16">￥<%=caipinshow.get(i).getIntView("yprice")%></span><del class="color-666666 ml10"><!-- 38 --></del></p>
 	            			</div>
             		</div>
             		</a>
@@ -220,7 +256,7 @@ System.out.println("caipinshow"+caipinshow);
 	            		</a>
             		</div>
             		<div class="cell_primary">
-	            		<a href="yd_front_boke.jsp" class="footer-title">
+	            		<a href="yd_about_us.html" class="footer-title">
 	            			<span class="footer-title-icon us"></span>
 	            			<span>饺耳</span>	
 	            		</a>

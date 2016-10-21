@@ -93,6 +93,42 @@ if(Integer.parseInt(index_page)==1){
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="js/jquery.SuperSlide.2.1.1.js"></script>
 		<script src="layer/layer.js"></script>
+				<script type="text/javascript">
+	 // var system ={
+	 // 	win : false,
+	 // 	mac : false,
+	 // 	xll : false
+	 // };
+	 // //检测平台
+	 // var p = navigator.platform;
+	 // system.win = p.indexOf("Win") == 0;
+	 // system.mac = p.indexOf("Mac") == 0;
+	 // system.x11 = (p == "X11") || (p.indexOf("Linux") == 0); 
+	 // //跳转语句，如果是手机访问就自动跳转到mobile
+	 // if(system.win||system.mac||system.xll){
+	 // 	window.location.href="http://www.doxue.com/special/plan/";
+	 // }else{
+	 //    window.location.href="http://m.doxue.com/special/plan/";
+	 // }
+
+
+   var browser = {    
+    versions:function(){            
+        var u = navigator.userAgent, app = navigator.appVersion;            
+            return {                             
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/) , //是否为移动终端                
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端                
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器                
+                iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器                
+                iPad: u.indexOf('iPad') > -1, //是否iPad                           
+            };
+        } ()
+    }; 
+ 
+if (browser.versions.mobile){
+	window.location.href = 'yd_front_index.jsp';
+} 
+</script>
 		<!--[if it iE8]>
 			<p class="tixin">为了达到最佳观看效果，请升级到最新浏览器</p>
         -->
