@@ -143,7 +143,8 @@ if(Integer.parseInt(index_page)==1){
 								<ul class="sub">
 									<li><a href="about-us.jsp?cailei=1">公司介绍</a></li>
 									<li><a href="about-us.jsp?cailei=2">公司文化</a></li>
-									<li><a href="about-us.jsp?cailei=3">店铺活动</a></li>
+									<li><a href="about-us.jsp?cailei=3">线下活动</a></li>
+									<li><a href="about-us.jsp?cailei=6">电子杂志</a></li>
 									<li><a href="about-us.jsp?cailei=4">人才招聘</a></li>
 									<li><a href="about-us.jsp?cailei=5">联系我们</a></li>
 								</ul>
@@ -175,6 +176,7 @@ if(Integer.parseInt(index_page)==1){
                         <a href="about-us.jsp?cailei=1"><li id="d1" class="js-tab">公司介绍 <i></i></li></a>
                         <a href="about-us.jsp?cailei=2"><li id="d2" class="js-tab">企业文化<i></i></li></a>
                         <a href="about-us.jsp?cailei=3"><li id="d3" class="js-tab">线下活动<i></i></li></a>
+                        <a href="about-us.jsp?cailei=6"><li id="d6" class="js-tab">电子杂志<i></i></li></a>
                         <a href="about-us.jsp?cailei=4"><li id="d4" class="js-tab">人才招聘<i></i></li></a>
                         <a href="about-us.jsp?cailei=5"><li id="d5" class="js-tab">联系我们 <i></i></li></a>
 
@@ -194,6 +196,9 @@ if(<%=cailei%>==4){
 	}
 if(<%=cailei%>==5){
 	$("#d5").addClass("active"); 
+	}
+if(<%=cailei%>==6){
+	$("#d6").addClass("active"); 
 	}
  </script>
                     <div class="tab-line"></div>
@@ -245,6 +250,35 @@ if(<%=cailei%>==5){
                         	进行合理的营养搭配。以老北京宫廷御厨的秘制配方为基础,自第一道工序开始，从皮到馅全部纯手工制作，为您奉上传统地道的纯手工水饺。
                         	我们不单纯注重于饺子的口感与味道，同时注重于饺子的营养与功效。让饺子延续其最初诞生的意义，让大家享受美味的同时养胃健脾，
                         	温补身体，吃的美味也吃得健康。</P>
+                    </div>
+<%} %>
+<%if(cailei==6){ %>
+                    <div class="tab-content">
+                        <h3>电子杂志</h3>
+                        <ul class="clearfix  e-zine">
+                        	<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                        </ul>
+                        <!--分页内容标签开始-->
+								<div class="nav-page">
+								  <ul class="pagination">
+								    <li><a href="#">&laquo;</a></li>
+								    <li><a href="#">1</a></li>
+								    <li><a href="#">2</a></li>
+								    <li><a href="#">3</a></li>
+								    <li><a href="#">...</a></li>
+								    <li><a href="#">9</a></li>
+								    <li><a href="#">10</a></li>
+								    <li><a href="#">&raquo;</a></li>
+								  </ul>
+								</div>
                     </div>
 <%} %>
 <%if(cailei==4){ %>
@@ -309,6 +343,7 @@ if(<%=cailei%>==5){
                     </div>
 
 <%} %>
+
                 </div>
          	<!--右边部分结束-->
          </div>  

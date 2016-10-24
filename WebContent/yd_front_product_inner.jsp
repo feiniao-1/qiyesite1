@@ -72,9 +72,18 @@ String searchtj;
 //获取菜品信息
 
 List<Mapx<String,Object>> caipinshow;
-caipinshow=DB.getRunner().query("select productname,productEname,content1,img1,createtime,updatetime,count,yprice from productmenu where del=? and productmenuid=? order by productmenuid desc limit 9", new MapxListHandler(), "0",caiid);
+caipinshow=DB.getRunner().query("select productmenuid, productname,productEname,content1,img1,createtime,updatetime,count,yprice,shoucang from productmenu where del=? and productmenuid=? order by productmenuid desc limit 9", new MapxListHandler(), "0",caiid);
 List<Mapx<String,Object>> tuijian;
 tuijian=DB.getRunner().query("select productmenuid,img1 from productmenu where del=? order by count desc limit 2", new MapxListHandler(), "0");
+//增加收藏
+String xxid;
+if(param.get("Action")!=null && param.get("Action").equals("喜欢")){
+	xxid=param.get("xxid");
+	//获取该id的收藏量
+	List<Mapx<String,Object>> idxihuan=DB.getRunner().query("select shoucang from productmenu where productmenuid=? ", new MapxListHandler(), xxid);
+	System.out.println("增加收藏量："+idxihuan+xxid);
+	DB.getRunner().update("update productmenu set shoucang=? where productmenuid=?",Integer.parseInt(idxihuan.get(0).getIntView("shoucang"))+1,xxid);
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -106,7 +115,23 @@ tuijian=DB.getRunner().query("select productmenuid,img1 from productmenu where d
 		            				<p class="color-666666 mb5">月售<%=caipinshow.get(0).getIntView("count") %><span class="ml10">好评率100%</span></p>
 		            				<p><span class="color-dd2727 size18">￥<%=caipinshow.get(0).getIntView("yprice") %></span><del class="color-666666 ml10">58</del></p>
 		            			</div>
-		            			<div class="collection"><span><img src="images/sc.png"></span>2576</div>
+            			<form  id="subform" method="POST" >
+            				<input type="hidden" value="<%=caipinshow.get(0).getIntView("productmenuid")%>" name="xxid">
+							<input type="hidden" value="喜欢" name="Action">
+						</form>
+						<%if(param.get("yn")!=null && param.get("yn").equals("1")){ %>
+							<div class="collection"><span><img src="images/sc1.png"></span><%=Integer.parseInt(caipinshow.get(0).getIntView("shoucang"))+1%></div>
+							<%}else{ %>
+							<div class="collection"><a class="zhuce"  name="喜欢" onclick="test_post()"><span><img src="images/sc.png"></span></a><%=caipinshow.get(0).getIntView("shoucang")%></div>
+							<%} %>
+							<script type="text/javascript">
+							function test_post() {
+							var testform=document.getElementById("subform");
+							testform.action="yd_front_product_inner.jsp?yn=1&caiid="+<%=caiid%>;
+							testform.submit();
+							}
+							</script>
+            			
 	            	</div>
 				</div>
 				<div class="plate">

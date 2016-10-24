@@ -242,6 +242,7 @@ System.out.println("caipinshow"+caipinshow);
 		         					</li>
 		         				<%}} %>
 		         				</ul>
+		         				
 	         				</div>
 	         			</div>
          		    </div>
@@ -345,5 +346,7 @@ System.out.println("caipinshow"+caipinshow);
       })
 	</script>
 <!--百度分享js-->
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"18"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"饺耳的美味让你无法阻挡！","bdMini":"2","bdMiniList":false,"bdPic":"www.jiaoear.com","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16},"image":{"viewList":["weixin","tsina","qzone","tqq","renren"],"viewText":"分享到：","viewSize":"24"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 </html>

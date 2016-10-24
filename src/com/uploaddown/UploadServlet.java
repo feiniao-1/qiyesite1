@@ -102,7 +102,7 @@ public class UploadServlet extends HttpServlet {
 						// 获取上传目录
 						String bathPath = getServletContext().getRealPath("/upload");
 						System.out.println(bathPath+";;fullName==="+fullName);
-						// 文件对象 (以#隔开uuid与文件名)
+						// 文件对象 (以.隔开uuid与文件名)
 						File file = new File(bathPath,fullName);
 						// 上传
 						item.write(file);

@@ -443,8 +443,16 @@ if(Integer.parseInt(index_page)==1){
 		         			<div class="celan celan1">
 		         				<h4>图片集</h4>
 		         				<ul class="clearfix">
-		         				<%List<Mapx<String, Object>> wzt=DB.getRunner().query("select img1 ,substring(title,1,4) as  title,tagid from news where newstype=? and del=? order by newsid desc limit 9", new MapxListHandler(),"boke","0");
-		         				for(int index_tp=0;index_tp<9;index_tp++){ 
+		         				<%List<Mapx<String, Object>> wzt=DB.getRunner().query("select img1 ,substring(title,1,4) as  title,tagid from news where newstype=? and (del is NULL or del <>1) order by newsid desc limit 9", new MapxListHandler(),"boke");
+		         				//总数
+		         				List<Mapx<String, Object>> zongwzt=DB.getRunner().query("select count(1) as count from news where newstype=? and (del is NULL or del <>1) ", new MapxListHandler(),"boke");
+		         				int shu11;
+					    		if(Integer.parseInt(zongwzt.get(0).getStringView("count"))<9){
+					    			shu11=Integer.parseInt(zongwzt.get(0).getStringView("count"));
+					    		}else{
+					    			shu11=9;
+					    		}
+		         				for(int index_tp=0;index_tp<shu11;index_tp++){ 
 		         				if(((index_tp+1)%3)!=0){%>
 		         					<li> 
 		         						<a href="front_news-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>" ></a>
@@ -462,7 +470,7 @@ if(Integer.parseInt(index_page)==1){
 		         			<div class="celan celan2">
 		         				<h4>最新文章</h4>
 		         				<ul>
-		         				<%List<Mapx<String, Object>> wzm=DB.getRunner().query("select title,tagid from news where newstype=? and del=? order by newsid desc limit 6", new MapxListHandler(),"boke","0");
+		         				<%List<Mapx<String, Object>> wzm=DB.getRunner().query("select title,tagid from news where newstype=? and (del is NULL or del <>1) order by newsid desc limit 6", new MapxListHandler(),"boke");
 		         				for(int index_wz=0;index_wz<wzm.size();index_wz++){ %>
 		         					<li><a href="front_news-inner.jsp?page=0&tagid=<%=wzm.get(index_wz).getIntView("tagid") %>" target="_blank"><%=wzm.get(index_wz).getStringView("title") %></a></li>
 		         				<%} %>

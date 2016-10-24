@@ -35,33 +35,10 @@ if(request.getParameter("page")==null){
 }else{
 	index_page=request.getParameter("page");
 }
-int page_ye=Integer.parseInt(index_page)*5;
+int page_ye=Integer.parseInt(index_page)*9;
 //搜索属性
 String searchtj;
 
-/*统计 新闻数及 页数*/
-String sqlPreCount = "select count(1) as count from news where newstype=? and (del is NULL or del <>1)  order BY newsid DESC ";
-List<Mapx<String,Object>> sqlPreCount1 =  DB.getRunner().query(sqlPreCount, new MapxListHandler(),"boke");
-//总商品数量
-int total = sqlPreCount1.get(0).getInt("count");
-//商品页数
-int count_page=total/5;
-System.out.println("count_page"+count_page);
-
-int plus;
-int minus;
-//下一页
-if(Integer.parseInt(index_page)==count_page){
-	plus=count_page;
-}else{
-	plus =Integer.parseInt(index_page)+1;
-}
-//上一页
-if(Integer.parseInt(index_page)==1){
-	minus =1;	
-}else{
-	minus =Integer.parseInt(index_page)-1;
-}
 //用户信息
 //List<Mapx<String, Object>> user = DB.getRunner().query("select userid from user where username=? ",new MapxListHandler(), username);
 //菜品列表信息
@@ -85,7 +62,6 @@ if(Integer.parseInt(index_page)==1){
 //  `visitor` varchar(255) DEFAULT NULL,
 //  PRIMARY KEY (`productmenuid`)
 //) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-//获取菜品信息
 String leibie="";
 if(cailei==1){
 	leibie="特色水饺";
@@ -103,13 +79,45 @@ if(cailei==5){
 	leibie="酒水饮料";
 	}
 System.out.println(leibie);
-List<Mapx<String,Object>> caipinshow;
+/*统计 页数*/
+String sqlPreCount;
+List<Mapx<String,Object>> sqlPreCount1;
 if(cailei!=6){
-	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,img1,yprice from productmenu where del=? and productlei=? order by shoucang desc,productmenuid desc limit 9", new MapxListHandler(), "0",leibie);
+	sqlPreCount = "select count(1) as count from productmenu where productlei=? and (del is NULL or del <>1) ";
+	sqlPreCount1 =  DB.getRunner().query(sqlPreCount, new MapxListHandler(),leibie);
 }else{
-	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,img1,yprice from productmenu where del=? order by shoucang desc,productmenuid desc limit 9", new MapxListHandler(), "0");
+	sqlPreCount = "select count(1) as count from productmenu where  (del is NULL or del <>1)  ";
+	sqlPreCount1 =  DB.getRunner().query(sqlPreCount, new MapxListHandler());
+}
+//总商品数量
+int total = sqlPreCount1.get(0).getInt("count");
+//商品页数
+int count_page=total/9;
+System.out.println("count_page"+count_page);
+
+int plus;
+int minus;
+//下一页
+if(Integer.parseInt(index_page)==count_page){
+	plus=count_page;
+}else{
+	plus =Integer.parseInt(index_page)+1;
+}
+//上一页
+if(Integer.parseInt(index_page)==0){
+	minus =0;	
+}else{
+	minus =Integer.parseInt(index_page)-1;
+}
+List<Mapx<String,Object>> caipinshow;
+//获取菜品信息
+if(cailei!=6){
+	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,img1,yprice from productmenu where (del is NULL or del <>1) and productlei=? order by shoucang desc,productmenuid desc limit "+page_ye+",9", new MapxListHandler(),leibie);
+}else{
+	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,img1,yprice from productmenu where (del is NULL or del <>1) order by shoucang desc,productmenuid desc limit "+page_ye+",9", new MapxListHandler());
 }
 System.out.println("caipinshow"+caipinshow);
+
 %>
 <!DOCTYPE html>
 <html>
@@ -237,7 +245,7 @@ if(<%=cailei%>==6){
 			    <%if(cailei==1){ %>
 
 			    	<div class="product-list">
-			    		<ul class="clearfix">
+			    		<ul class="clearfix fmpage">
 			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
 			    			<%if((q!=2)&&(q!=5)&&(q!=8)){ %>
 			    			<li>
@@ -265,12 +273,27 @@ if(<%=cailei%>==6){
 			    			</li>
 			    		<%}} %>
 			    		</ul>
+			    		<!--分页内容标签开始-->
+								<div class="nav-page">
+								  <ul class="pagination">
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=1&page=<%=minus%>">&laquo;</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=1&page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=1&page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=1&page=2">3</a></li>
+								    <li><a>...</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=1&page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=1&page=<%=count_page%>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=1&page=<%=plus%>">&raquo;</a></li>
+								  </ul>
+								</div>
+						<!--分页内容标签结束-->
 			    	</div>
+		
 			    	<%} else if(cailei==2){ %>
 			    	<!--板块一部分结束-->
 			    	<!--板块二部分开始-->
 			    	<div class="product-list" >
-			    		<ul class="clearfix">
+			    		<ul class="clearfix fmpage" >
 			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
 			    			<%if((q!=2)&&(q!=5)&&(q!=8)){ %>
 			    			<li>
@@ -298,12 +321,26 @@ if(<%=cailei%>==6){
 			    			</li>
 			    		<%}} %>
 			    		</ul>
+			    		<!--分页内容标签开始-->
+								<div class="nav-page">
+								  <ul class="pagination">
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=2&page=<%=minus%>">&laquo;</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=2&page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=2&page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=2&page=2">3</a></li>
+								    <li><a>...</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=2&page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=2&page=<%=count_page%>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=2&page=<%=plus%>">&raquo;</a></li>
+								  </ul>
+								</div>
+						<!--分页内容标签结束-->
 			    	</div>
 			    	<%} else if(cailei==3){ %>
 			    	<!--板块二部分结束-->
 			    	<!--板块三部分开始-->
 			    	<div class="product-list" >
-			    		<ul class="clearfix">
+			    		<ul class="clearfix fmpage">
 			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
 			    			<%if((q!=2)&&(q!=5)&&(q!=8)){ %>
 			    			<li>
@@ -331,12 +368,26 @@ if(<%=cailei%>==6){
 			    			</li>
 			    		<%}} %>
 			    		</ul>
+			    		<!--分页内容标签开始-->
+								<div class="nav-page">
+								  <ul class="pagination">
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=3&page=<%=minus%>">&laquo;</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=3&page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=3&page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=3&page=2">3</a></li>
+								    <li><a>...</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=3&page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=3&page=<%=count_page%>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=3&page=<%=plus%>">&raquo;</a></li>
+								  </ul>
+								</div>
+						<!--分页内容标签结束-->
 			    	</div>
 			    	<%} else if(cailei==4){ %>
 			    	<!--板块三部分结束-->
 			    	<!--板块四部分开始-->
 			    	<div class="product-list" >
-			    		<ul class="clearfix">
+			    		<ul class="clearfix fmpage">
 			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
 			    			<%if((q!=2)&&(q!=5)&&(q!=8)){ %>
 			    			<li>
@@ -364,12 +415,26 @@ if(<%=cailei%>==6){
 			    			</li>
 			    		<%}} %>
 			    		</ul>
+			    		<!--分页内容标签开始-->
+								<div class="nav-page">
+								  <ul class="pagination">
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=4&page=<%=minus%>">&laquo;</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=4&page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=4&page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=4&page=2">3</a></li>
+								    <li><a>...</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=4&page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=4&page=<%=count_page%>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=4&page=<%=plus%>">&raquo;</a></li>
+								  </ul>
+								</div>
+						<!--分页内容标签结束-->
 			    	</div>
 			    	<%} else if(cailei==5){ %>
 			    	<!--板块四部分结束-->
 			    	<!--板块五部分开始-->
 			    	<div class="product-list" >
-			    		<ul class="clearfix">
+			    		<ul class="clearfix fmpage">
 			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
 			    			<%if((q!=2)&&(q!=5)&&(q!=8)){ %>
 			    			<li>
@@ -397,12 +462,26 @@ if(<%=cailei%>==6){
 			    			</li>
 			    		<%}} %>
 			    		</ul>
+			    		<!--分页内容标签开始-->
+								<div class="nav-page">
+								  <ul class="pagination">
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=5&page=<%=minus%>">&laquo;</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=5&page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=5&page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=5&page=2">3</a></li>
+								    <li><a>...</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=5&page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=5&page=<%=count_page%>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=5&page=<%=plus%>">&raquo;</a></li>
+								  </ul>
+								</div>
+						<!--分页内容标签结束-->
 			    	</div>
 			    	<%} else if(cailei==6){ %>
 			    	<!--板块五部分结束-->
 			    	<!--板块六部分开始-->
 			    	<div class="product-list" >
-			    		<ul class="clearfix">
+			    		<ul class="clearfix fmpage">
 			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
 			    			<%if((q!=2)&&(q!=5)&&(q!=8)){ %>
 			    			<li>
@@ -430,6 +509,20 @@ if(<%=cailei%>==6){
 			    			</li>
 			    		<%}} %>
 			    		</ul>
+			    		<!--分页内容标签开始-->
+								<div class="nav-page">
+								  <ul class="pagination">
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=6&page=<%=minus%>">&laquo;</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=6&page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=6&page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=6&page=2">3</a></li>
+								    <li><a>...</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=6&page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=6&page=<%=count_page%>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_product.jsp?cailei=6&page=<%=plus%>">&raquo;</a></li>
+								  </ul>
+								</div>
+						<!--分页内容标签结束-->
 			    	</div>
 			    	<%} %>
 			    	<!--板块六部分结束-->

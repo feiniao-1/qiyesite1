@@ -337,22 +337,22 @@ if (browser.versions.mobile){
          				<div class="picFocus">
 							<div class="bd">
 								<ul>
-									<li><a target="_blank" ><img src="img/wh-pic03_03.jpg" alt="非诚勿扰美味"/></a></li>
-									<li><a target="_blank" ><img src="img/wh-pic01_03.jpg" /></a></li>
-									<li><a target="_blank" ><img src="img/wh-pic02_03.jpg" /></a></li>
-									<li><a target="_blank" ><img src="img/wh-pic04_03.jpg" /></a></li>
-									<li><a target="_blank" ><img src="img/wh-pic05_03.jpg" /></a></li>
-									<li><a target="_blank" ><img src="img/wh-pic06_03.jpg" /></a></li>
+									<li><a target="_blank" ><img src="img/index01.jpg" alt="非诚勿扰美味"/></a></li>
+									<li><a target="_blank" ><img src="img/index02.jpg" /></a></li>
+									<li><a target="_blank" ><img src="img/index03.jpg" /></a></li>
+									<li><a target="_blank" ><img src="img/index04.jpg" /></a></li>
+									<li><a target="_blank" ><img src="img/index05.jpg" /></a></li>
+									<li><a target="_blank" ><img src="img/index06.jpg" /></a></li>
 								</ul>
 							</div>
 							<div class="hd">
 								<ul>
-									<li><img src="img/wh-pic03_03.jpg" /></li>
-									<li><img src="img/wh-pic01_03.jpg" /></li>
-									<li><img src="img/wh-pic02_03.jpg" /></li>
-									<li><img src="img/wh-pic04_03.jpg" /></li>
-									<li><img src="img/wh-pic05_03.jpg" /></li>
-									<li class="mr0"><img src="img/wh-pic06_03.jpg" /></li>
+									<li><img src="img/index01.jpg" /></li>
+									<li><img src="img/index02.jpg" /></li>
+									<li><img src="img/index03.jpg" /></li>
+									<li><img src="img/index04.jpg" /></li>
+									<li><img src="img/index05.jpg" /></li>
+									<li class="mr0"><img src="img/index06.jpg" /></li>
 								</ul>
 							</div>
 						</div>
