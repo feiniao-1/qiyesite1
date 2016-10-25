@@ -4,6 +4,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="org.apache.commons.dbutils.QueryRunner"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,11 +38,54 @@
         					</p>
         				</div>
         				<div class="e-mail">
+        				<%//获取url
+        				HashMap<String,String> param1= G.getParamMap(request);
+        				String  urlfootor;
+        				String path = request.getContextPath();  
+        				String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";   
+        				String servletPath=request.getServletPath();    
+        				String requestURI=request.getRequestURI();  
+        				System.out.println("path:"+path);  
+        				System.out.println("basePath:"+basePath);   
+        				System.out.println("servletPath:"+servletPath);   
+        				if(request.getQueryString()==null){
+        					urlfootor=requestURI;
+        					System.out.println("requestURI111:"+requestURI);
+        				}else{
+        					urlfootor=requestURI+"?"+request.getQueryString();
+        					System.out.println("requestURI111:"+requestURI+"?"+request.getQueryString());
+        				}
+        				//CREATE TABLE `mail` (
+        				//		  `mailid` int(11) NOT NULL AUTO_INCREMENT COMMENT '邮箱ID',
+        				//		  `username` varchar(255) DEFAULT NULL COMMENT '用户名',
+        				//		  `mail` varchar(255) DEFAULT NULL COMMENT '邮箱',
+        				//		  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
+        				//		  `updatetime` datetime DEFAULT NULL COMMENT '最新修改时间',
+        				//		  `count` int(11) DEFAULT NULL COMMENT '统计次数',
+        				//		  `del` int(11) DEFAULT NULL,
+        				//		  PRIMARY KEY (`mailid`)
+        				//		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        				//收集邮件信息
+        				String mailusername;
+						String mailmail;
+						SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式  
+        				if(param1.get("Action")!=null && param1.get("Action").equals("订阅")){
+        					mailusername=new String(request.getParameter("username").getBytes("iso-8859-1"),"utf-8");
+        					mailmail=new String(request.getParameter("mail").getBytes("iso-8859-1"),"utf-8");
+        					DB.getRunner().update("insert into mail(username,mail,createtime) values(?,?,?)",mailusername,mailmail,df1.format(new Date()));
+        					%>
+        					<script type="text/javascript" language="javascript">
+        							alert("感谢您的订阅提交，我们将在2个工作日内给您发送邮件");                                            // 弹出错误信息
+        							window.location="<%=urlfootor%>" ;                            // 跳转到登录界面
+        					</script>
+        				<%
+        				}
+        				%>
         					<h4>邮箱订阅/Newsletter</h4>
-        					<form class="input-group">
-        						<input type="text" placeholder="姓名"/>
-        						<input type="text" placeholder="邮箱"/>
-        						<span class="mr20">把最新鲜的东西呈现给您</span><input type="submit" value="订阅" />
+        					<form action="<%=urlfootor%>" class="input-group" method="POST">
+        						<input type="text" name="username" placeholder="姓名"/>
+        						<input type="text" name="mail" placeholder="邮箱"/>
+        						<span class="mr20">把最新鲜的东西呈现给您</span><input type="submit" name="Action" value="订阅" />
         					</form>
         				</div>
         				<div class="ewm-box">

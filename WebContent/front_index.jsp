@@ -9,7 +9,11 @@
 HashMap<String,String> param= G.getParamMap(request);
 //获取url
 String  url  =  "http://"  +  request.getServerName()  +  ":"  +  request.getServerPort()  +  request.getContextPath()+request.getServletPath().substring(0,request.getServletPath().lastIndexOf("/")+1);
-String url1 = request.getRequestURI(); 
+String url1 = request.getRequestURI();   
+if(request.getQueryString()!=null)   
+url+="?"+request.getQueryString();  
+pageContext.setAttribute("currenturl",url);
+System.out.println("_+_+__+_+_+_+_+_+++++"+url);
 /*char[] jiequhou;
 int q=0;
 for(int n=0;n<jiequ.length;n++){
