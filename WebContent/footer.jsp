@@ -30,30 +30,37 @@
         					<p>© Copyright 2008-2016. 京ICP备15008545号</p>
         					<p>饺耳热线：010-80440188 / 010-80443266</p>
         					<p><a href="" target="_blank">技术支持：DESIGN BY IWISDOMS TEAM</a></p>
-        					<p class="icon-link">
+        					<div  data-tag="share_1"><p class="icon-link">
         						<a href="" target="_blank" title="分享到微信"><img src="img/wx-icon_03.png"></a>
         						<a href="" target="_blank" title="分享到新浪微博"><img src="img/wb-icon_03.png"></a>
         						<a href="" target="_blank" title="分享到QQ空间"><img src="img/kj-icon_03.png"></a>
         						<a href="" target="_blank" title="分享到人人网"><img src="img/rr-icon_03.png"></a>
-        					</p>
+        					</p></div>
+        					<div class="icon-link bdsharebuttonbox" data-tag="share_1">
+								<a class="bds_weixin" data-cmd="weixin"></a>
+								<a style="background-image:url(img/wb-icon_03.png);" data-cmd="tsina"></a>
+								<a style="background-image:url(img/kj-icon_03.png);" data-cmd="qzone"></a>
+								<a data-cmd="renren"></a>
+							</div>
+
         				</div>
         				<div class="e-mail">
         				<%//获取url
         				HashMap<String,String> param1= G.getParamMap(request);
         				String  urlfootor;
-        				String path = request.getContextPath();  
-        				String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";   
-        				String servletPath=request.getServletPath();    
-        				String requestURI=request.getRequestURI();  
-        				System.out.println("path:"+path);  
-        				System.out.println("basePath:"+basePath);   
-        				System.out.println("servletPath:"+servletPath);   
+        				String patha = request.getContextPath();  
+        				String basePatha = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+patha+"/";   
+        				String servletPatha=request.getServletPath();    
+        				String requestURIa=request.getRequestURI();  
+        				System.out.println("path:"+patha);  
+        				System.out.println("basePath:"+basePatha);   
+        				System.out.println("servletPath:"+servletPatha);   
         				if(request.getQueryString()==null){
-        					urlfootor=requestURI;
-        					System.out.println("requestURI111:"+requestURI);
+        					urlfootor=requestURIa;
+        					System.out.println("requestURI111:"+requestURIa);
         				}else{
-        					urlfootor=requestURI+"?"+request.getQueryString();
-        					System.out.println("requestURI111:"+requestURI+"?"+request.getQueryString());
+        					urlfootor=requestURIa+"?"+request.getQueryString();
+        					System.out.println("requestURI111:"+requestURIa+"?"+request.getQueryString());
         				}
         				//CREATE TABLE `mail` (
         				//		  `mailid` int(11) NOT NULL AUTO_INCREMENT COMMENT '邮箱ID',
@@ -101,5 +108,34 @@
 			<img style="width:50px; height:50px;" src="img/gotop.jpg">
 		</div>
 		<!--返回顶部结束-->
+		<script>
+	window._bd_share_config = {
+		common : {
+			bdText : '饺耳',	
+			bdDesc : '饺耳首页',	
+			bdUrl : 'front_index.jsp', 	
+			bdPic : 'img/logo_03.jpg'
+		},
+		share : [{
+			"bdSize" : 16
+		}],
+		slide : [{	   
+			bdImg : 0,
+			bdPos : "right",
+			bdTop : 100
+		}],
+		image : [{
+			viewType : 'list',
+			viewPos : 'top',
+			viewColor : 'black',
+			viewSize : '16',
+			viewList : ['qzone','tsina','huaban','tqq','renren']
+		}],
+		selectShare : [{
+			"bdselectMiniList" : ['qzone','tqq','kaixin001','bdxc','tqf']
+		}]
+	}
+	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 </body>
 </html>

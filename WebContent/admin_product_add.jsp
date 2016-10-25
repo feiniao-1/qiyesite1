@@ -15,8 +15,7 @@
 <title>添加菜品</title>
 <link href="img/toubiao.png" rel="SHORTCUT ICON">
 <link rel="stylesheet" href="css/bootstrap.css"/>
-<link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/backstage.css"/>
     <!-- 配置文件 -->
     <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
@@ -156,20 +155,22 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 %> 
 </head>
 <body>
-<div class="panel panel-default container box-shadow"  style="padding-top:50px; margin-top:50px;">
+<div class="container mainbox">
     <div class="row">
-    <div style="text-align:center; ">
-<h3>菜品添加</h3><br>
-        <span style="margin-left:500px;">
-         <a href="admin_news_list.jsp" class="btn btn-primary">发表新闻</a>/<a href="admin_product.jsp" class="btn btn-primary">发表菜品</a>/<a href="front_index.jsp" class="btn btn-primary">首页</a></span><br>
-        <a href="admin_product.jsp" class="btn btn-primary">返回</a><span style="color:red;">操作说明：先上传图片，再填写内容</span>
-        </div>
+        <h3  class="title">菜品添加</h3>
+        <div class="botton-group">
+         <a href="front_index.jsp" class="btn btn-primary">首页</a><a href="admin_news_list.jsp" class="btn btn-primary">发表新闻</a><a href="admin_product.jsp" class="btn btn-warning">发表菜品</a>
+         </div>
+         <div class="botton-group">
+	        <a href="admin_product.jsp" class="btn btn-danger">返回</a><span style="color:red;">操作说明：先上传图片，再填写内容</span>
+	     </div>
         		<!-- 表格 start -->
         		<div class="form-group">
-        		<label>PC商品图片*(370*247)</label> 
+        		<h5>PC商品图片<span style="color:red;">*(370*247)</span></h5> 
 					<form action="${pageContext.request.contextPath }/uploadServlet?url=product&shuzi=1" method="post" enctype="multipart/form-data">
-						<input type="file" name="attr_file1" style="display:inline-block;">
-						<div style="margin-top:-25px;margin-left:200px;">
+						<div class="mb10">
+						<input type="file" name="attr_file1" style="display:inline-block; width:220px;">
+						<input type="submit" value="上传">  
 						<%if(shuzi!=null&&shuzi.equals("1")){
 							if(fullName1==null){
 								//session.removeAttribute("fullName2");
@@ -192,15 +193,17 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 									</script>
 							<%}else{ %>
 							<%} %>
-						<input type="submit" value="上传">  	</div>
+						
+						</div>
 				  	 </form>
 				  	 <img alt="" src="upload/<%=(String)session.getAttribute("fullName1") %>" style="width:220px!important;" height="150px">
 				</div>
 				<div class="form-group">
-        		<label>移动端商品图片*</label> 
+        		<h5>移动端商品图片<span style="color:red;">*</span></h5> 
 					<form action="${pageContext.request.contextPath }/uploadServlet?url=product&shuzi=2" method="post" enctype="multipart/form-data">
-						<input type="file" name="attr_file2" style="display:inline-block;">
-						<div style="margin-top:-25px;margin-left:200px;">
+						<div class="mb10">
+						<input type="file" name="attr_file2" style="display:inline-block; width:220px;">
+						<input type="submit" value="上传">  	
 						<%if(shuzi!=null&&shuzi.equals("2")){
 							if(fullName2==null){
 								//session.removeAttribute("fullName2");
@@ -223,15 +226,15 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 									</script>
 							<%}else{ %>
 							<%} %>
-						<input type="submit" value="上传">  	</div>
+						
+						</div>
 				  	 </form>
 				  	 <img alt="" src="upload/<%=(String)session.getAttribute("fullName2") %>" style="width:120px!important;" height="80px">
 				</div>
 				<form role="form" action="admin_product_add.jsp?jishu=<%=val%>&fileName=you" method="POST" name="form1"	novalidate>
 
 					<div class="form-group">
-						<label>菜品类别*</label> 
-							<br>
+						<h5>菜品类别<span style="color:red;">*</span></h5> 
 							<select name="productlei">
 								<option>特色水饺</option>
 								<option>开胃凉菜</option>
@@ -239,36 +242,38 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 								<option>酒水饮料</option>
 								<option>主食</option>
 							</select>
-							</div>
+					</div>
 					<div class="form-group">
-						<label>菜品名称*</label> <input type="text" class="form-control" style="width:200px;"
+						<h5>菜品名称<span style="color:red;">*</span></h5> 
+						<input type="text" class="form-control" style="width:220px;"
 							name="productname"
 							placeholder="菜名">
 					</div>
 					<div class="form-group">
-						<label>英文名称</label> <input type="text" class="form-control" style="width:200px;"
+						<h5>英文名称<span style="color:red;">*</span></h5> 
+						<input type="text" class="form-control" style="width:220px;"
 							name="productEname"
 							placeholder="英文名">
 					</div>
 					<div class="form-group">
-						<label>价格*</label> <input type="text" class="form-control" style="width:200px;"
+						<h5>价格<span style="color:red;">*</span></h5> <input type="text" class="form-control" style="width:220px;"
 							name="yprice"
 							placeholder="请填写菜品价格">
 					</div>
 					<div class="form-group">
-						<label>菜品简介*(字数为1行或最多65字)</label> 
+						<h5>菜品简介<span style="color:red;">*(字数为1行或最多65字)</span></h5> 
 							<script type="text/plain" id="myEditor" name="content1"></script>
 					</div>
 					<div class="form-group">
-						<label>菜品介绍*</label>
+						<h5>菜品介绍<span style="color:red;">*</span></h5>
 							<script type="text/plain" id="myEditor1" name="content2"></script>
 					</div>
 					<div class="form-group">
-						<label>创建时间</label> <input type="text" class="form-control" style="width:200px;"
+						<h5>创建时间</h5> <input type="text" class="form-control" style="width:200px;"
 							name="createtime" readOnly="true"
 							placeholder="<%=df.format(new Date()) %>">
 					</div>
-					<input type="submit" class="btn btn-default" name="Action" value="确定">
+					<input type="submit" class="btn btn-danger" name="Action" value="确定">
 				</form>
 				<!-- 表格 end -->
   </div>

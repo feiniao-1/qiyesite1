@@ -41,7 +41,7 @@ List<Mapx<String, Object>> juese=DB.getRunner().query("select userrole from user
         		</div>
         		<div class="row">
 	        		<div class="head clearfix">
-	        			<div class="logo fl"><a href="index.html"><img src="img/logo_03.jpg"></a></div>
+	        			<div class="logo fl"><a href="front_index.jsp"><img src="img/logo_03.jpg"></a></div>
 	        			<div class="tell fl">
 	        				<p><span>010-8044<strong>0188</strong></span></p>
 	        			</div>

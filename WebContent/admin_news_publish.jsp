@@ -15,8 +15,7 @@
 <title>新闻管理编辑</title>
 <link href="img/toubiao.png" rel="SHORTCUT ICON">
 <link rel="stylesheet" href="css/bootstrap.css"/>
-<link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/backstage.css"/>
     <!-- 配置文件 -->
     <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
@@ -180,20 +179,22 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 %> 
 </head>
 <body>
-<div class="panel panel-default container box-shadow"  style="padding-top:50px; margin-top:50px;">
+<div class="container mainbox">
     <div class="row">
-    <div style="text-align:center; ">
-<h3>新闻详细信息</h3><br>
-        <span style="margin-left:500px;">
-       <a href="admin_news_list.jsp" class="btn btn-primary">发表新闻</a>/<a href="admin_product.jsp" class="btn btn-primary">发表菜品</a>/<a href="front_index.jsp" class="btn btn-primary">首页</a></span><br>
-        <a href="admin_news_list.jsp" class="btn btn-primary">返回</a><span style="color:red;">操作说明：如需改动图片；先上传图片，再修改内容</span>
+       <h3 class="title">新闻详细信息</h3>
+        <div class="botton-group">
+        <a href="front_index.jsp" class="btn btn-primary">首页</a><a href="admin_news_list.jsp" class="btn btn-warning">发表新闻</a><a href="admin_product.jsp" class="btn btn-primary">发表菜品</a>
+       </div>
+        <div class="botton-group">
+        <a href="admin_news_list.jsp" class="btn btn-danger">返回</a><span style="color:red;">操作说明：如需改动图片；先上传图片，再修改内容</span>
         </div>
         		<!-- 表格 start -->
         		<div class="form-group">
-        		<label>PC缩略图*</label> 
-						<form action="${pageContext.request.contextPath }/uploadServlet?url=newspublish&caiid=<%= caiid%>&shuzi=1" method="post" enctype="multipart/form-data">
-						<input type="file" name="attr_file1" style="display:inline-block;">
-						<div style="margin-top:-25px;margin-left:200px;">
+        		<h5 class="mb10">PC缩略图<span style="color:red;">*</span></h5> 
+					<form action="${pageContext.request.contextPath }/uploadServlet?url=newspublish&caiid=<%= caiid%>&shuzi=1" method="post" enctype="multipart/form-data">
+						<div class="mb10">
+						<input type="file" name="attr_file1" style="display:inline-block; width:220px;">
+						<input type="submit" value="上传"> 
 						<%if(shuzi!=null&&shuzi.equals("1")){
 							if(upimg1==null){
 								//session.removeAttribute("fullName2");
@@ -215,18 +216,19 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 										
 									</script>
 							<%}else{ %>
-							<%} %>
-						<input type="submit" value="上传">  	</div>
+							<%} %> 	
+							</div>
 				  	 </form>
 						 <%if((String)session.getAttribute("upimg1")!=null){ %>
 							 	<img alt="" src="upload/<%=(String)session.getAttribute("upimg1") %>" style="width:200px!important;" height="150px">
 							 <%}else{ %>
 							 	<img alt="" src="<%=menu.get(0).getStringView("img1") %>" style="width:200px!important;" height="150px">
 							 <%} %>
-						<label>PC内容图片*</label> 
+						<h5 class="mb10">PC内容图片*</h5> 
 						<form action="${pageContext.request.contextPath }/uploadServlet?url=newspublish&caiid=<%= caiid%>&shuzi=2" method="post" enctype="multipart/form-data">
-						<input type="file" name="attr_file1" style="display:inline-block;">
-						<div style="margin-top:-25px;margin-left:200px;">
+						<div class="mb10">
+						<input type="file" name="attr_file1" style="display:inline-block; width:220px;">						
+						<input type="submit" value="上传">  	
 						<%if(shuzi!=null&&shuzi.equals("2")){
 							if(upimg2==null){
 								//session.removeAttribute("fullName2");
@@ -249,17 +251,18 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 									</script>
 							<%}else{ %>
 							<%} %>
-						<input type="submit" value="上传">  	</div>
+						</div>
 				  	 </form>
 						 <%if((String)session.getAttribute("upimg2")!=null){ %>
 							 	<img alt="" src="upload/<%=(String)session.getAttribute("upimg2") %>" style="width:220px!important;" height="150px">
 							 <%}else{ %>
 							 	<img alt="" src="<%=menu.get(0).getStringView("img2") %>" style="width:220px!important;" height="150px">
 							 <%} %>
-					<label>移动端缩略图*</label> 
+					<h5 class="mb10">移动端缩略图<span style="color:red;">*</span></h5> 
 					<form action="${pageContext.request.contextPath }/uploadServlet?url=newspublish&caiid=<%= caiid%>&shuzi=3" method="post" enctype="multipart/form-data">
-						<input type="file" name="attr_file1" style="display:inline-block;">
-						<div style="margin-top:-25px;margin-left:200px;">
+						<div class="mb10">
+						<input type="file" name="attr_file1" style="display:inline-block; width:220px;">
+						<input type="submit" value="上传">  
 						<%if(shuzi!=null&&shuzi.equals("3")){
 							if(upydimg1==null){
 								//session.removeAttribute("fullName2");
@@ -282,17 +285,18 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 									</script>
 							<%}else{ %>
 							<%} %>
-						<input type="submit" value="上传">  	</div>
+						</div>
 				  	 </form>
 						 <%if((String)session.getAttribute("upydimg1")!=null){ %>
 							 	<img alt="" src="upload/<%=(String)session.getAttribute("upydimg1") %>" style="width:120px!important;" height="90px">
 							 <%}else{ %>
 							 	<img alt="" src="<%=menu.get(0).getStringView("ydimg1") %>" style="width:120px!important;" height="90px">
 							 <%} %>
-					<label>移动端内容图片*</label> 
+					<h5 class="mb10">移动端内容图片<span style="color:red;">*</span></h5> 
 					<form action="${pageContext.request.contextPath }/uploadServlet?url=newspublish&caiid=<%= caiid%>&shuzi=4" method="post" enctype="multipart/form-data">
-						<input type="file" name="attr_file1" style="display:inline-block;">
-						<div style="margin-top:-25px;margin-left:200px;">
+						<div class="mb10">
+						<input type="file" name="attr_file1" style="display:inline-block; width:220px;">
+						<input type="submit" value="上传" style="display:inline-block;">  
 						<%if(shuzi!=null&&shuzi.equals("4")){
 							if(upydimg2==null){
 								//session.removeAttribute("fullName2");
@@ -315,7 +319,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 									</script>
 							<%}else{ %>
 							<%} %>
-						<input type="submit" value="上传">  	</div>
+						</div>
 				  	 </form>
 						 <%if((String)session.getAttribute("upydimg2")!=null){ %>
 							 	<img alt="" src="upload/<%=(String)session.getAttribute("upydimg2") %>" style="width:220px!important;" height="150px">
@@ -335,8 +339,8 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							name="author" readOnly="true"
 							value="<%= menu.get(0).getStringView("author") %>">
 					</div>
-					<label>文章类别*</label> 
-					<select name="leixing">
+					<h5 class="mb10">文章类别<span style="color:red;">*</span></h5> 
+					<select name="leixing" style="width:80px; margin-bottom:10px;">
 								<option><%=menu.get(0).getStringView("articletype") %></option>
 								<option>热门</option>
 								<option>美食</option>
@@ -344,7 +348,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 								<option>娱乐</option>
 							</select>
 					<div class="form-group">
-						<label>文章标题</label> <input type="text" class="form-control" style="width:200px;"
+						<label>文章标题</label> <input type="text" class="form-control" style="width:360px;"
 							name="title"
 							value="<%= menu.get(0).getStringView("title") %>">
 					</div>
@@ -371,14 +375,14 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							name="zcount" readOnly="true"
 							value="<%=menu.get(0).getIntView("zcount") %>">
 					</div>
-					词条标签：<br>
+					<p class="mb10">词条标签：</p>
 					<div class="form-group">
-						<input type="text" Name="tag1"  value="<%=menu.get(0).getStringView("tag1") %>" style="width:50px;">
-						<input type="text" Name="tag2"  value="<%=menu.get(0).getStringView("tag2") %>" style="width:50px;">
-						<input type="text" Name="tag3"  value="<%=menu.get(0).getStringView("tag3") %>" style="width:50px;">
-						<input type="text" Name="tag4"  value="<%=menu.get(0).getStringView("tag4") %>" style="width:50px;">
+						<input type="text" Name="tag1"  value="<%=menu.get(0).getStringView("tag1") %>" style="width:80px;">
+						<input type="text" Name="tag2"  value="<%=menu.get(0).getStringView("tag2") %>" style="width:80px;">
+						<input type="text" Name="tag3"  value="<%=menu.get(0).getStringView("tag3") %>" style="width:80px;">
+						<input type="text" Name="tag4"  value="<%=menu.get(0).getStringView("tag4") %>" style="width:80px;">
 					</div>
-					<input type=submit class="btn btn-default" name="Action" value="确定">
+					<input type=submit class="btn btn-danger" name="Action" value="确定">
 				</form>
 				<!-- 表格 end -->
 			

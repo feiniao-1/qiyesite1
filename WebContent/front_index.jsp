@@ -160,7 +160,7 @@ if (browser.versions.mobile){
 								<h3><a href="front_index.jsp" >首页</a></h3>
 						</li>
 						<li class="nLi ">
-								<h3><a href="front_news.jsp" >饺耳咨讯</a></h3>
+								<h3><a href="front_news.jsp" >饺耳资讯</a></h3>
 						</li>
 						<li class="nLi">
 								<h3><a href="front_product.jsp?cailei=1" >饺耳菜品</a></h3>
@@ -210,13 +210,13 @@ if (browser.versions.mobile){
 						<!--图片板块-->
 						<div class="carousel-inner">
 							<div class="item active">
-								<img src="img/banner01.jpg" alt="图片1"/>
+								<img src="img/banner03.jpg" alt="图片3"/>
 							</div>
 							<div class="item">
 								<img src="img/banner02.jpg" alt="图片2"/>
 							</div>
 							<div class="item">
-								<img src="img/banner03.jpg" alt="图片3"/>
+								<img src="img/banner01.jpg" alt="图片1"/>
 							</div>
 							<div class="item">
 								<img src="img/banner04.jpg" alt="图片4"/>
@@ -296,7 +296,7 @@ if (browser.versions.mobile){
          		 <div class="row">
          			<div class="news bg_color-fff">
          				<h4 class="icon-zx">饺耳头条</h4>
-         				<a href="front_boke.jsp" class="look-more">查看更多>></a>
+         				<a href="front_news.jsp" class="look-more">查看更多>></a>
          				<div class="txtMarquee-top">
 							<div class="bd">
 								<ul class="infoList">
@@ -306,7 +306,7 @@ if (browser.versions.mobile){
 								for(int i=0;i<tqbk.size();i++){
 									System.out.println(tqbk.get(i));
 								%>
-									<li class="just-line1"><span class="date"><%=tqbk.get(i).getIntView("createtime") %></span><a href="front_boke-inner.jsp?page=0&tagid=<%=tqbk.get(i).getIntView("tagid") %>" target="_blank"><%=tqbk.get(i).getStringView("title") %></a></li>
+									<li class="just-line1"><span class="date"><%=tqbk.get(i).getIntView("createtime") %></span><a href="front_news-inner.jsp?page=0&tagid=<%=tqbk.get(i).getIntView("tagid") %>" target="_blank"><%=tqbk.get(i).getStringView("title") %></a></li>
 									<%} %>
 								</ul>
 							</div>

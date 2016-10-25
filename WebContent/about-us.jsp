@@ -126,7 +126,7 @@ if(Integer.parseInt(index_page)==1){
 								<h3><a href="front_index.jsp" >首页</a></h3>
 						</li>
 						<li class="nLi ">
-								<h3><a href="front_news.jsp" >饺耳咨讯</a></h3>
+								<h3><a href="front_news.jsp" >饺耳资讯</a></h3>
 						</li>
 						<li class="nLi ">
 								<h3><a href="front_product.jsp?cailei=1" >饺耳菜品</a></h3>
@@ -331,9 +331,9 @@ if(<%=cailei%>==6){
                         	<div class="cell_primary">
                         		公司名称：饺耳世家<br />
 								公司地址：北京市朝阳区朝阳路福福满街69号<br />
-								联  系  人：张某某<br />
+								联  系  人：张经理<br />
 								联系电话：010-80440188<br />
-								邮       箱：100000000@qq.com<br />
+								邮       箱：jiaoear@126.com<br />
                         	</div>
                         	<div class="cell_primary">
                         		<img src="img/pic18_03.jpg">

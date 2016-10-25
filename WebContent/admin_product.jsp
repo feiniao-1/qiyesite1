@@ -15,8 +15,7 @@
 <title>菜品列表</title>
 <link href="img/toubiao.png" rel="SHORTCUT ICON">
 <link rel="stylesheet" href="css/bootstrap.css"/>
-<link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/backstage.css"/>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <%
 //获取当前url
@@ -135,12 +134,15 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
 %> 
 </head>
 <body>
-<div class="panel panel-default container box-shadow"  style="text-align:center; padding-top:50px; margin-top:50px;">
+<div class="container mainbox">
     <div class="row">
-<h3>菜品列表信息</h3><br>
-        <span style="margin-left:500px;">
-        <a href="admin_news_list.jsp" class="btn btn-primary">发表新闻</a>/<a href="admin_product.jsp" class="btn btn-primary">发表菜品</a>/<a href="front_index.jsp" class="btn btn-primary">首页</a></span><br>
-        <a href="admin_product_add.jsp" class="btn btn-primary">添加</a>
+     <h3  class="title">菜品列表信息</h3>
+       <div class="botton-group">
+       <a href="front_index.jsp" class="btn btn-primary">首页</a><a href="admin_news_list.jsp" class="btn btn-primary">发表新闻</a><a href="admin_product.jsp" class="btn btn-warning">发表菜品</a>
+       </div>
+       <div class="botton-group">
+        <a href="admin_product_add.jsp" class="btn btn-danger">添加</a>
+        </div>
         		<!-- 表格 start -->
 				<table class="table table-striped">
 					<thead>
@@ -162,24 +164,22 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
 							<td><%=menu.get(j).getIntView("yprice") %></td>
 							<td><%=menu.get(j).getIntView("shoucang") %></td>
 							<td>
-								<div style="width:150px;">
 								<a href="admin_product_publish.jsp?caiid=<%=menu.get(j).getIntView("productmenuid")%>">管理</a>|
 								<form action="admin_product.jsp" id="subform" method="POST" style="float:right;">
 									<input type="hidden" value="<%=menu.get(j).getIntView("productmenuid") %>" name="dhid">
 									<input type="hidden" value="删除" name="Action">
 								</form>
 								<a class="zhuce"  name="删除" onclick="test_post()">删除</a>
-								</div>
 							</td>
 						</tr>
-<%} %>
-<script type="text/javascript">
-function test_post() {
-var testform=document.getElementById("subform");
-testform.action="admin_product.jsp";
-testform.submit();
-}
-</script>
+					<%} %>
+					<script type="text/javascript">
+					function test_post() {
+					var testform=document.getElementById("subform");
+					testform.action="admin_product.jsp";
+					testform.submit();
+					}
+					</script>
 					</tbody>
 				</table>
 				<!-- 表格 end -->

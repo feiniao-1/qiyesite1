@@ -176,7 +176,7 @@ if(Integer.parseInt(discuss_page)==0){
 								<h3><a href="front_index.jsp" >首页</a></h3>
 						</li>
 						<li class="nLi on">
-								<h3><a href="front_news.jsp" >饺耳咨讯</a></h3>
+								<h3><a href="front_news.jsp" >饺耳资讯</a></h3>
 						</li>
 						<li class="nLi">
 								<h3><a href="front_product.jsp?cailei=1" >饺耳菜品</a></h3>
@@ -224,8 +224,8 @@ if(Integer.parseInt(discuss_page)==0){
          	<div class="row">
          		<ol class="breadcrumb">
          		  <li>当前页面</li>	
-				  <li><a href="front_news.jsp">饺耳</a></li>
-				  <li class="active">新闻资讯</li>
+				  <li><a href="front_news.jsp">饺耳资讯</a></li>
+				  <li class="active">资讯详情</li>
 				</ol>
          	</div>
          	<div class="row">

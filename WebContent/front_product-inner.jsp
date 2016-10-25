@@ -134,7 +134,7 @@ System.out.println("caipinshow"+caipinshow);
 								<h3><a href="front_index.jsp" >首页</a></h3>
 						</li>
 						<li class="nLi ">
-								<h3><a href="front_news.jsp" >饺耳咨讯</a></h3>
+								<h3><a href="front_news.jsp" >饺耳资讯</a></h3>
 						</li>
 						<li class="nLi on">
 								<h3><a href="front_product.jsp?cailei=1" >饺耳菜品</a></h3>
@@ -182,8 +182,8 @@ System.out.println("caipinshow"+caipinshow);
          	<div class="row">
          		<ol class="breadcrumb">
          		  <li>当前页面</li>	
-				  <li><a href="#">饺耳</a></li>
 				  <li><a href="front_product.jsp">饺耳菜品</a></li>
+				  <li class="active">菜品详情</a></li>
 				  <li class="active"><%=caipinshow.get(0).getStringView("productname") %></li>
 				</ol>
          	</div>

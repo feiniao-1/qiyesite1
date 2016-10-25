@@ -101,7 +101,7 @@ if(Integer.parseInt(index_page)==1){
 								<h3><a href="front_index.jsp" >首页</a></h3>
 						</li>
 						<li class="nLi on">
-								<h3><a href="front_news.jsp" >饺耳咨讯</a></h3>
+								<h3><a href="front_news.jsp" >饺耳资讯</a></h3>
 						</li>
 						<li class="nLi">
 								<h3><a href="front_product.jsp?cailei=1" >饺耳菜品</a></h3>
@@ -149,8 +149,8 @@ if(Integer.parseInt(index_page)==1){
          	<div class="row">
          		<ol class="breadcrumb">
          		  <li>当前页面</li>	
-				  <li><a href="front_news.jsp">饺耳</a></li>
-				  <li class="active">新闻资讯</li>
+				  <li><a href="front_news.jsp">饺耳资讯</a></li>
+				  <li class="active">资讯列表</li>
 				</ol>
          	</div>
          	<div class="row">
@@ -186,7 +186,7 @@ if(Integer.parseInt(index_page)==1){
 								}
 								System.out.println("search yes"+"searchSql"+searchSql);
 								//获取新闻资讯的信息
-								String xinwenSql="select author,subString(title,1,22) as title,img1,content, createtime ,type,count,tagid from news where newstype=? and (del is NULL or del <>1) and (title LIKE '%"+searchtj+"%' or content like '%"+searchtj+"%' or  author=(select userid from user where username like '%"+searchtj+"%'))  order BY newsid DESC   limit "+page_ye+",5";
+								String xinwenSql="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count,tagid from news where newstype=? and (del is NULL or del <>1) and (title LIKE '%"+searchtj+"%' or content like '%"+searchtj+"%' or  author=(select userid from user where username like '%"+searchtj+"%'))  order BY newsid DESC   limit "+page_ye+",5";
 								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler(),"boke");
 								for(int i=0;i<xinwens.size();i++){
 									Mapx<String,Object> one = xinwens.get(i);
@@ -200,9 +200,9 @@ if(Integer.parseInt(index_page)==1){
 										</div>
 										<div class="cell_primary">
 											<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
-											<p class="mb20">
+											<div class="mb20">
 											<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
-											</p>
+											</div>
 											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
 											<div class="bdsharebuttonbox bd-share">
 												<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
@@ -213,7 +213,7 @@ if(Integer.parseInt(index_page)==1){
 							}else{
 								System.out.println("search no");
 								//获取新闻资讯的信息
-								String xinwenSql="select author,subString(title,1,22) as title,img1,content, createtime ,type,count ,tagid from news where  newstype=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+								String xinwenSql="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid from news where  newstype=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
 								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler(),"boke");
 								for(int i=0;i<xinwens.size();i++){
 									Mapx<String,Object> one = xinwens.get(i);
@@ -227,9 +227,9 @@ if(Integer.parseInt(index_page)==1){
 										</div>
 										<div class="cell_primary">
 											<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
-											<p class="mb20">
+											<div class="mb20">
 													<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
-											</p>
+											</div>
 											
 											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
 											<div class="bdsharebuttonbox bd-share">
