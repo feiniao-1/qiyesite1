@@ -51,10 +51,10 @@
         				//System.out.println("servletPath:"+servletPatha);   
         				if(request.getQueryString()==null){
         					urlfootor=requestURIa;
-        					System.out.println("requestURI111:"+requestURIa);
+        					
         				}else{
         					urlfootor=requestURIa+"?"+request.getQueryString();
-        					System.out.println("requestURI111:"+requestURIa+"?"+request.getQueryString());
+        					
         				}
         				//CREATE TABLE `mail` (
         				//		  `mailid` int(11) NOT NULL AUTO_INCREMENT COMMENT '邮箱ID',

@@ -254,7 +254,7 @@ if(<%=cailei%>==6){
 				    				<div class="txt">
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
-				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
 				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
@@ -266,7 +266,7 @@ if(<%=cailei%>==6){
 				    				<div class="txt">
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
-				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
 				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
@@ -304,7 +304,7 @@ if(<%=cailei%>==6){
 				    				<div class="txt">
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
-				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
 				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
@@ -316,7 +316,7 @@ if(<%=cailei%>==6){
 				    				<div class="txt">
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
-				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
 				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
@@ -353,7 +353,7 @@ if(<%=cailei%>==6){
 				    				<div class="txt">
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
-				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
 				    					<pclass="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
@@ -365,7 +365,7 @@ if(<%=cailei%>==6){
 				    				<div class="txt">
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
-				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
 				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
@@ -402,7 +402,7 @@ if(<%=cailei%>==6){
 				    				<div class="txt">
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
-				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
 				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
@@ -414,7 +414,7 @@ if(<%=cailei%>==6){
 				    				<div class="txt">
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
-				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
 				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
@@ -451,7 +451,7 @@ if(<%=cailei%>==6){
 				    				<div class="txt">
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
-				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
 				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
@@ -463,7 +463,7 @@ if(<%=cailei%>==6){
 				    				<div class="txt">
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
-				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
 				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
@@ -500,7 +500,7 @@ if(<%=cailei%>==6){
 				    				<div class="txt">
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
-				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
 				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
@@ -512,7 +512,7 @@ if(<%=cailei%>==6){
 				    				<div class="txt">
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
-				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
 				    					<p class="size18"><strong >￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>

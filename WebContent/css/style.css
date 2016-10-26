@@ -11,7 +11,7 @@ img{ display: block;}
 a{ color: #313131; text-decoration: none;}
 a:hover{text-decoration: none; color: #FF9900;}/*9-21add*/
 a:link,a:visited{text-decoration: none;}/*9-30add*/
-.txt-indent{ text-indent: 2em;}
+.txt-indent{ text-indent: 2em;} /*首行缩进2个字*/
 .dash-line{ padding-bottom: 20px; border-bottom: 1px dashed #CCCCCC;}
 .cursor{ cursor: pointer;}
 .color-dd2727{ color: #dd2727;}
@@ -199,8 +199,8 @@ h4.icon-heart{background: url(../img/icon-01.png) no-repeat 0 -977px; padding-le
 .pataner h4{line-height: 40px; padding-left: 50px; border-bottom: 1px solid #dd2727; background: url(../img/icon_01.png) no-repeat 0 -350px; font-weight: 700;}
 .pataner ul{ padding: 30px 0;}
 .pataner ul li{ float: left; margin-right: 20px;}
-.pataner ul li img{ width: 120px; height: 60px;}
-.pataner ul li img:hover{ opacity: 0.8;}
+.pataner ul li img{ width: 120px; height: 60px; border: 1px solid #e5e5e5;}
+.pataner ul li img:hover{ opacity: 0.8; border: 1px solid #FF9900;}
 /*下部友情链接*/
 .link{padding:10px 15px;}
 .link h4{line-height: 40px; padding-left: 50px; border-bottom: 1px solid #dd2727; background: url(../img/icon_01.png) no-repeat 0 -418px; font-weight: 700;}

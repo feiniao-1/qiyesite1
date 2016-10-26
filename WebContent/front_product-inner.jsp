@@ -197,7 +197,7 @@ System.out.println("caipinshow"+caipinshow);
 								</div>
 		         				<h3 class="color-dd2727 mb20"><%=caipinshow.get(0).getStringView("productname") %></h3>
 		         				<img src="<%=caipinshow.get(0).getStringView("img1") %>" class="img-responsive mb20" style="width:100%"/>
-		         				<p class="txt-indent color-666666 mb30 dash-line"><%=caipinshow.get(0).getStringView("content1") %></p>
+		         				<div class="txt-indent color-666666 mb30 dash-line"><%=caipinshow.get(0).getStringView("content1") %></div>
 	         					<h4 class="icon-cp mb20">菜品介绍</h4>
 	         					<img src="img/big-pic02_03.jpg" class="img-responsive mb20">
 	         					<h4 class="text-center color-ff6600 mb20">纯天然饲养的长白猪</h4>
@@ -252,7 +252,9 @@ System.out.println("caipinshow"+caipinshow);
 	         				<!--广告图部分-->
 	         				<div class="baike-content">
 	         				<div class="ad mb30">
-	         					<a href="" target="_blank"><img src="img/wh-pic03_03.jpg" class="img-responsive"></a>
+	         				<%List<Mapx<String,Object>> zuijiashow;
+	         				zuijiashow=DB.getRunner().query("select productmenuid,productname,productEname,img1 from productmenu where del=?  order by shoucang desc limit 1", new MapxListHandler(), "0"); %>
+	         					<a href="front_product-inner.jsp?caiid=<%=zuijiashow.get(0).getIntView("productmenuid")%>" target="_blank"><img src="<%=zuijiashow.get(0).getStringView("img1") %>" class="img-responsive"></a>
 	         				</div>
 	         				<h4 class="icon-sp">相关视频</h4>
 		         			<div class="video mb30">

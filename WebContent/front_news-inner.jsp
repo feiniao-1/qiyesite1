@@ -252,8 +252,8 @@ if(param.get("Action")!=null && param.get("Action").equals("zan")){
 										</div>
 	         						</div>
 	         					</div>
-	         					<div class="summary">
-	         						<p><%=article.get(0).getStringView("content1") %></p>
+	         					<div class="summary txt-indent">
+	         						<%=article.get(0).getStringView("content1") %>
 	         					</div>
 	         					<div class="article-pic mb20">
 	         						<img src="<%=article.get(0).getStringView("img1") %>">

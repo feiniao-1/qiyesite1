@@ -91,6 +91,8 @@ if(intdhpage==0){
 }else{
 	minus =intdhpage-1;
 }
+SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式  
+System.out.println(df.format(new Date()));// new Date()为获取当前系统时间 
 //菜品列表信息
 //CREATE TABLE `productmenu` (
 // `productmenuid` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜品ID',
@@ -122,7 +124,7 @@ String dhid;
 System.out.println("Action"+param.get("Action")+"dhid"+request.getParameter("dhid"));
 if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
 	dhid=new String(request.getParameter("dhid").getBytes("iso-8859-1"),"utf-8");
-		DB.getRunner().update("update productmenu set del=? where productmenuid=?","1",dhid);
+		DB.getRunner().update("update productmenu set del=?,deltime=? where productmenuid=?","1",df.format(new Date()),dhid);
 		%>
 		<script type="text/javascript" language="javascript">
 				alert("删除成功");                                            // 弹出错误信息

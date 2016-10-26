@@ -57,10 +57,8 @@ List<Mapx<String, Object>> juese=DB.getRunner().query("select userrole from user
         				//System.out.println("servletPath:"+servletPathb);   
         				if(request.getQueryString()==null){
         					urlfootor2=requestURIb;
-        					System.out.println("requestURI221:"+requestURIb);
         				}else{
         					urlfootor2=requestURIb+"?"+request.getQueryString();
-        					System.out.println("requestURI221:"+requestURIb+"?"+request.getQueryString());
         				}%>
 	        			<div class="search fr">
 	        				<!-- <div class="resiter fr">
@@ -75,11 +73,23 @@ List<Mapx<String, Object>> juese=DB.getRunner().query("select userrole from user
 							<%} %>
 							</div> -->
 	        				<div class="input-group fr">
-							 <form action="front_news.jsp?page=0" method="post">
-							  <input type="text" class="form-control" name="search">
-							  <input class="input-group-addon cursor" type="submit" name="search_submit" value="搜索" >
+							 <form  method="post" id="subform">
+							  <input placeholder="请输入搜索内容"  type="text" class="form-control" name="search" onfocus="javascript:this.value=''"  id="ipt1">
+							  <input class="input-group-addon cursor" type="submit" name="search_submit" value="搜索"  id="btn1" onclick="checkform()" >
 							 </form>
-							
+							<script type="text/javascript">    
+							function checkform(){ 
+								if((document.getElementById('ipt1').value.length==0)||(document.getElementById('ipt1').value=="请输入搜索内容")){    
+									alert('输入为空！');
+									document.getElementById('ipt1').focus();
+									return false;
+								}else{
+									var testform=document.getElementById("subform");
+									testform.action="front_news.jsp?page=0";
+									testform.submit();
+								}
+							}
+							</script>
 							</div>
 	        			</div>
 	        		</div>

@@ -21,6 +21,12 @@ if(username==null){
 }else{
 	flag=1;
 }
+int xwlei;
+if(request.getParameter("xwlei")==null){
+	xwlei=1;
+}else{
+	xwlei=Integer.parseInt(request.getParameter("xwlei"));
+}
 //获取页数信息
 String index_page;
 if(request.getParameter("page")==null){
@@ -33,14 +39,33 @@ int page_ye=Integer.parseInt(index_page)*5;
 String searchtj;
 
 /*统计 新闻数及 页数*/
-String sqlPreCount = "select count(1) as count from news where newstype=? and (del is NULL or del <>1)  order BY newsid DESC ";
-List<Mapx<String,Object>> sqlPreCount1 =  DB.getRunner().query(sqlPreCount, new MapxListHandler(),"boke");
+String leibie="";
+if(xwlei==2){
+	leibie="热门";
+	}
+if(xwlei==3){
+	leibie="美食"; 
+	}
+if(xwlei==4){
+	leibie="体育";
+	}
+if(xwlei==5){
+	leibie="娱乐";
+	}
+String sqlPreCount;
+List<Mapx<String,Object>> sqlPreCount1;
+if(xwlei!=1){
+	sqlPreCount = "select count(1) as count from news where newstype=? and type=? and (del is NULL or del <>1)  order BY newsid DESC ";
+	sqlPreCount1 =  DB.getRunner().query(sqlPreCount, new MapxListHandler(),"boke",leibie);
+}else{
+	sqlPreCount = "select count(1) as count from news where newstype=? and (del is NULL or del <>1)  order BY newsid DESC ";
+	sqlPreCount1 =  DB.getRunner().query(sqlPreCount, new MapxListHandler(),"boke");
+}
+
 //总商品数量
 int total = sqlPreCount1.get(0).getInt("count");
 //商品页数
 int count_page=total/5;
-System.out.println("count_page"+count_page);
-
 int plus;
 int minus;
 //下一页
@@ -57,7 +82,6 @@ if(Integer.parseInt(index_page)==1){
 }
 //用户信息
 //List<Mapx<String, Object>> user = DB.getRunner().query("select userid from user where username=? ",new MapxListHandler(), username);
-
 %>
 <!DOCTYPE html>
 <html>
@@ -158,16 +182,33 @@ if(Integer.parseInt(index_page)==1){
 	         		<div class="col-md-9">
 	         			<div class="main-left">
 	         			<div class="title-nav clearfix">
-							<div class="title-nav-item active"><a href="front_news.jsp?page=0">全部</a></div>
-							<!-- <div class="title-nav-item">link13</div>
-							<div class="title-nav-item">link14</div>
-							<div class="title-nav-item">link15</div>
-							<div class="title-nav-item">link16</div>
-							<div class="title-nav-item">link17</div> -->
+							<a href="front_news.jsp?xwlei=1"><div id="d1" class="title-nav-item"><a href="front_news.jsp?page=0">全部</a></div></a>
+							<a href="front_news.jsp?xwlei=2"><div id="d2" class="title-nav-item">热门</div></a>
+							<a href="front_news.jsp?xwlei=3"><div id="d3" class="title-nav-item">美食</div></a>
+							<a href="front_news.jsp?xwlei=4"><div id="d4" class="title-nav-item">体育</div></a>
+							<a href="front_news.jsp?xwlei=5"><div id="d5" class="title-nav-item">娱乐</div></a>
 						</div>
+			    <script type="text/javascript">
+if(<%=xwlei%>==1){
+	$("#d1").addClass("active"); 
+}
+if(<%=xwlei%>==2){
+	$("#d2").addClass("active"); 
+	}
+if(<%=xwlei%>==3){
+	$("#d3").addClass("active"); 
+	}
+if(<%=xwlei%>==4){
+	$("#d4").addClass("active"); 
+	}
+if(<%=xwlei%>==5){
+	$("#d5").addClass("active"); 
+	}
+ </script>
 						<!--下部内容-->
 						<div class="course-slide">
-							<!--板块一内容 即全部部分--> 
+						 <%if(xwlei==1){ %>
+							<!--板块一内容 即热门部分--> 
 							<div class="tab-inner cell-list">
 							<%
 							//判断是否是搜索显示
@@ -196,11 +237,11 @@ if(Integer.parseInt(index_page)==1){
 									<div class="cell">
 										<div class="pic">
 											<img src="<%=one.getStringView("img1") %>">
-											<span class="pic-tilte">资讯</span>
+											<span class="pic-tilte"><%=one.getStringView("type") %></span>
 										</div>
 										<div class="cell_primary">
 											<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
-											<div class="mb20">
+											<div class="mb20 txt-indent">
 											<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
 											</div>
 											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
@@ -223,11 +264,11 @@ if(Integer.parseInt(index_page)==1){
 									<div class="cell">
 										<div class="pic">
 											<img src="<%=one.getStringView("img1") %>">
-											<span class="pic-tilte">资讯</span>
+											<span class="pic-tilte"><%=one.getStringView("type") %></span>
 										</div>
 										<div class="cell_primary">
 											<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
-											<div class="mb20">
+											<div class="mb20 txt-indent">
 													<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
 											</div>
 											
@@ -252,186 +293,187 @@ if(Integer.parseInt(index_page)==1){
 								  </ul>
 								</div>
 							</div>
-							<!--板块二内容开始-->
-							<div class="tab-inner cell-list" style="display: none;">
-							<%for(int mokuai_2=1;mokuai_2<=5;mokuai_2++){ %>
+							<%}else if(xwlei==2){ %>
+							<!--板块二内容开始  热门-->
+							<div class="tab-inner cell-list">
+							<%//获取新闻资讯的信息
+							String xinwenSqlrm="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+							List<Mapx<String,Object>> xinwensrm =  DB.getRunner().query(xinwenSqlrm, new MapxListHandler(),"boke","热门");
+							for(int i=0;i<xinwensrm.size();i++){
+								Mapx<String,Object> one = xinwensrm.get(i);
+								//获取文章作者
+								List<Mapx<String, Object>> authorxx= DB.getRunner().query("SELECT username FROM user where userid=?", new MapxListHandler(),one.getIntView("author"));
+							%>
 								<div class="cell">
 									<div class="pic">
-										<img src="img/cai01_03.jpg">
+										<img src="<%=one.getStringView("img1") %>">
+										<span class="pic-tilte"><%=one.getStringView("type") %></span>
 									</div>
 									<div class="cell_primary">
-										<a href="" target="_blank"><h3 class="color-dd2727 mb15">Morketing移动互联网观察  | 每日早报9.13</h3></a>	
-										<p class="mb20">
-												<a href="" class="line3 color-666666">全球移动营销第一平台Morketing全球移动营销第一平台Morketing,全球
-												移动营销第一平台Morketing,全球移动营销第一平台Morketing,,每周一至
-												周五晨间时分为您提供移动互联网观察早欢迎您的关注...</a>
-										</p>
+										<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
+										<div class="mb20 txt-indent">
+												<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
+										</div>
 										
-										<p class="color-666666">来自：恶魔圣典<span>|</span>2016-9-10<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
+										<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
 										<div class="bdsharebuttonbox bd-share">
 											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 										</div>
 									</div>
 								</div>
-								<%} %>
+						<%} %>
 								<!--分页内容标签开始-->
 								<div class="nav-page">
 								  <ul class="pagination">
-								    <li><a href="#">&laquo;</a></li>
-								    <li><a href="#">1</a></li>
-								    <li><a href="#">2</a></li>
-								    <li><a href="#">3</a></li>
-								    <li><a href="#">...</a></li>
-								    <li><a href="#">9</a></li>
-								    <li><a href="#">10</a></li>
-								    <li><a href="#">&raquo;</a></li>
+								  <%if(total>5){ %>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=2&page=<%=minus%>">&laquo;</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=2&page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=2&page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=2&page=2">3</a></li>
+								    <li><a>...</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=2&page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=2&page=<%=count_page%>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=2&page=<%=plus%>">&raquo;</a></li>
+								    <%} %>
 								  </ul>
 								</div>
 							</div>
-							<!--板块三内容开始-->
-							<div class="tab-inner cell-list" style="display: none;">
-							<%for(int mokuai_3=1;mokuai_3<=5;mokuai_3++){ %>
+							<%}else if(xwlei==3){ %>
+							<!--板块三内容开始  美食-->
+							<div class="tab-inner cell-list">
+							<%//获取新闻资讯的信息
+							String xinwenSqlms="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+							List<Mapx<String,Object>> xinwensms =  DB.getRunner().query(xinwenSqlms, new MapxListHandler(),"boke","美食");
+							for(int i=0;i<xinwensms.size();i++){
+								Mapx<String,Object> one = xinwensms.get(i);
+								//获取文章作者
+								List<Mapx<String, Object>> authorxx= DB.getRunner().query("SELECT username FROM user where userid=?", new MapxListHandler(),one.getIntView("author"));
+							%>
 								<div class="cell">
 									<div class="pic">
-										<img src="img/cai01_03.jpg">
+										<img src="<%=one.getStringView("img1") %>">
+										<span class="pic-tilte"><%=one.getStringView("type") %></span>
 									</div>
 									<div class="cell_primary">
-										<a href="" target="_blank"><h3 class="color-dd2727 mb15">Morketing移动互联网观察  | 每日早报9.14</h3></a>	
-										<p class="mb20">
-												<a href="" class="line3 color-666666">全球移动营销第一平台Morketing全球移动营销第一平台Morketing,全球
-												移动营销第一平台Morketing,全球移动营销第一平台Morketing,,每周一至
-												周五晨间时分为您提供移动互联网观察早欢迎您的关注...</a>
-										</p>
+										<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
+										<div class="mb20 txt-indent">
+												<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
+										</div>
 										
-										<p class="color-666666">来自：恶魔圣典<span>|</span>2016-9-10<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
+										<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
 										<div class="bdsharebuttonbox bd-share">
 											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 										</div>
 									</div>
 								</div>
-								<%} %>
+						<%} %>
 								<!--分页内容标签开始-->
 								<div class="nav-page">
 								  <ul class="pagination">
-								    <li><a href="#">&laquo;</a></li>
-								    <li><a href="#">1</a></li>
-								    <li><a href="#">2</a></li>
-								    <li><a href="#">3</a></li>
-								    <li><a href="#">...</a></li>
-								    <li><a href="#">9</a></li>
-								    <li><a href="#">10</a></li>
-								    <li><a href="#">&raquo;</a></li>
+								  <%if(total>5){ %>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=3&page=<%=minus%>">&laquo;</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=3&page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=3&page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=3&page=2">3</a></li>
+								    <li><a>...</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=3&page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=3&page=<%=count_page%>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=3&page=<%=plus%>">&raquo;</a></li>
+								    <%} %>
 								  </ul>
 								</div>
 							</div>
-							<!--板块四内容开始-->
-							<div class="tab-inner cell-list" style="display: none;">
-							<%for(int mokuai_4=1;mokuai_4<=5;mokuai_4++){ %>
+							<%} else if(xwlei==4){ %>
+							<!--板块四内容开始   体育-->
+							<div class="tab-inner cell-list" >
+							<%//获取新闻资讯的信息
+							String xinwenSqltu="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+							List<Mapx<String,Object>> xinwenstu =  DB.getRunner().query(xinwenSqltu, new MapxListHandler(),"boke","体育");
+							for(int i=0;i<xinwenstu.size();i++){
+								Mapx<String,Object> one = xinwenstu.get(i);
+								//获取文章作者
+								List<Mapx<String, Object>> authorxx= DB.getRunner().query("SELECT username FROM user where userid=?", new MapxListHandler(),one.getIntView("author"));
+							%>
 								<div class="cell">
 									<div class="pic">
-										<img src="img/cai01_03.jpg">
+										<img src="<%=one.getStringView("img1") %>">
+										<span class="pic-tilte"><%=one.getStringView("type") %></span>
 									</div>
 									<div class="cell_primary">
-										<a href="" target="_blank"><h3 class="color-dd2727 mb15">Morketing移动互联网观察  | 每日早报9.15</h3></a>	
-										<p class="mb20">
-												<a href="" class="line3 color-666666">全球移动营销第一平台Morketing全球移动营销第一平台Morketing,全球
-												移动营销第一平台Morketing,全球移动营销第一平台Morketing,,每周一至
-												周五晨间时分为您提供移动互联网观察早欢迎您的关注...</a>
-										</p>
+										<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
+										<div class="mb20 txt-indent">
+												<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
+										</div>
 										
-										<p class="color-666666">来自：恶魔圣典<span>|</span>2016-9-10<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
+										<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
 										<div class="bdsharebuttonbox bd-share">
 											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 										</div>
 									</div>
 								</div>
-								<%} %>
+						<%} %>
 								<!--分页内容标签开始-->
 								<div class="nav-page">
 								  <ul class="pagination">
-								    <li><a href="#">&laquo;</a></li>
-								    <li><a href="#">1</a></li>
-								    <li><a href="#">2</a></li>
-								    <li><a href="#">3</a></li>
-								    <li><a href="#">...</a></li>
-								    <li><a href="#">9</a></li>
-								    <li><a href="#">10</a></li>
-								    <li><a href="#">&raquo;</a></li>
+								  <%if(total>5){ %>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=4&page=<%=minus%>">&laquo;</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=4&page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=4&page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=4&page=2">3</a></li>
+								    <li><a>...</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=4&page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=4&page=<%=count_page%>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=4&page=<%=plus%>">&raquo;</a></li>
+								    <%} %>
 								  </ul>
 								</div>
 							</div>
-							<!--板块五内容开始-->
-							<div class="tab-inner cell-list" style="display: none;">
-							<%for(int mokuai_5=1;mokuai_5<=5;mokuai_5++){ %>
+							<%}else if(xwlei==5){ %>
+							<!--板块五内容开始  娱乐-->
+							<div class="tab-inner cell-list" >
+							<%//获取新闻资讯的信息
+							String xinwenSqlyl="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+							List<Mapx<String,Object>> xinwensyl =  DB.getRunner().query(xinwenSqlyl, new MapxListHandler(),"boke","娱乐");
+							for(int i=0;i<xinwensyl.size();i++){
+								Mapx<String,Object> one = xinwensyl.get(i);
+								//获取文章作者
+								List<Mapx<String, Object>> authorxx= DB.getRunner().query("SELECT username FROM user where userid=?", new MapxListHandler(),one.getIntView("author"));
+							%>
 								<div class="cell">
 									<div class="pic">
-										<img src="img/cai01_03.jpg">
+										<img src="<%=one.getStringView("img1") %>">
+										<span class="pic-tilte"><%=one.getStringView("type") %></span>
 									</div>
 									<div class="cell_primary">
-										<a href="" target="_blank"><h3 class="color-dd2727 mb15">Morketing移动互联网观察  | 每日早报9.16</h3></a>	
-										<p class="mb20">
-												<a href="" class="line3 color-666666">全球移动营销第一平台Morketing全球移动营销第一平台Morketing,全球
-												移动营销第一平台Morketing,全球移动营销第一平台Morketing,,每周一至
-												周五晨间时分为您提供移动互联网观察早欢迎您的关注...</a>
-										</p>
+										<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
+										<div class="mb20 txt-indent">
+												<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
+										</div>
 										
-										<p class="color-666666">来自：恶魔圣典<span>|</span>2016-9-10<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
+										<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
 										<div class="bdsharebuttonbox bd-share">
 											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 										</div>
 									</div>
 								</div>
-								<%} %>
+						<%} %>
 								<!--分页内容标签开始-->
 								<div class="nav-page">
 								  <ul class="pagination">
-								    <li><a href="#">&laquo;</a></li>
-								    <li><a href="#">1</a></li>
-								    <li><a href="#">2</a></li>
-								    <li><a href="#">3</a></li>
-								    <li><a href="#">...</a></li>
-								    <li><a href="#">9</a></li>
-								    <li><a href="#">10</a></li>
-								    <li><a href="#">&raquo;</a></li>
+								  <%if(total>5){ %>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=5&page=<%=minus%>">&laquo;</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=5&page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=5&page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=5&page=2">3</a></li>
+								    <li><a>...</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=5&page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=5&page=<%=count_page%>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_news.jsp?xwlei=5&page=<%=plus%>">&raquo;</a></li>
+								    <%} %>
 								  </ul>
 								</div>
 							</div>
-							<!--板块六内容开始-->
-							<div class="tab-inner cell-list" style="display: none;">
-							<%for(int mokuai_6=1;mokuai_6<=5;mokuai_6++){ %>
-								<div class="cell">
-									<div class="pic">
-										<img src="img/cai01_03.jpg">
-									</div>
-									<div class="cell_primary">
-										<a href="" target="_blank"><h3 class="color-dd2727 mb15">Morketing移动互联网观察  | 每日早报9.17</h3></a>	
-										<p class="mb20">
-												<a href="" class="line3 color-666666">全球移动营销第一平台Morketing全球移动营销第一平台Morketing,全球
-												移动营销第一平台Morketing,全球移动营销第一平台Morketing,,每周一至
-												周五晨间时分为您提供移动互联网观察早欢迎您的关注...</a>
-										</p>
-										
-										<p class="color-666666">来自：恶魔圣典<span>|</span>2016-9-10<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
-										<div class="bdsharebuttonbox bd-share">
-											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-										</div>
-									</div>
-								</div>
-								<%} %>
-								<!--分页内容标签开始-->
-								<div class="nav-page">
-								  <ul class="pagination">
-								    <li><a href="#">&laquo;</a></li>
-								    <li><a href="#">1</a></li>
-								    <li><a href="#">2</a></li>
-								    <li><a href="#">3</a></li>
-								    <li><a href="#">...</a></li>
-								    <li><a href="#">9</a></li>
-								    <li><a href="#">10</a></li>
-								    <li><a href="#">&raquo;</a></li>
-								  </ul>
-								</div>
-							</div>
+							<%} %>
 						</div>
 	         		</div>
          		</div>

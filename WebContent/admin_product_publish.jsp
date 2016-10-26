@@ -29,6 +29,8 @@ String jishu = "";
 String fileName = "";
 String fullName1 = "";
 String fullName2 = "";
+String fullName3 = "";
+String fullName4 = "";
 String caiid = "";
 String shuzi = "";
 try{
@@ -36,6 +38,8 @@ jishu = request.getParameter("jishu");
 fileName = request.getParameter("fileName");
 fullName1 = request.getParameter("fullName1");
 fullName2 = request.getParameter("fullName2");
+fullName3 = request.getParameter("fullName3");
+fullName4 = request.getParameter("fullName4");
 caiid = request.getParameter("caiid");
 shuzi = request.getParameter("shuzi");
 System.out.println("caiid"+request.getParameter("caiid"));
@@ -98,7 +102,7 @@ HashMap<String,String> param= G.getParamMap(request);
 //  PRIMARY KEY (`productmenuid`)
 //) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 //菜品列表信息
-List<Mapx<String,Object>> menu=DB.getRunner().query("select productmenuid,productname,productEname,productlei,content1,content2,img1,ydimg1,substring(createtime,1,19) as createtime,substring(updatetime,1,19) as updatetime,count,yprice,shoucang,author from productmenu where del=? and productmenuid=?", new MapxListHandler(),"0",caiid);
+List<Mapx<String,Object>> menu=DB.getRunner().query("select productmenuid,productname,productEname,productlei,content1,content2,img1,img2,ydimg1,ydimg2,substring(createtime,1,19) as createtime,substring(updatetime,1,19) as updatetime,count,yprice,shoucang,author from productmenu where del=? and productmenuid=?", new MapxListHandler(),"0",caiid);
 System.out.println(menu);
 //显示该菜品的随机数信息
 List<Mapx<String,Object>> showdiscuss1 = DB.getRunner().query("select canshu_url as canshu_url from productmenu where  author=? order by productmenuid desc limit 1",new MapxListHandler(),menu.get(0).getIntView("author"));
@@ -115,6 +119,8 @@ String count;
 String shoucang;
 String img1;
 String ydimg1;
+String img2;
+String ydimg2;
 System.out.println("url_canshu:"+url_canshu+";canshu_url:"+canshu_url+";提交前img:"+(String)session.getAttribute("fullName1"));
 if(url_canshu!=canshu_url){
 if(param.get("Action")!=null && param.get("Action").equals("确定")){
@@ -136,10 +142,22 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 	}else{
 		ydimg1="upload/"+(String)session.getAttribute("fullName2");
 	}
+	if((String)session.getAttribute("fullName3")==null){
+		img2=menu.get(0).getStringView("img2");
+	}else{
+		img2="upload/"+(String)session.getAttribute("fullName3");
+	}
+	if((String)session.getAttribute("fullName4")==null){
+		ydimg2=menu.get(0).getStringView("ydimg2");
+	}else{
+		ydimg2="upload/"+(String)session.getAttribute("fullName4");
+	}
 	System.out.println(productlei+productname+productEname+yprice+content1+count+shoucang+img1);
-		DB.getRunner().update("update productmenu set productlei=?,productname=?,productEname=?,content1=?,content2=?,img1=?,ydimg1=?,updatetime=?,count=?,canshu_url=?,yprice=?,shoucang=? where productmenuid=?",productlei,productname,productEname,content1,content2,img1,ydimg1,df.format(new Date()),count,url_canshu,yprice,shoucang,param.get("id"));
+		DB.getRunner().update("update productmenu set productlei=?,productname=?,productEname=?,content1=?,content2=?,img1=?,img2=?,ydimg1=?,ydimg2=?,updatetime=?,count=?,canshu_url=?,yprice=?,shoucang=? where productmenuid=?",productlei,productname,productEname,content1,content2,img1,img2,ydimg1,ydimg2,df.format(new Date()),count,url_canshu,yprice,shoucang,param.get("id"));
 		session.removeAttribute("fullName1");
 		session.removeAttribute("fullName2");
+		session.removeAttribute("fullName3");
+		session.removeAttribute("fullName4");
 		%>
 		<script type="text/javascript" language="javascript">
 				alert("修改成功");                                            // 弹出提示信息
@@ -164,7 +182,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
         </div>
         		<!-- 表格 start -->
         		<div class="form-group">
-        		<h5>PC商品图片<span style="color:red;">*(370*247)</span></h5> 
+        		<h5>PC商品封面图片<span style="color:red;">*(370*247)</span></h5> 
 						<form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=1" method="post" enctype="multipart/form-data">
 						<div class="mb10">
 						<input type="file" name="attr_file1" style="display:inline-block; width:220px;">
@@ -198,7 +216,41 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							 <%}else{ %>
 							 	<img alt="" src="<%=menu.get(0).getStringView("img1") %>" style="width:220px!important;" height="150px">
 							 <%} %>
-					    <h5>移动端商品图片<span style="color:red;">*</span></h5> 
+							 <h5>PC商品详情图片<span style="color:red;">*(798*532)</span></h5> 
+						<form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=3" method="post" enctype="multipart/form-data">
+						<div class="mb10">
+						<input type="file" name="attr_file3" style="display:inline-block; width:220px;">
+						<input type="submit" value="上传">  
+						<%if(shuzi!=null&&shuzi.equals("3")){
+							if(fullName3==null){
+								//session.removeAttribute("fullName2");
+							}else{
+								if(fileName=="") {%>
+									<script type="text/javascript" language="javascript">
+									document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
+								</script>
+								<%}else{ %>
+								<%
+								session.setAttribute("fullName3", fullName3);
+								} %>
+							<%}
+						}%>
+									<%
+							if((String)session.getAttribute("fullName3")!=null){%>
+									<script type="text/javascript" language="javascript">
+										document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+										
+									</script>
+							<%}else{ %>
+							<%} %>
+							</div>
+				  	    </form>
+						 <%if((String)session.getAttribute("fullName3")!=null){ %>
+							 	<img alt="" src="upload/<%=(String)session.getAttribute("fullName3") %>" style="width:220px!important;" height="150px">
+							 <%}else{ %>
+							 	<img alt="" src="<%=menu.get(0).getStringView("img2") %>" style="width:220px!important;" height="150px">
+							 <%} %>
+					    <h5>移动端商品封面图片<span style="color:red;">*</span></h5> 
 					    <form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=2" method="post" enctype="multipart/form-data">
 						<div class="mb10">
 						<input type="file" name="attr_file1" style="display:inline-block; width:220px">
@@ -232,7 +284,42 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							 <%}else{ %>
 							 	<img alt="" src="<%=menu.get(0).getStringView("ydimg1") %>" style="width:120px!important;" height="90px">
 							 <%} %>
+					<h5>移动端商品详情图片<span style="color:red;">*</span></h5> 
+					    <form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=4" method="post" enctype="multipart/form-data">
+						<div class="mb10">
+						<input type="file" name="attr_file4" style="display:inline-block; width:220px">
+						<input type="submit" value="上传">
+						<%if(shuzi!=null&&shuzi.equals("4")){
+							if(fullName4==null){
+								//session.removeAttribute("fullName2");
+							}else{
+								if(fileName=="") {%>
+									<script type="text/javascript" language="javascript">
+									document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
+								</script>
+								<%}else{ %>
+								<%
+								session.setAttribute("fullName4", fullName4);
+								} %>
+							<%}
+						}%>
+									<%
+							if((String)session.getAttribute("fullName4")!=null){%>
+									<script type="text/javascript" language="javascript">
+										document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+										
+									</script>
+							<%}else{ %>
+							<%} %>
+						  	</div>
+				  	 </form>
+						 <%if((String)session.getAttribute("fullName4")!=null){ %>
+							 	<img alt="" src="upload/<%=(String)session.getAttribute("fullName4") %>" style="width:120px!important;" height="90px">
+							 <%}else{ %>
+							 	<img alt="" src="<%=menu.get(0).getStringView("ydimg2") %>" style="width:120px!important;" height="90px">
+							 <%} %>
 				</div>
+				
 				<form role="form" action="admin_product_publish.jsp?jishu=<%=val%>&caiid=<%=caiid %>" method="POST" name="form1"
 					novalidate>
 					<div class="form-group">
