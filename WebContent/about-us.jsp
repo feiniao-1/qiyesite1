@@ -207,31 +207,33 @@ if(<%=cailei%>==6){
          	<!--右边部分开始-->
          	<div class="us-right">
          	<%if(cailei==1){ %>
-                    <div class="tab-content">
+                     <div class="tab-content" style="display: block;">
                         <h3 class="mb20">公司介绍</h3>
                         <img src="img/us01_03.jpg" class="img-responsive mb20"/>
                         <p class="txt-indent">饺耳世家，是全国首家致力于传承千年养生饮食文化的饺子店。
-                        	馅料制作均选用新鲜的原食材，进行合理的营养搭配。以老北京宫廷御厨的秘制配方为基础,
-                        	自第一道工序开始，从皮到馅全部纯手工制作，为您奉上传统地道的纯手工水饺。
-                        	我们不单纯注重于饺子的口感与味道，同时注重于饺子的营养与功效。让饺子延续其最初诞生的意义，
-                        	让大家享受美味的同时养胃健脾，温补身体，吃的美味也吃得健康。
-                        	饺耳世家，是全国首家致力于传承千年养生饮食文化的饺子店。馅料制作均选用新鲜的原食材，进行合理的营养搭配。
-                        	以老北京宫廷御厨的秘制配方为基础,自第一道工序开始，从皮到馅全部纯手工制作，为您奉上传统地道的纯手工水饺。
-                        	我们不单纯注重于饺子的口感与味道，同时注重于饺子的营养与功效。让饺子延续其最初诞生的意义，
-                        	让大家享受美味的同时养胃健脾，温补身体，吃的美味也吃得健康。饺耳世家，是全国首家致力于传承千年养生饮食文化的饺子店。
-                        	馅料制作均选用新鲜的原食材，进行合理的营养搭配。以老北京宫廷御厨的秘制配方为基础,自第一道工序开始，
-                        	从皮到馅全部纯手工制作，为您奉上传统地道的纯手工水饺。我们不单纯注重于饺子的口感与味道，同时注重于饺子的营养与功效。
-                        	让饺子延续其最初诞生的意义，让大家享受美味的同时养胃健脾，温补身体，吃的美味也吃得健康。</p>
+                        	秉承“传以古法，注以新意，精于食材，通于传达。”品牌理念和“养生食疗”的经营宗旨，
+                        	让饺子的食疗养生文化在老北京宫廷御厨祖传配方接班人张芳女士的手上，继续发扬光大，
+                        	铸就饺耳金质品牌。让饺耳世家成为中国餐饮行业的价值典范。</p>
+                        <p class="txt-indent">我们不单纯注重于饺子的口感与味道，同时注重于饺子的营养与功效。
+                        	饺子的馅料制作均选用新鲜的原食材，进行合理的营养搭配。自第一道工序开始，通过29道工艺标准，49道工艺流程，
+                        	从皮到馅全部纯手工制作，为您奉上传统地道的纯手工水饺。饺子为东汉末年，“医圣”张仲景发明，原名娇耳。
+                        	第一个饺子的诞生并不是作为食物，而是作为药引“祛寒娇耳汤”，帮助穷人驱寒暖身，医治冻烂的耳朵。
+                        	饺耳世家将遵循1800年前张仲景发明饺子的初衷，让饺子作为美味食物的同时，继续完成它温补身体，养生食疗的使命。
+                        	让饺子延续其最初诞生的意义，让大家享受美味的同时养胃健脾，温补身体，吃的美味也吃得健康。
+                        </p>
+                        <p class="txt-indent">来到饺耳世家，除了美味健康的饺子外，还有其他精美养生菜品售卖。饺耳世家，纯正中国味，等您来尝鲜！</p>
                     </div>
 <%} %>
 <%if(cailei==2){ %>
                     <div class="tab-content">
                         <h3>企业文化</h3>
                         <h4>1.企业宗旨</h4>
-                        <p>诚实守信诚实守信诚实守信诚实守信诚实守信诚实守信诚实守信</p>
-                        <h4>2.企业环境</h4>
+                        <p>秉承“传以古法，注以新意，精于食材，通于传达。”</p>
+                        <h4>2.企业使命</h4>
+                        <p>传千年饮食文化，树餐饮价值典范</p>
+                        <h4>3.企业环境</h4>
                         <img src="img/us02_03.jpg" class="img-responsive mb20" />
-                        <h4>3.企业资质</h4>
+                        <h4>4.企业资质</h4>
                         <ul class="qualification clearfix">
                         	<li><img src="img/us03.jpg" class="img-responsive"></li>
                         	<li><img src="img/us03.jpg" class="img-responsive"></li>
@@ -240,31 +242,29 @@ if(<%=cailei%>==6){
                     </div>
                     <%} %>
  <%if(cailei==3){ %>
-                    <div class="tab-content" >
+                    <div class="tab-content">
                         <h3>线下活动</h3>
                         <ul class="exercise clearfix mb20">
                         	<li class="fl mr30"><img src="img/us04_03.jpg" class="img-responsive"></li>
                    			<li class="fl"><img src="img/us05_03.jpg" class="img-responsive"></li>
                         </ul>
-                        <P class="txt-indent">饺耳世家，是全国首家致力于传承千年养生饮食文化的饺子店。馅料制作均选用新鲜的原食材，
-                        	进行合理的营养搭配。以老北京宫廷御厨的秘制配方为基础,自第一道工序开始，从皮到馅全部纯手工制作，为您奉上传统地道的纯手工水饺。
-                        	我们不单纯注重于饺子的口感与味道，同时注重于饺子的营养与功效。让饺子延续其最初诞生的意义，让大家享受美味的同时养胃健脾，
-                        	温补身体，吃的美味也吃得健康。</P>
+                        <p class="txt-indent">饺耳世家，是全国首家致力于传承千年传统饮食文化的饺子店。我们倡导健康养生的饮食观念,将饺子的食用与四季及二十四节气紧密相连， 回归千年前张仲景发明饺子的初衷，让饺子作为美味的同时延续其治病养生的使命。饺耳世家制作饺子的独到之处在于调馅与制皮，饺子秘制配方为老北京宫廷御厨张氏传人张芳女士提供，至今已过百年。秘制的配方，讲究的选料，精细的制作过程，铸就了饺耳世家一个个口味鲜醇的纯手工水饺。</p>
+                        <P class="txt-indent"> 金秋九月，秋风送爽。9月13日上午9点30分，在主持人清亮高昂的声音中，饺耳世家开业典礼正式开始。此次到场的领导与嘉宾有：著名歌唱家于文华，中央首长保健医周超凡，仲景世家餐饮集团董事长徐洪明等。北京城里的各路“吃货”也纷纷闻讯而来，呼朋引伴，络绎不绝，就是为了一起大块朵颐！</P>
                     </div>
 <%} %>
 <%if(cailei==6){ %>
                     <div class="tab-content">
                         <h3>电子杂志</h3>
                         <ul class="clearfix  e-zine">
-                        	<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href=""><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                        	<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
                         </ul>
                         <!--分页内容标签开始-->
 								<div class="nav-page">
@@ -318,7 +318,7 @@ if(<%=cailei%>==6){
                         <p>
                         	地      址：北京市朝阳区朝阳路69号<br />
 					                      电       话：010-80850472   18910622378  王经理<br />
-							面试时间：2016年9月24日  上午10:00   下午2:00<br />
+							面试时间：周一到周日 上午10:00到 下午17:00<br />
 							有意者请携带简历，在上述时间直接参加面试，无需预约。<br />
                                                                              错过招聘时间，有意加入公司者可与王经理电话联系，另行约定面试时间。                                         
                         </p>
@@ -329,17 +329,17 @@ if(<%=cailei%>==6){
                         <h3>联系我们</h3>
                         <div class="cell mb30">
                         	<div class="cell_primary">
-                        		公司名称：饺耳世家<br />
-								公司地址：北京市朝阳区朝阳路福福满街69号<br />
-								联  系  人：张经理<br />
-								联系电话：010-80440188<br />
-								邮       箱：jiaoear@126.com<br />
+                        		<p class="contact-information"><label>公司名称：</label>饺耳世家<br />
+								<label>公司地址：</label>北京市朝阳区朝阳路福福满街69号<br />
+								<label>联系人：</label>张经理<br />
+								<label>联系电话：</label>010-80440188<br />
+								<label>邮箱：</label>jiaoear@126.com<br /></p>
                         	</div>
                         	<div class="cell_primary">
-                        		<img src="img/pic18_03.jpg">
+                        		<img src="img/pic18_03.jpg" class="fr">
                         	</div>
                         </div>
-                        <div style="width:800px;height:600px;border:#ccc solid 1px;font-size:14px" id="map"></div>
+                        <div style="width:100%;height:600px;border:#ccc solid 1px;font-size:14px" id="map"></div>
                     </div>
 
 <%} %>

@@ -45,9 +45,9 @@ List<Mapx<String, Object>> authorxx= DB.getRunner().query("SELECT username FROM 
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String jishu = "";
+
 try{
 jishu = request.getParameter("jishu");
-System.out.println("jishu"+jishu);
 }catch(Exception e){
 	
 }
@@ -86,7 +86,7 @@ String content;
 		content=new String(request.getParameter("content").getBytes("iso-8859-1"),"utf-8");
 		if(content.equals("")||content.equals(null)){
 		}else{
-			DB.getRunner().update("insert into discuss(discusscontent,visitor,canshu_url,discusstime,userid,articleid) values(?,?,?,?,?,?)",content,10168,url_canshu,df.format(new Date()),10049,article.get(0).getStringView("articleid"));
+			DB.getRunner().update("insert into discuss(discusscontent,visitor,canshu_url,discusstime,userid,articleid,zcount) values(?,?,?,?,?,?,?)",content,10168,url_canshu,df.format(new Date()),10049,article.get(0).getStringView("articleid"),"0");
 			content=null;
 		}
 		//if(flag==1){
@@ -109,11 +109,10 @@ String content;
 	}
 
 //显示评论信息
-List<Mapx<String,Object>> showdiscuss = DB.getRunner().query("select discusscontent as sh_discuss,userid as sh_userid,visitor as sh_visitor,canshu_url as canshu_url ,substring(discusstime,1,19) as discusstime from discuss where  articleid=? order by discussid desc limit "+page_ye+",5",new MapxListHandler(),article.get(0).getStringView("articleid"));
-
+List<Mapx<String,Object>> showdiscuss = DB.getRunner().query("select discussid as discussid,discusscontent as sh_discuss,userid as sh_userid,visitor as sh_visitor,canshu_url as canshu_url ,substring(discusstime,1,19) as discusstime from discuss where  articleid=? order by discussid desc limit "+page_ye+",5",new MapxListHandler(),article.get(0).getStringView("articleid"));
 /*统计 评论数及 页数*/
-String sqlPreCount = "select count(1) as count from discuss where  (del is NULL or del <>1) and userid=? order BY discussid DESC ";
-List<Mapx<String,Object>> sqlPreCount1 =  DB.getRunner().query(sqlPreCount, new MapxListHandler(),useridh);
+String sqlPreCount = "select count(1) as count from discuss where  (del is NULL or del <>1) and articleid=? order BY discussid DESC ";
+List<Mapx<String,Object>> sqlPreCount1 =  DB.getRunner().query(sqlPreCount, new MapxListHandler(),article.get(0).getStringView("articleid"));
 //总商品数量
 int total = sqlPreCount1.get(0).getInt("count");
 //商品页数
@@ -132,6 +131,14 @@ if(Integer.parseInt(discuss_page)==0){
 	minus =0;	
 }else{
 	minus =Integer.parseInt(discuss_page)-1;
+}
+//增加赞
+String cussid;
+if(param.get("Action")!=null && param.get("Action").equals("zan")){
+	cussid=param.get("id");
+	//获取该id的赞量
+	List<Mapx<String,Object>> idxihuan=DB.getRunner().query("select zcount from discuss where discussid=? ", new MapxListHandler(), cussid);
+	DB.getRunner().update("update discuss set zcount=? where discussid=?",Integer.parseInt(idxihuan.get(0).getIntView("zcount"))+1,cussid);
 }
 %>
 <!DOCTYPE html>
@@ -287,9 +294,9 @@ if(Integer.parseInt(discuss_page)==0){
 						    	Mapx<String,Object> showdiscuss_1 = showdiscuss.get(i);
 						    	List<Mapx<String,Object>> user_xinxi = DB.getRunner().query("select username from user where  userid=? ",new MapxListHandler(),showdiscuss_1.getIntView("sh_userid"));
 						    	//获取访客用户
-						    	
 						    	List<Mapx<String, Object>> visitorxx= DB.getRunner().query("SELECT username FROM user where userid=?", new MapxListHandler(),"10168");
-						    	System.out.println("showdiscuss_1"+showdiscuss_1);
+						    	//评论信息计数
+						    	List<Mapx<String, Object>> zcountshu= DB.getRunner().query("SELECT zcount FROM discuss where discussid=?", new MapxListHandler(),showdiscuss_1.getIntView("discussid"));
 						    	%>
 						    		<div class="cell" style="align-items:flex-start;">
 	         							<div class="pic-tx">
@@ -298,7 +305,19 @@ if(Integer.parseInt(discuss_page)==0){
 	         							<div class="cell_primary">
 	         								<h5 class="mb10"><%=visitorxx.get(0).getStringView("username") %></h5>
 	         								<p class="color-666666 mb10"><%=showdiscuss_1.getStringView("sh_discuss") %></p>
-	         								<p class="color-999999"><span class="mr20">时间：<%=showdiscuss_1.getStringView("discusstime")%></span><a href="javascript:;" class=" mr10"><span class="glyphicon glyphicon-thumbs-up"></span></a>66</p>
+	         								<p class="color-999999"><span class="mr20">时间：<%=showdiscuss_1.getStringView("discusstime")%></span>
+	         								<a href="javascript:;" class=" mr10" onclick="test_post<%=i %>()"><span class="glyphicon glyphicon-thumbs-up"></span></a><%=zcountshu.get(0).getIntView("zcount") %></p>
+	         								<form  id="subform<%=i %>" method="POST" >
+	         									<input type="hidden" value="<%=showdiscuss_1.getStringView("discussid")%>" name="id">
+												<input type="hidden" value="zan" name="Action">
+											</form>
+											<script type="text/javascript">
+												function test_post<%=i %>() {
+												var testform=document.getElementById("subform<%=i %>");
+												testform.action="front_news-inner.jsp?page=0&val="+<%=val%>+"&tagid="+<%=request.getParameter("tagid")%>+"&id="+<%=showdiscuss.get(i).getStringView("discussid")%>;
+												testform.submit();
+												}
+											</script>
 	         							</div>
 	         						</div>
 						            

@@ -30,17 +30,11 @@
         					<p>© Copyright 2008-2016. 京ICP备15008545号</p>
         					<p>饺耳热线：010-80440188 / 010-80443266</p>
         					<p><a href="" target="_blank">技术支持：DESIGN BY IWISDOMS TEAM</a></p>
-        					<div  data-tag="share_1"><p class="icon-link">
-        						<a href="" target="_blank" title="分享到微信"><img src="img/wx-icon_03.png"></a>
-        						<a href="" target="_blank" title="分享到新浪微博"><img src="img/wb-icon_03.png"></a>
-        						<a href="" target="_blank" title="分享到QQ空间"><img src="img/kj-icon_03.png"></a>
-        						<a href="" target="_blank" title="分享到人人网"><img src="img/rr-icon_03.png"></a>
-        					</p></div>
         					<div class="icon-link bdsharebuttonbox" data-tag="share_1">
-								<a class="bds_weixin" data-cmd="weixin"></a>
+								<a style="background-image:url(img/wx-icon_03.png);" data-cmd="weixin"></a>
 								<a style="background-image:url(img/wb-icon_03.png);" data-cmd="tsina"></a>
 								<a style="background-image:url(img/kj-icon_03.png);" data-cmd="qzone"></a>
-								<a data-cmd="renren"></a>
+								<a style="background-image:url(img/rr-icon_03.png);" data-cmd="renren"></a>
 							</div>
 
         				</div>
@@ -52,9 +46,9 @@
         				String basePatha = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+patha+"/";   
         				String servletPatha=request.getServletPath();    
         				String requestURIa=request.getRequestURI();  
-        				System.out.println("path:"+patha);  
-        				System.out.println("basePath:"+basePatha);   
-        				System.out.println("servletPath:"+servletPatha);   
+        				//System.out.println("path:"+patha);  
+        				//System.out.println("basePath:"+basePatha);   
+        				//System.out.println("servletPath:"+servletPatha);   
         				if(request.getQueryString()==null){
         					urlfootor=requestURIa;
         					System.out.println("requestURI111:"+requestURIa);

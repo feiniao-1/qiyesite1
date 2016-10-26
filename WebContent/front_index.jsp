@@ -149,7 +149,7 @@ if (browser.versions.mobile){
 		<div class="video-box" style="display: none;">
 			<video id="vPlayer" controls="controls"  width="100%" heigh="517" poster="img/video-bg.jpg" src="video/example.mp4"></video>
 		</div>
-				<!--视频弹出层结束-->
+		<!--视频弹出层结束-->
 		<%@ include file="header.jsp"%>
 		<!--导航部分开始-->
         <div class="navbar">
@@ -242,43 +242,17 @@ if (browser.versions.mobile){
          			</div>
          			<div class="picMarquee-left">
 						<div class="bd">
-							<ul class="picList">
+						<ul class="picList">
+						<%List<Mapx<String,Object>> caipinshow2;
+		         				caipinshow2=DB.getRunner().query("select productmenuid,productname,productEname,img1 from productmenu where del=?  order by shoucang desc limit 6", new MapxListHandler(), "0"); 
+		         				for(int i=0;i<caipinshow2.size();i++){%>
 								<li>
-									<div class="pic"><a href="" target="_blank"><img src="img/wh-pic02_03.jpg" /></a></div>
+									<div class="pic"><a href="front_product-inner.jsp?caiid=<%=caipinshow2.get(i).getIntView("productmenuid")%>" target="_blank"><img src="<%=caipinshow2.get(i).getStringView("img1") %>" /></a></div>
 									<div class="foodname">
-										<a href="" target="_blank">蓝莓山药</br>Blueberry yam </a>
+										<a href="" target="_blank"><%=caipinshow2.get(i).getStringView("productname") %></br><%=caipinshow2.get(i).getStringView("productEname") %></a>
 									</div>
 								</li>
-								<li>
-									<div class="pic"><a href="" target="_blank"><img src="img/wh-pic03_03.jpg" /></a></div>
-									<div class="foodname">
-										<a href="" target="_blank">非诚勿扰</br>Genuine replies only </a>
-									</div>
-								</li>
-								<li>
-									<div class="pic"><a href="" target="_blank"><img src="img/wh-pic04_03.jpg" /></a></div>
-									<div class="foodname">
-										<a href="" target="_blank">西红柿鸡蛋水饺</br>Tomato and egg Boiled dumplings </a>
-									</div>
-								</li>
-								<li>
-									<div class="pic"><a href="" target="_blank"><img src="img/wh-pic05_03.jpg" /></a></div>
-									<div class="foodname">
-										<a href="" target="_blank">饺耳金牌水饺</br>Gold Boiled dumplings dumplings </a>
-									</div>
-								</li>
-								<li>
-									<div class="pic"><a href="" target="_blank"><img src="img/big-pic05_03.jpg" /></a></div>
-									<div class="foodname">
-										<a href="" target="_blank">红烧肉</br>Pork braised in brown sauce </a>
-									</div>
-								</li> 
-								<li>
-									<div class="pic"><a href="" target="_blank"><img src="img/wh-pic06_03.jpg" /></a></div>
-									<div class="foodname">
-										<a href="" target="_blank">钵子扁豆角</br>Lentil pot </a>
-									</div>
-								</li>
+								<%} %>
 							</ul>
 						</div>
 					</div>

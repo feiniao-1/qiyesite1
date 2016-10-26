@@ -241,7 +241,7 @@ if(<%=cailei%>==6){
 	}
  </script>
 			    <div class="course-slide">
-			    	<!--板块一部分开始-->
+			    	<!--板块一部分开始 特色水饺-->
 			    <%if(cailei==1){ %>
 
 			    	<div class="product-list">
@@ -273,6 +273,8 @@ if(<%=cailei%>==6){
 			    			</li>
 			    		<%}} %>
 			    		</ul>
+			    		<%if(total>9){ %>
+			    			
 			    		<!--分页内容标签开始-->
 								<div class="nav-page">
 								  <ul class="pagination">
@@ -288,10 +290,10 @@ if(<%=cailei%>==6){
 								</div>
 						<!--分页内容标签结束-->
 			    	</div>
-		
+					<%}%>
 			    	<%} else if(cailei==2){ %>
 			    	<!--板块一部分结束-->
-			    	<!--板块二部分开始-->
+			    	<!--板块二部分开始 开胃凉菜-->
 			    	<div class="product-list" >
 			    		<ul class="clearfix fmpage" >
 			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
@@ -321,6 +323,7 @@ if(<%=cailei%>==6){
 			    			</li>
 			    		<%}} %>
 			    		</ul>
+			    		<%if(total>9){ %>
 			    		<!--分页内容标签开始-->
 								<div class="nav-page">
 								  <ul class="pagination">
@@ -336,9 +339,10 @@ if(<%=cailei%>==6){
 								</div>
 						<!--分页内容标签结束-->
 			    	</div>
+			    	<%} %>
 			    	<%} else if(cailei==3){ %>
 			    	<!--板块二部分结束-->
-			    	<!--板块三部分开始-->
+			    	<!--板块三部分开始 精美热菜-->
 			    	<div class="product-list" >
 			    		<ul class="clearfix fmpage">
 			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
@@ -368,6 +372,7 @@ if(<%=cailei%>==6){
 			    			</li>
 			    		<%}} %>
 			    		</ul>
+			    		<%if(total>9){ %>
 			    		<!--分页内容标签开始-->
 								<div class="nav-page">
 								  <ul class="pagination">
@@ -383,9 +388,10 @@ if(<%=cailei%>==6){
 								</div>
 						<!--分页内容标签结束-->
 			    	</div>
+			    	<%} %>
 			    	<%} else if(cailei==4){ %>
 			    	<!--板块三部分结束-->
-			    	<!--板块四部分开始-->
+			    	<!--板块四部分开始 美味主食-->
 			    	<div class="product-list" >
 			    		<ul class="clearfix fmpage">
 			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
@@ -415,6 +421,7 @@ if(<%=cailei%>==6){
 			    			</li>
 			    		<%}} %>
 			    		</ul>
+			    		<%if(total>9){ %>
 			    		<!--分页内容标签开始-->
 								<div class="nav-page">
 								  <ul class="pagination">
@@ -430,9 +437,10 @@ if(<%=cailei%>==6){
 								</div>
 						<!--分页内容标签结束-->
 			    	</div>
+			    	<%} %>
 			    	<%} else if(cailei==5){ %>
 			    	<!--板块四部分结束-->
-			    	<!--板块五部分开始-->
+			    	<!--板块五部分开始 酒水饮料-->
 			    	<div class="product-list" >
 			    		<ul class="clearfix fmpage">
 			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
@@ -462,6 +470,7 @@ if(<%=cailei%>==6){
 			    			</li>
 			    		<%}} %>
 			    		</ul>
+			    		<%if(total>9){ %>
 			    		<!--分页内容标签开始-->
 								<div class="nav-page">
 								  <ul class="pagination">
@@ -477,9 +486,10 @@ if(<%=cailei%>==6){
 								</div>
 						<!--分页内容标签结束-->
 			    	</div>
+			    	<%} %>
 			    	<%} else if(cailei==6){ %>
 			    	<!--板块五部分结束-->
-			    	<!--板块六部分开始-->
+			    	<!--板块六部分开始  店长推荐-->
 			    	<div class="product-list" >
 			    		<ul class="clearfix fmpage">
 			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>

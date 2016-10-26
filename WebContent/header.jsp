@@ -45,6 +45,23 @@ List<Mapx<String, Object>> juese=DB.getRunner().query("select userrole from user
 	        			<div class="tell fl">
 	        				<p><span>010-8044<strong>0188</strong></span></p>
 	        			</div>
+	        			<%//获取url
+        				HashMap<String,String> param2= G.getParamMap(request);
+        				String  urlfootor2;
+        				String pathb = request.getContextPath();  
+        				String basePathb = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+pathb+"/";   
+        				String servletPathb=request.getServletPath();    
+        				String requestURIb=request.getRequestURI();  
+        				//System.out.println("path:"+pathb);  
+        				//System.out.println("basePath:"+basePathb);   
+        				//System.out.println("servletPath:"+servletPathb);   
+        				if(request.getQueryString()==null){
+        					urlfootor2=requestURIb;
+        					System.out.println("requestURI221:"+requestURIb);
+        				}else{
+        					urlfootor2=requestURIb+"?"+request.getQueryString();
+        					System.out.println("requestURI221:"+requestURIb+"?"+request.getQueryString());
+        				}%>
 	        			<div class="search fr">
 	        				<!-- <div class="resiter fr">
 								<%if(flag==1){ 

@@ -1,3 +1,87 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="com.jx.common.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.net.URLEncoder"%>
+<%@ page import="org.apache.commons.dbutils.QueryRunner"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%
+HashMap<String,String> param= G.getParamMap(request);
+//获取url
+String  url  =  "http://"  +  request.getServerName()  +  ":"  +  request.getServerPort()  +  request.getContextPath()+request.getServletPath().substring(0,request.getServletPath().lastIndexOf("/")+1);
+String url1 = request.getRequestURI(); 
+/*char[] jiequhou;
+int q=0;
+for(int n=0;n<jiequ.length;n++){
+	System.out.println(jiequ[n]);
+	if(jiequ[n]=='f'){
+		for(int m=n;m<jiequ.length;m++){
+			jiequhou[q]=jiequ[m];
+		q++;
+		}
+	}
+}*/
+
+System.out.println("url1"+url1);
+if(url1.matches("^index$")){
+	System.out.println("YES");
+}else{
+	System.out.println("NO");
+}
+int cailei;
+if(request.getParameter("cailei")==null){
+	cailei=1;
+}else{
+	cailei=Integer.parseInt(request.getParameter("cailei"));
+}
+String url3=request.getRequestURI().toString(); //得到相对url 
+String url2=request.getRequestURI().toString(); //得到绝对URL
+//验证用户登陆
+String username = (String)session.getAttribute("username");
+int flag=0;
+if(username==null){
+	
+}else{
+	flag=1;
+}
+//获取页数信息
+String index_page;
+if(request.getParameter("page")==null){
+	index_page=String.valueOf(0);
+}else{
+	index_page=request.getParameter("page");
+}
+int page_ye=Integer.parseInt(index_page)*5;
+//搜索属性
+String searchtj;
+
+/*统计 新闻数及 页数*/
+String sqlPreCount = "select count(1) as count from news where newstype=? and (del is NULL or del <>1)  order BY newsid DESC ";
+List<Mapx<String,Object>> sqlPreCount1 =  DB.getRunner().query(sqlPreCount, new MapxListHandler(),"boke");
+//总商品数量
+int total = sqlPreCount1.get(0).getInt("count");
+//商品页数
+int count_page=total/5;
+System.out.println("count_page"+count_page);
+
+int plus;
+int minus;
+//下一页
+if(Integer.parseInt(index_page)==count_page){
+	plus=count_page;
+}else{
+	plus =Integer.parseInt(index_page)+1;
+}
+//上一页
+if(Integer.parseInt(index_page)==1){
+	minus =1;	
+}else{
+	minus =Integer.parseInt(index_page)-1;
+}
+//用户信息
+//List<Mapx<String, Object>> user = DB.getRunner().query("select userid from user where username=? ",new MapxListHandler(), username);
+
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -25,46 +109,7 @@
     	
 	</head>
 	<body>
-		<!--顶部开始-->
-        <div class="header">
-        	<div class="container">
-        		<div class="row">
-	        		<div class="top clearfix">
-	        				<div class="dropdown fr">
-							  <a class="dropdown-toggle" href="" id="dropdownMenu1" data-toggle="dropdown">
-							            更多语言
-							    <span class="caret"></span>
-							  </a>
-							  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言1</a></li>
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言2</a></li>
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言3</a></li>
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言4</a></li>
-							  </ul>
-							</div>
-	        				<p class="fr">选择语言：<a href="" target="_blank">简体中文</a><span>|</span><a href="" target="_blank">繁体中文</a><span>|</span><a href="" target="_blank">English</a><span>|</span></p>
-	        		</div>
-        		</div>
-        		<div class="row">
-	        		<div class="head clearfix">
-	        			<div class="logo fl"><a href="index.html"><img src="img/logo_03.jpg"></a></div>
-	        			<div class="tell fl">
-	        				<p><span>400-21332252</span></p>
-	        			</div>
-	        			<div class="search fr">
-	        				<div class="resiter fr">
-								<span class="glyphicon glyphicon-user"></span><a href="" target="_blank">登陆</a>/<a href="" target="_blank">注册</a>
-							</div>
-	        				<div class="input-group fr">
-							  <input type="text" class="form-control">
-							  <input class="input-group-addon cursor" type="submit" value="搜索">
-							</div>
-	        			</div>
-	        		</div>
-        		</div>
-        	</div>
-        </div>	
-        <!--顶部结束-->
+		<%@ include file="header.jsp"%>
         <!--导航部分开始-->
         <div class="navbar">
         	<div class="container">
@@ -121,13 +166,34 @@
          	<!--左边导航部分开始-->
          	<div class="us-left">
                     <ul class="about-tab">
-                        <li class="js-tab">公司介绍 <i></i></li>
-                        <li class="js-tab">企业文化<i></i></li>
-                        <li class="js-tab">线下活动<i></i></li>
-                        <li class="js-tab active">电子杂志<i></i></li>
-                        <li class="js-tab">人才招聘<i></i></li>
-                        <li class="js-tab">联系我们 <i></i></li>
+                        <a href="about-us.jsp?cailei=1"><li id="d1" class="js-tab">公司介绍 <i></i></li></a>
+                        <a href="about-us.jsp?cailei=2"><li id="d2" class="js-tab">企业文化<i></i></li></a>
+                        <a href="about-us.jsp?cailei=3"><li id="d3" class="js-tab">线下活动<i></i></li></a>
+                        <a href="about-us.jsp?cailei=6"><li id="d6" class="js-tab">电子杂志<i></i></li></a>
+                        <a href="about-us.jsp?cailei=4"><li id="d4" class="js-tab">人才招聘<i></i></li></a>
+                        <a href="about-us.jsp?cailei=5"><li id="d5" class="js-tab">联系我们 <i></i></li></a>
+
                     </ul>
+                    			    <script type="text/javascript">
+if(<%=cailei%>==1){
+	$("#d1").addClass("active"); 
+}
+if(<%=cailei%>==2){
+	$("#d2").addClass("active"); 
+	}
+if(<%=cailei%>==3){
+	$("#d3").addClass("active"); 
+	}
+if(<%=cailei%>==4){
+	$("#d4").addClass("active"); 
+	}
+if(<%=cailei%>==5){
+	$("#d5").addClass("active"); 
+	}
+if(<%=cailei%>==6){
+	$("#d6").addClass("active"); 
+	}
+ </script>
                     <div class="tab-line"></div>
             </div>
          	<!--左边导航部分结束-->
