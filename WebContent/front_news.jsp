@@ -130,11 +130,12 @@ if(Integer.parseInt(index_page)==1){
 						<li class="nLi">
 								<h3><a href="front_product.jsp?cailei=1" >饺耳菜品</a></h3>
 								<ul class="sub">
+									<li><a href="front_product.jsp?cailei=6">店长推荐</a></li>
 									<li><a href="front_product.jsp?cailei=1">特色水饺</a></li>
 									<li><a href="front_product.jsp?cailei=2">开胃凉菜</a></li>
-									<li><a href="front_product.jsp?cailei=3">精美热菜</a></li>
-									<li><a href="front_product.jsp?cailei=4">滋补汤锅</a></li>
+									<li><a href="front_product.jsp?cailei=3">精品热菜</a></li>
 									<li><a href="front_product.jsp?cailei=5">酒水饮料</a></li>
+									<li><a href="front_product.jsp?cailei=4">美味主食</a></li>
 								</ul>
 						</li>
 						<li class="nLi">
@@ -520,7 +521,7 @@ if(<%=xwlei%>==5){
 		         			<div class="celan celan1">
 		         				<h4>图片集</h4>
 		         				<ul class="clearfix">
-		         				<%List<Mapx<String, Object>> wzt=DB.getRunner().query("select img1 ,substring(title,1,4) as  title,tagid from news where newstype=? and (del is NULL or del <>1) order by newsid desc limit 9", new MapxListHandler(),"boke");
+		         				<%List<Mapx<String, Object>> wzt=DB.getRunner().query("select img1 ,titlejs,tagid from news where newstype=? and (del is NULL or del <>1) order by newsid desc limit 9", new MapxListHandler(),"boke");
 		         				//总数
 		         				List<Mapx<String, Object>> zongwzt=DB.getRunner().query("select count(1) as count from news where newstype=? and (del is NULL or del <>1) ", new MapxListHandler(),"boke");
 		         				int shu11;
@@ -533,12 +534,12 @@ if(<%=xwlei%>==5){
 		         				if(((index_tp+1)%3)!=0){%>
 		         					<li> 
 		         						<a href="front_news-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>" ></a>
-		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
+		         						<p><%=wzt.get(index_tp).getStringView("titlejs")%></p>
 		         					</li>
 		         					<%}else{ %>
 		         					<li  class="mr0">
 		         						<a href="front_news-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>"></a>
-		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
+		         						<p><%=wzt.get(index_tp).getStringView("titlejs")%></p>
 		         					</li>
 		         					<%} }%>
 		         				</ul>

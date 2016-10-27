@@ -124,11 +124,12 @@ if(Integer.parseInt(index_page)==1){
 						<li class="nLi ">
 								<h3><a href="front_product.jsp?cailei=1" >饺耳菜品</a></h3>
 								<ul class="sub">
+									<li><a href="front_product.jsp?cailei=6">店长推荐</a></li>
 									<li><a href="front_product.jsp?cailei=1">特色水饺</a></li>
 									<li><a href="front_product.jsp?cailei=2">开胃凉菜</a></li>
-									<li><a href="front_product.jsp?cailei=3">精美热菜</a></li>
-									<li><a href="front_product.jsp?cailei=4">滋补汤锅</a></li>
+									<li><a href="front_product.jsp?cailei=3">精品热菜</a></li>
 									<li><a href="front_product.jsp?cailei=5">酒水饮料</a></li>
+									<li><a href="front_product.jsp?cailei=4">美味主食</a></li>
 								</ul>
 						</li>
 						<li class="nLi on">

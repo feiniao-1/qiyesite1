@@ -173,21 +173,22 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
 							<td><%=menu.get(j).getIntView("zcount") %></td>
 							<td>
 								<a href="admin_news_publish.jsp?caiid=<%=menu.get(j).getIntView("articleid")%>">管理</a>|
-								<form action="admin_news_list.jsp" id="subform" method="POST" style="float:right;">
+								<form action="admin_news_list.jsp" id="subform<%=j%>" method="POST" style="float:right;">
 									<input type="hidden" value="<%=menu.get(j).getIntView("tagid") %>" name="tagid">
 									<input type="hidden" value="删除" name="Action">
 								</form>
-								<a class="zhuce"  name="删除" onclick="test_post()">删除</a>
+								<a class="zhuce"  name="删除" onclick="test_post<%=j%>()">删除</a>
 							</td>
 						</tr>
-<%} %>
 <script type="text/javascript">
-function test_post() {
-var testform=document.getElementById("subform");
-testform.action="admin_news_list.jsp";
+function test_post<%=j%>() {
+var testform=document.getElementById("subform<%=j%>");
+testform.action="admin_news_list.jsp?aa=<%=j%>";
 testform.submit();
 }
 </script>
+<%} %>
+
 					</tbody>
 				</table>
 				<!-- 表格 end -->

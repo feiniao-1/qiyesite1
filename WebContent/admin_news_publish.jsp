@@ -112,13 +112,14 @@ HashMap<String,String> param= G.getParamMap(request);
 //  PRIMARY KEY (`articleid`)
 //) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 //新闻列表信息
-List<Mapx<String,Object>> menu=DB.getRunner().query("select articleid,articletype,author,title,content1,content2,img1,img2,ydimg1,ydimg2,articletype,substring(createtime,1,19) as createtime,substring(updatetime,1,19) as updatetime,zcount,tag1,tag2,tag3,tag4,tagid,origin  from article where del=? and articleid=?", new MapxListHandler(),"0",caiid);
+List<Mapx<String,Object>> menu=DB.getRunner().query("select articleid,articletype,author,title,titlejs,content1,content2,img1,img2,ydimg1,ydimg2,articletype,substring(createtime,1,19) as createtime,substring(updatetime,1,19) as updatetime,zcount,tag1,tag2,tag3,tag4,tagid,origin  from article where del=? and articleid=?", new MapxListHandler(),"0",caiid);
 System.out.println(menu);
 //显示该博客的随机数信息
 List<Mapx<String,Object>> showdiscuss1 = DB.getRunner().query("select canshu_url as canshu_url from article where  articleid=? ",new MapxListHandler(),caiid);
 int canshu_url=showdiscuss1.get(0).getInt("canshu_url");
 //编辑保存博客信息
 String title;
+String titlejs;
 String content1;
 String content2;
 String tag1;
@@ -134,6 +135,7 @@ String origin;
 if(url_canshu!=canshu_url){
 if(param.get("Action")!=null && param.get("Action").equals("确定")){
 	title=param.get("title");
+	titlejs=param.get("titlejs");
 	content1=param.get("content1");
 	content2=param.get("content2");
 	origin=new String(request.getParameter("origin").getBytes("iso-8859-1"),"utf-8");
@@ -162,8 +164,8 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 	}else{
 		ydimg2="upload/"+(String)session.getAttribute("upydimg2");
 	}
-		DB.getRunner().update("update article set title=?,content1=?,content2=?,tag1=?,tag2=?,tag3=?,tag4=?,updatetime=?,canshu_url=?,img1=?,img2=?,ydimg1=?,ydimg2=? ,articletype=?,origin=? where articleid=?",title,content1,content2,tag1,tag2,tag3,tag4,df.format(new Date()),url_canshu,img1,img2,ydimg1,ydimg2,leixing,origin,caiid);
-		DB.getRunner().update("update news set title=?,content=?,newstype=?,img1=?,ydimg1=?,updatetime=?,type=?,origin=? where tagid=?",title,content1,"boke",img1,ydimg1,df.format(new Date()),leixing,origin,menu.get(0).getIntView("tagid"));
+		DB.getRunner().update("update article set title=?,titlejs=?,content1=?,content2=?,tag1=?,tag2=?,tag3=?,tag4=?,updatetime=?,canshu_url=?,img1=?,img2=?,ydimg1=?,ydimg2=? ,articletype=?,origin=? where articleid=?",title,titlejs,content1,content2,tag1,tag2,tag3,tag4,df.format(new Date()),url_canshu,img1,img2,ydimg1,ydimg2,leixing,origin,caiid);
+		DB.getRunner().update("update news set title=?,titlejs=?,content=?,newstype=?,img1=?,ydimg1=?,updatetime=?,type=?,origin=? where tagid=?",title,titlejs,content1,"boke",img1,ydimg1,df.format(new Date()),leixing,origin,menu.get(0).getIntView("tagid"));
 		session.removeAttribute("upimg1");
 		session.removeAttribute("upimg2");
 		session.removeAttribute("upydimg1");
@@ -356,6 +358,11 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 						<label>文章标题</label> <input type="text" class="form-control" style="width:360px;"
 							name="title"
 							value="<%= menu.get(0).getStringView("title") %>">
+					</div>
+					<div class="form-group">
+						<label>标题简述(最多5个字)</label> <input type="text" class="form-control" style="width:100px;"
+							name="titlejs"
+							value="<%= menu.get(0).getStringView("titlejs") %>">
 					</div>
 					<div class="form-group">
 						<label>文章简介</label>

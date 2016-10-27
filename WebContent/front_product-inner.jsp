@@ -88,7 +88,7 @@ if(Integer.parseInt(index_page)==1){
 //获取菜品信息
 
 List<Mapx<String,Object>> caipinshow;
-caipinshow=DB.getRunner().query("select productname,productEname,content1,img1,img2,createtime,updatetime from productmenu where del=? and productmenuid=? order by productmenuid desc limit 9", new MapxListHandler(), "0",caiid);
+caipinshow=DB.getRunner().query("select productlei,productname,productEname,content1,content2,img1,img2,createtime,updatetime from productmenu where del=? and productmenuid=? order by productmenuid desc limit 9", new MapxListHandler(), "0",caiid);
 System.out.println("caipinshow"+caipinshow);
 %>
 <!DOCTYPE html>
@@ -139,11 +139,12 @@ System.out.println("caipinshow"+caipinshow);
 						<li class="nLi on">
 								<h3><a href="front_product.jsp?cailei=1" >饺耳菜品</a></h3>
 								<ul class="sub">
+									<li><a href="front_product.jsp?cailei=6">店长推荐</a></li>
 									<li><a href="front_product.jsp?cailei=1">特色水饺</a></li>
 									<li><a href="front_product.jsp?cailei=2">开胃凉菜</a></li>
-									<li><a href="front_product.jsp?cailei=3">精美热菜</a></li>
-									<li><a href="front_product.jsp?cailei=4">滋补汤锅</a></li>
+									<li><a href="front_product.jsp?cailei=3">精品热菜</a></li>
 									<li><a href="front_product.jsp?cailei=5">酒水饮料</a></li>
+									<li><a href="front_product.jsp?cailei=4">美味主食</a></li>
 								</ul>
 						</li>
 						<li class="nLi">
@@ -198,29 +199,10 @@ System.out.println("caipinshow"+caipinshow);
 		         				<h3 class="color-dd2727 mb20"><%=caipinshow.get(0).getStringView("productname") %></h3>
 		         				<img src="<%=caipinshow.get(0).getStringView("img2") %>" class="img-responsive mb20" style="width:100%"/>
 		         				<div class="txt-indent color-666666 mb30 dash-line"><%=caipinshow.get(0).getStringView("content1") %></div>
+		         				<%if(!caipinshow.get(0).getStringView("productlei").equals("酒水饮料")){ %>
 	         					<h4 class="icon-cp mb20">菜品介绍</h4>
-	         					<img src="img/big-pic02_03.jpg" class="img-responsive mb20">
-	         					<h4 class="text-center color-ff6600 mb20">纯天然饲养的长白猪</h4>
-	         					<p>1.长白猪原产于丹麦，是世界著名的瘦肉型猪种。</p>
-	         					<p class="mb30">2.自家自制纯天然饲料喂养，不含任何添加剂，可放心使用。</p>
-	         					<img src="img/big-pic03_03.jpg" class="img-responsive mb20">
-	         					<h4 class="text-center color-ff6600 mb20">肉质细腻鲜红</h4>
-	         					<p>含有丰富的蛋白质及脂肪、碳水化合物、钙、铁、磷等成分。</p>
-	         					<p class="mb30">肌肉组织中含有较多的肌间脂肪，因此，经过烹调加工后肉味特别鲜美。</p>
-	         					<img src="img/big-pic04_03.jpg" class="img-responsive mb20">
-	         					<h4 class="text-center color-ff6600 mb20">精湛工艺加工</h4>
-	         					<p class="mb30">锅里放油（多放点），热后放入糖（白糖也可）一勺（可多放点），炒到糊为止（这时候锅里应该在冒浓烟，别怕）。倒入切好的肉和调料（厚片的姜、成瓣（不要弄碎）的蒜头、桂皮、干辣椒、八角、橙子皮（非陈皮）），大火爆炒三分钟，这时肉变成了深红色</p>
-	         					<img src="img/big-pic05_03.jpg" class="img-responsive mb20">
-	         					<h4 class="text-center color-ff6600 mb20">饺耳红烧肉油而不腻</h4>
-	         					<p class="mb30">饺耳红烧肉稍有甜味，极其美味，肥而不腻，口感极佳。</p>
-	         					<img src="img/big-pic06_03.jpg" class="img-responsive mb20">
-	         					<h4 class="text-center color-ff6600 mb20">饺耳红烧肉食用功效</h4>
-	         					<p class="mb30 dash-line">
-	         						1.补虚强身，滋阴润燥、丰肌泽肤的作用。<br />
-									2.凡病后体弱、产后血虚、面黄赢瘦者，皆可用之作营养滋补之品。 <br />
-									3.饺耳红烧肉性平味甘，有润肠胃、生津液、补肾气、解热毒的功效<br />
-									4.饺耳红烧肉还主治热病伤津、消渴羸瘦、肾虚体弱、燥咳、便秘、补虚、滋阴、润燥、滋肝阴、润肌肤、利小便和止消渴。
-	         					</p>
+	         					<div><%=caipinshow.get(0).getStringView("content2") %></div>
+	         					<%} %>
 	         					<h4 class="icon-xg">店长推荐</h4>
 		         				<ul class="about-food clearfix">
 		         				<%List<Mapx<String,Object>> caipinshow2;

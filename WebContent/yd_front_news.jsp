@@ -69,7 +69,7 @@ String searchtj;
 							<div class="title-nav-item active">推荐</div>
 							<div class="title-nav-item">热门</div>
 							<div class="title-nav-item">美食</div>
-							<div class="title-nav-item">体育</div>
+							<div class="title-nav-item">科技</div>
 							<div class="title-nav-item">娱乐</div>
 			    </div>
 			    <!--内容部分开始-->
@@ -355,10 +355,10 @@ String searchtj;
 		   			    <div class="load-more" ><a  style="behavior:url(#default#savehistory);" onclick="openShutManager(this,'box21',false,' ','点击加载更多...')" href="###"><span style="color:white;font-size:18px;">加载更多+</span></a></div>
 		   			   <!--加载更多 模块一end --><%} %>
 			    	</div>
-			    	<!-- 体育 -->
+			    	<!-- 科技 -->
 			    	<div class="news-type" style="display: none;">
-	            		<% List<Mapx<String,Object>> tiyu=DB.getRunner().query("select img1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid,tagid from article where del=? and articletype=? order by articleid desc limit 10", new MapxListHandler(),"0","体育");
-			    		List<Mapx<String,Object>> count4=DB.getRunner().query("select count(1)  as count from article where del=? and articletype=? ", new MapxListHandler(),"0","体育");
+	            		<% List<Mapx<String,Object>> tiyu=DB.getRunner().query("select img1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid,tagid from article where del=? and articletype=? order by articleid desc limit 30", new MapxListHandler(),"0","科技");
+			    		List<Mapx<String,Object>> count4=DB.getRunner().query("select count(1)  as count from article where del=? and articletype=? ", new MapxListHandler(),"0","科技");
 			    		int max4;
 			    		if(Integer.parseInt(count4.get(0).getIntView("count"))<10){
 			    			max4=Integer.parseInt(count4.get(0).getIntView("count"));
@@ -447,7 +447,7 @@ String searchtj;
 			    	</div>
 			    	<!-- 娱乐-->
 			    	<div class="news-type" style="display: none;">
-			    		<% List<Mapx<String,Object>> yule=DB.getRunner().query("select img1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid,tagid from article where del=? and articletype=? order by articleid desc limit 10", new MapxListHandler(),"0","娱乐");
+			    		<% List<Mapx<String,Object>> yule=DB.getRunner().query("select img1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid,tagid from article where del=? and articletype=? order by articleid desc limit 30", new MapxListHandler(),"0","娱乐");
 			    		List<Mapx<String,Object>> count5=DB.getRunner().query("select count(1)  as count from article where del=? and articletype=? ", new MapxListHandler(),"0","娱乐");
 			    		int max5;
 			    		if(Integer.parseInt(count5.get(0).getIntView("count"))<10){

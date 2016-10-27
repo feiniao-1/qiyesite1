@@ -89,6 +89,7 @@ int canshu_url=showdiscuss1.get(0).getInt("canshu_url");
 System.out.println(request.getMethod());//获取request方法 POST or GET
 HashMap<String,String> param= G.getParamMap(request);
 String title;
+String titlejs;
 String content1;
 String content2;
 String tag1;
@@ -105,6 +106,7 @@ System.out.println("url_canshu:"+url_canshu+";canshu_url:"+canshu_url+";提交�
 if(url_canshu!=canshu_url){
 if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	title=new String(request.getParameter("title").getBytes("iso-8859-1"),"utf-8");
+	titlejs=new String(request.getParameter("titlejs").getBytes("iso-8859-1"),"utf-8");
 	content1=new String(request.getParameter("content1").getBytes("iso-8859-1"),"utf-8");
 	content2=new String(request.getParameter("content2").getBytes("iso-8859-1"),"utf-8");
 	tag1=new String(request.getParameter("tag1").getBytes("iso-8859-1"),"utf-8");
@@ -125,8 +127,8 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			</script>
 		<%
 	}else{
-		DB.getRunner().update("insert into article(author,title,content1,content2,createtime,tag1,tag2,tag3,tag4,canshu_url,img1,img2,ydimg1,ydimg2,tagid,del,articletype,origin) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,content1,content2,df.format(new Date()),tag1,tag2,tag3,tag4,url_canshu,img1,img2,ydimg1,ydimg2,tagid,"0",leixing,origin);
-		DB.getRunner().update("insert into news(author,title,content,createtime,newstype,img1,tagid,del,type,origin) values(?,?,?,?,?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),"boke",img1,tagid,"0",leixing,origin);
+		DB.getRunner().update("insert into article(author,title,titlejs,content1,content2,createtime,tag1,tag2,tag3,tag4,canshu_url,img1,img2,ydimg1,ydimg2,tagid,del,articletype,origin) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,titlejs,content1,content2,df.format(new Date()),tag1,tag2,tag3,tag4,url_canshu,img1,img2,ydimg1,ydimg2,tagid,"0",leixing,origin);
+		DB.getRunner().update("insert into news(author,title,titlejs,content,createtime,newstype,img1,tagid,del,type,origin) values(?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,titlejs,content1,df.format(new Date()),"boke",img1,tagid,"0",leixing,origin);
 		session.removeAttribute("newsfullName1");
 		session.removeAttribute("newsfullName2");
 		session.removeAttribute("newsfullName3");
@@ -295,6 +297,8 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	<form id="form_tj" action="admin_news_edit.jsp?jishu=<%=val%>&fileName=tijiao" method="post" >
 		<p class="mb10">标题<span style="color:red;">*(最多20字)</span>：</p>
 		<p class="mb15"><input type="text" Name="title"  placeholder="标题"></p>
+		<p class="mb10">标题简述<span style="color:red;">*(最多5个字)</span>：</p>
+		<p class="mb15"><input type="text" Name="titlejs"  placeholder="标题简述"></p>
 		<p>文章类别*</p> 
 		<div class="mb15">
 							<select name="leixing" style="width:60px;">
