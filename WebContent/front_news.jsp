@@ -47,7 +47,7 @@ if(xwlei==3){
 	leibie="美食"; 
 	}
 if(xwlei==4){
-	leibie="体育";
+	leibie="科技";
 	}
 if(xwlei==5){
 	leibie="娱乐";
@@ -185,7 +185,7 @@ if(Integer.parseInt(index_page)==1){
 							<a href="front_news.jsp?xwlei=1"><div id="d1" class="title-nav-item"><a href="front_news.jsp?page=0">全部</a></div></a>
 							<a href="front_news.jsp?xwlei=2"><div id="d2" class="title-nav-item">热门</div></a>
 							<a href="front_news.jsp?xwlei=3"><div id="d3" class="title-nav-item">美食</div></a>
-							<a href="front_news.jsp?xwlei=4"><div id="d4" class="title-nav-item">体育</div></a>
+							<a href="front_news.jsp?xwlei=4"><div id="d4" class="title-nav-item">科技</div></a>
 							<a href="front_news.jsp?xwlei=5"><div id="d5" class="title-nav-item">娱乐</div></a>
 						</div>
 			    <script type="text/javascript">
@@ -227,7 +227,7 @@ if(<%=xwlei%>==5){
 								}
 								System.out.println("search yes"+"searchSql"+searchSql);
 								//获取新闻资讯的信息
-								String xinwenSql="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count,tagid from news where newstype=? and (del is NULL or del <>1) and (title LIKE '%"+searchtj+"%' or content like '%"+searchtj+"%' or  author=(select userid from user where username like '%"+searchtj+"%'))  order BY newsid DESC   limit "+page_ye+",5";
+								String xinwenSql="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count,tagid,origin from news where newstype=? and (del is NULL or del <>1) and (title LIKE '%"+searchtj+"%' or content like '%"+searchtj+"%' or  author=(select userid from user where username like '%"+searchtj+"%'))  order BY newsid DESC   limit "+page_ye+",5";
 								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler(),"boke");
 								for(int i=0;i<xinwens.size();i++){
 									Mapx<String,Object> one = xinwens.get(i);
@@ -244,7 +244,13 @@ if(<%=xwlei%>==5){
 											<div class="mb20 txt-indent">
 											<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
 											</div>
-											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
+											<div class="color-666666">来自：
+											<%if(one.getStringView("origin").equals("")){ %>
+											<%=authorxx.get(0).getStringView("username") %>
+											<%}else{ %>
+											<%=one.getStringView("origin") %>
+											<%} %>
+											<span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></div>
 											<div class="bdsharebuttonbox bd-share">
 												<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 											</div>
@@ -254,7 +260,7 @@ if(<%=xwlei%>==5){
 							}else{
 								System.out.println("search no");
 								//获取新闻资讯的信息
-								String xinwenSql="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid from news where  newstype=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+								String xinwenSql="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid ,origin from news where  newstype=? and  (del is NULL or del <>1)  order BY newsid DESC  limit "+page_ye+",5";
 								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler(),"boke");
 								for(int i=0;i<xinwens.size();i++){
 									Mapx<String,Object> one = xinwens.get(i);
@@ -271,8 +277,13 @@ if(<%=xwlei%>==5){
 											<div class="mb20 txt-indent">
 													<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
 											</div>
-											
-											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
+											<div class="color-666666">来自：
+											<%if(one.getStringView("origin").equals("")){ %>
+											<%=authorxx.get(0).getStringView("username") %>
+											<%}else{ %>
+											<%=one.getStringView("origin") %>
+											<%} %>
+											<span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></div>
 											<div class="bdsharebuttonbox bd-share">
 												<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 											</div>
@@ -297,7 +308,7 @@ if(<%=xwlei%>==5){
 							<!--板块二内容开始  热门-->
 							<div class="tab-inner cell-list">
 							<%//获取新闻资讯的信息
-							String xinwenSqlrm="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+							String xinwenSqlrm="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid,origin from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
 							List<Mapx<String,Object>> xinwensrm =  DB.getRunner().query(xinwenSqlrm, new MapxListHandler(),"boke","热门");
 							for(int i=0;i<xinwensrm.size();i++){
 								Mapx<String,Object> one = xinwensrm.get(i);
@@ -315,7 +326,13 @@ if(<%=xwlei%>==5){
 												<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
 										</div>
 										
-										<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
+										<div class="color-666666">来自：
+											<%if(one.getStringView("origin").equals("")){ %>
+											<%=authorxx.get(0).getStringView("username") %>
+											<%}else{ %>
+											<%=one.getStringView("origin") %>
+											<%} %>
+											<span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></div>
 										<div class="bdsharebuttonbox bd-share">
 											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 										</div>
@@ -342,7 +359,7 @@ if(<%=xwlei%>==5){
 							<!--板块三内容开始  美食-->
 							<div class="tab-inner cell-list">
 							<%//获取新闻资讯的信息
-							String xinwenSqlms="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+							String xinwenSqlms="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid,origin from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
 							List<Mapx<String,Object>> xinwensms =  DB.getRunner().query(xinwenSqlms, new MapxListHandler(),"boke","美食");
 							for(int i=0;i<xinwensms.size();i++){
 								Mapx<String,Object> one = xinwensms.get(i);
@@ -360,7 +377,13 @@ if(<%=xwlei%>==5){
 												<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
 										</div>
 										
-										<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
+										<div class="color-666666">来自：
+											<%if(one.getStringView("origin").equals("")){ %>
+											<%=authorxx.get(0).getStringView("username") %>
+											<%}else{ %>
+											<%=one.getStringView("origin") %>
+											<%} %>
+											<span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></div>
 										<div class="bdsharebuttonbox bd-share">
 											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 										</div>
@@ -384,11 +407,11 @@ if(<%=xwlei%>==5){
 								</div>
 							</div>
 							<%} else if(xwlei==4){ %>
-							<!--板块四内容开始   体育-->
+							<!--板块四内容开始  科技-->
 							<div class="tab-inner cell-list" >
 							<%//获取新闻资讯的信息
-							String xinwenSqltu="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
-							List<Mapx<String,Object>> xinwenstu =  DB.getRunner().query(xinwenSqltu, new MapxListHandler(),"boke","体育");
+							String xinwenSqltu="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid,origin from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+							List<Mapx<String,Object>> xinwenstu =  DB.getRunner().query(xinwenSqltu, new MapxListHandler(),"boke","科技");
 							for(int i=0;i<xinwenstu.size();i++){
 								Mapx<String,Object> one = xinwenstu.get(i);
 								//获取文章作者
@@ -405,7 +428,13 @@ if(<%=xwlei%>==5){
 												<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
 										</div>
 										
-										<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
+										<div class="color-666666">来自：
+											<%if(one.getStringView("origin").equals("")){ %>
+											<%=authorxx.get(0).getStringView("username") %>
+											<%}else{ %>
+											<%=one.getStringView("origin") %>
+											<%} %>
+											<span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></div>
 										<div class="bdsharebuttonbox bd-share">
 											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 										</div>
@@ -432,7 +461,7 @@ if(<%=xwlei%>==5){
 							<!--板块五内容开始  娱乐-->
 							<div class="tab-inner cell-list" >
 							<%//获取新闻资讯的信息
-							String xinwenSqlyl="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+							String xinwenSqlyl="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid,origin from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
 							List<Mapx<String,Object>> xinwensyl =  DB.getRunner().query(xinwenSqlyl, new MapxListHandler(),"boke","娱乐");
 							for(int i=0;i<xinwensyl.size();i++){
 								Mapx<String,Object> one = xinwensyl.get(i);
@@ -450,7 +479,13 @@ if(<%=xwlei%>==5){
 												<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
 										</div>
 										
-										<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
+										<div class="color-666666">来自：
+											<%if(one.getStringView("origin").equals("")){ %>
+											<%=authorxx.get(0).getStringView("username") %>
+											<%}else{ %>
+											<%=one.getStringView("origin") %>
+											<%} %>
+											<span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></div>
 										<div class="bdsharebuttonbox bd-share">
 											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 										</div>

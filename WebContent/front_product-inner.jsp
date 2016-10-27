@@ -88,7 +88,7 @@ if(Integer.parseInt(index_page)==1){
 //获取菜品信息
 
 List<Mapx<String,Object>> caipinshow;
-caipinshow=DB.getRunner().query("select productname,productEname,content1,img1,createtime,updatetime from productmenu where del=? and productmenuid=? order by productmenuid desc limit 9", new MapxListHandler(), "0",caiid);
+caipinshow=DB.getRunner().query("select productname,productEname,content1,img1,img2,createtime,updatetime from productmenu where del=? and productmenuid=? order by productmenuid desc limit 9", new MapxListHandler(), "0",caiid);
 System.out.println("caipinshow"+caipinshow);
 %>
 <!DOCTYPE html>
@@ -196,7 +196,7 @@ System.out.println("caipinshow"+caipinshow);
 								    <a href="#" class="bds_more" data-cmd="more">分享到：</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
 								</div>
 		         				<h3 class="color-dd2727 mb20"><%=caipinshow.get(0).getStringView("productname") %></h3>
-		         				<img src="<%=caipinshow.get(0).getStringView("img1") %>" class="img-responsive mb20" style="width:100%"/>
+		         				<img src="<%=caipinshow.get(0).getStringView("img2") %>" class="img-responsive mb20" style="width:100%"/>
 		         				<div class="txt-indent color-666666 mb30 dash-line"><%=caipinshow.get(0).getStringView("content1") %></div>
 	         					<h4 class="icon-cp mb20">菜品介绍</h4>
 	         					<img src="img/big-pic02_03.jpg" class="img-responsive mb20">

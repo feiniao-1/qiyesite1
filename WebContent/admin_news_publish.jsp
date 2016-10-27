@@ -111,8 +111,8 @@ HashMap<String,String> param= G.getParamMap(request);
 //  `visitor` varchar(255) DEFAULT NULL,
 //  PRIMARY KEY (`articleid`)
 //) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
-//博客列表信息
-List<Mapx<String,Object>> menu=DB.getRunner().query("select articleid,articletype,author,title,content1,content2,img1,img2,ydimg1,ydimg2,articletype,substring(createtime,1,19) as createtime,substring(updatetime,1,19) as updatetime,zcount,tag1,tag2,tag3,tag4,tagid  from article where del=? and articleid=?", new MapxListHandler(),"0",caiid);
+//新闻列表信息
+List<Mapx<String,Object>> menu=DB.getRunner().query("select articleid,articletype,author,title,content1,content2,img1,img2,ydimg1,ydimg2,articletype,substring(createtime,1,19) as createtime,substring(updatetime,1,19) as updatetime,zcount,tag1,tag2,tag3,tag4,tagid,origin  from article where del=? and articleid=?", new MapxListHandler(),"0",caiid);
 System.out.println(menu);
 //显示该博客的随机数信息
 List<Mapx<String,Object>> showdiscuss1 = DB.getRunner().query("select canshu_url as canshu_url from article where  articleid=? ",new MapxListHandler(),caiid);
@@ -130,11 +130,13 @@ String img2;
 String ydimg1;
 String ydimg2;
 String leixing;
+String origin;
 if(url_canshu!=canshu_url){
 if(param.get("Action")!=null && param.get("Action").equals("确定")){
 	title=param.get("title");
 	content1=param.get("content1");
 	content2=param.get("content2");
+	origin=new String(request.getParameter("origin").getBytes("iso-8859-1"),"utf-8");
 	tag1=param.get("tag1");
 	tag2=param.get("tag2");
 	tag3=param.get("tag3");
@@ -160,9 +162,8 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 	}else{
 		ydimg2="upload/"+(String)session.getAttribute("upydimg2");
 	}
-	System.out.println("图片"+img1+img2+ydimg1+ydimg2);
-		DB.getRunner().update("update article set title=?,content1=?,content2=?,tag1=?,tag2=?,tag3=?,tag4=?,updatetime=?,canshu_url=?,img1=?,img2=?,ydimg1=?,ydimg2=? ,articletype=? where articleid=?",title,content1,content2,tag1,tag2,tag3,tag4,df.format(new Date()),url_canshu,img1,img2,ydimg1,ydimg2,leixing,caiid);
-		DB.getRunner().update("update news set title=?,content=?,newstype=?,img1=?,ydimg1=?,updatetime=?,type=? where tagid=?",title,content1,"boke",img1,ydimg1,df.format(new Date()),leixing,menu.get(0).getIntView("tagid"));
+		DB.getRunner().update("update article set title=?,content1=?,content2=?,tag1=?,tag2=?,tag3=?,tag4=?,updatetime=?,canshu_url=?,img1=?,img2=?,ydimg1=?,ydimg2=? ,articletype=?,origin=? where articleid=?",title,content1,content2,tag1,tag2,tag3,tag4,df.format(new Date()),url_canshu,img1,img2,ydimg1,ydimg2,leixing,origin,caiid);
+		DB.getRunner().update("update news set title=?,content=?,newstype=?,img1=?,ydimg1=?,updatetime=?,type=?,origin=? where tagid=?",title,content1,"boke",img1,ydimg1,df.format(new Date()),leixing,origin,menu.get(0).getIntView("tagid"));
 		session.removeAttribute("upimg1");
 		session.removeAttribute("upimg2");
 		session.removeAttribute("upydimg1");
@@ -183,14 +184,17 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
     <div class="row">
        <h3 class="title">新闻详细信息</h3>
         <div class="botton-group">
-        <a href="front_index.jsp" class="btn btn-primary">首页</a><a href="admin_news_list.jsp" class="btn btn-warning">发表新闻</a><a href="admin_product.jsp" class="btn btn-primary">发表菜品</a>
+        <a href="front_index.jsp" class="btn btn-primary">首页</a>
+        <a href="admin_news_list.jsp" class="btn btn-warning">发表新闻</a>
+        <a href="admin_product.jsp" class="btn btn-primary">发表菜品</a>
+        <a href="admin_mail_list.jsp" class="btn btn-primary">邮件列表</a>
        </div>
         <div class="botton-group">
         <a href="admin_news_list.jsp" class="btn btn-danger">返回</a><span style="color:red;">操作说明：如需改动图片；先上传图片，再修改内容</span>
         </div>
         		<!-- 表格 start -->
         		<div class="form-group">
-        		<h5 class="mb10">PC缩略图<span style="color:red;">*</span></h5> 
+        		<h5 class="mb10">PC封面图<span style="color:red;">*(240*180)</span></h5> 
 					<form action="${pageContext.request.contextPath }/uploadServlet?url=newspublish&caiid=<%= caiid%>&shuzi=1" method="post" enctype="multipart/form-data">
 						<div class="mb10">
 						<input type="file" name="attr_file1" style="display:inline-block; width:220px;">
@@ -224,7 +228,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							 <%}else{ %>
 							 	<img alt="" src="<%=menu.get(0).getStringView("img1") %>" style="width:200px!important;" height="150px">
 							 <%} %>
-						<h5 class="mb10">PC内容图片*</h5> 
+						<h5 class="mb10">PC详情图片<span style="color:red;">*(798*532)</span></h5> 
 						<form action="${pageContext.request.contextPath }/uploadServlet?url=newspublish&caiid=<%= caiid%>&shuzi=2" method="post" enctype="multipart/form-data">
 						<div class="mb10">
 						<input type="file" name="attr_file1" style="display:inline-block; width:220px;">						
@@ -258,7 +262,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							 <%}else{ %>
 							 	<img alt="" src="<%=menu.get(0).getStringView("img2") %>" style="width:220px!important;" height="150px">
 							 <%} %>
-					<h5 class="mb10">移动端缩略图<span style="color:red;">*</span></h5> 
+					<h5 class="mb10">移动端封面图<span style="color:red;">*</span></h5> 
 					<form action="${pageContext.request.contextPath }/uploadServlet?url=newspublish&caiid=<%= caiid%>&shuzi=3" method="post" enctype="multipart/form-data">
 						<div class="mb10">
 						<input type="file" name="attr_file1" style="display:inline-block; width:220px;">
@@ -292,7 +296,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							 <%}else{ %>
 							 	<img alt="" src="<%=menu.get(0).getStringView("ydimg1") %>" style="width:120px!important;" height="90px">
 							 <%} %>
-					<h5 class="mb10">移动端内容图片<span style="color:red;">*</span></h5> 
+					<h5 class="mb10">移动端详情图片<span style="color:red;">*</span></h5> 
 					<form action="${pageContext.request.contextPath }/uploadServlet?url=newspublish&caiid=<%= caiid%>&shuzi=4" method="post" enctype="multipart/form-data">
 						<div class="mb10">
 						<input type="file" name="attr_file1" style="display:inline-block; width:220px;">
@@ -346,6 +350,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 								<option>美食</option>
 								<option>体育</option>		
 								<option>娱乐</option>
+								<option>科技</option>
 							</select>
 					<div class="form-group">
 						<label>文章标题</label> <input type="text" class="form-control" style="width:360px;"
@@ -375,6 +380,8 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							name="zcount" readOnly="true"
 							value="<%=menu.get(0).getIntView("zcount") %>">
 					</div>
+					<p class="mb10">新闻出处(不填默认是饺耳世家)：</p>
+					<p class="mb15"><input type="text" Name="origin"  value="<%= menu.get(0).getStringView("origin") %>"></p>	
 					<p class="mb10">词条标签：</p>
 					<div class="form-group">
 						<input type="text" Name="tag1"  value="<%=menu.get(0).getStringView("tag1") %>" style="width:80px;">

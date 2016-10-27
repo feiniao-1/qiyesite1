@@ -46,7 +46,12 @@ System.out.println("caiid"+request.getParameter("caiid"));
 }catch(Exception e){
 	
 }
-
+if(fileName==null){
+	session.removeAttribute("fullName1");
+	session.removeAttribute("fullName2");
+	session.removeAttribute("fullName3");
+	session.removeAttribute("fullName4");
+}
 //验证用户登陆
 Mapx<String,Object> user = G.getUser(request);
 String pageType = null;
@@ -103,7 +108,7 @@ HashMap<String,String> param= G.getParamMap(request);
 //) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 //菜品列表信息
 List<Mapx<String,Object>> menu=DB.getRunner().query("select productmenuid,productname,productEname,productlei,content1,content2,img1,img2,ydimg1,ydimg2,substring(createtime,1,19) as createtime,substring(updatetime,1,19) as updatetime,count,yprice,shoucang,author from productmenu where del=? and productmenuid=?", new MapxListHandler(),"0",caiid);
-System.out.println(menu);
+System.out.println("menu"+menu);
 //显示该菜品的随机数信息
 List<Mapx<String,Object>> showdiscuss1 = DB.getRunner().query("select canshu_url as canshu_url from productmenu where  author=? order by productmenuid desc limit 1",new MapxListHandler(),menu.get(0).getIntView("author"));
 System.out.println();
@@ -175,7 +180,10 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
    
         <h3 class="title">菜品详细信息</h3>
         <div class="botton-group">
-         <a href="front_index.jsp" class="btn btn-primary">首页</a><a href="admin_news_list.jsp" class="btn btn-primary">发表新闻</a><a href="admin_product.jsp" class="btn btn-warning">发表菜品</a>
+         <a href="front_index.jsp" class="btn btn-primary">首页</a>
+         <a href="admin_news_list.jsp" class="btn btn-primary">发表新闻</a>
+         <a href="admin_product.jsp" class="btn btn-warning">发表菜品</a>
+         <a href="admin_mail_list.jsp" class="btn btn-primary">邮件列表</a>
         </div>
         <div class="botton-group">
         <a href="admin_product.jsp" class="btn btn-danger">返回</a><span style="color:red;">操作说明：如需改动图片；先上传图片，再修改内容</span>
@@ -320,7 +328,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							 <%} %>
 				</div>
 				
-				<form role="form" action="admin_product_publish.jsp?jishu=<%=val%>&caiid=<%=caiid %>" method="POST" name="form1"
+				<form role="form" action="admin_product_publish.jsp?jishu=<%=val%>&caiid=<%=caiid %>&fileName=tijiao" method="POST" name="form1"
 					novalidate>
 					<div class="form-group">
 						<h5>ID</h5> 

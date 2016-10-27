@@ -48,6 +48,8 @@ System.out.println(df.format(new Date()));// new Date()为获取当前系统时�
 if(fileName==null){
 	session.removeAttribute("fullName1");
 	session.removeAttribute("fullName2");
+	session.removeAttribute("fullName3");
+	session.removeAttribute("fullName4");
 }
 //验证用户登陆
 Mapx<String,Object> user = G.getUser(request);
@@ -169,7 +171,10 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
     <div class="row">
         <h3  class="title">菜品添加</h3>
         <div class="botton-group">
-         <a href="front_index.jsp" class="btn btn-primary">首页</a><a href="admin_news_list.jsp" class="btn btn-primary">发表新闻</a><a href="admin_product.jsp" class="btn btn-warning">发表菜品</a>
+         <a href="front_index.jsp" class="btn btn-primary">首页</a>
+         <a href="admin_news_list.jsp" class="btn btn-primary">发表新闻</a>
+         <a href="admin_product.jsp" class="btn btn-warning">发表菜品</a>
+         <a href="admin_mail_list.jsp" class="btn btn-primary">邮件列表</a>
          </div>
          <div class="botton-group">
 	        <a href="admin_product.jsp" class="btn btn-danger">返回</a><span style="color:red;">操作说明：先上传图片，再填写内容</span>

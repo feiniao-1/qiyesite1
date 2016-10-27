@@ -140,7 +140,10 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
     <div class="row">
      <h3  class="title">菜品列表信息</h3>
        <div class="botton-group">
-       <a href="front_index.jsp" class="btn btn-primary">首页</a><a href="admin_news_list.jsp" class="btn btn-primary">发表新闻</a><a href="admin_product.jsp" class="btn btn-warning">发表菜品</a>
+       <a href="front_index.jsp" class="btn btn-primary">首页</a>
+       <a href="admin_news_list.jsp" class="btn btn-primary">发表新闻</a>
+       <a href="admin_product.jsp" class="btn btn-warning">发表菜品</a>
+       <a href="admin_mail_list.jsp" class="btn btn-primary">邮件列表</a>
        </div>
        <div class="botton-group">
         <a href="admin_product_add.jsp" class="btn btn-danger">添加</a>

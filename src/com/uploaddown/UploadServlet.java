@@ -132,7 +132,7 @@ public class UploadServlet extends HttpServlet {
 			if(url.equals("boke")){
 				response.sendRedirect(fhurl+"?fileName="+fileName+"&fullName="+fullName);
 			}else if(url.equals("news")){
-				response.sendRedirect(fhurl+"?fileName="+fileName+"&fullName="+fullName);
+				response.sendRedirect(fhurl+"?fileName="+fileName+"&fullName"+request.getParameter("shuzi")+"="+fullName+"&shuzi="+request.getParameter("shuzi"));
 			}else if(url.equals("baike")){
 				response.sendRedirect(fhurl+"?fileName="+fileName+"&fullName"+request.getParameter("shuzi")+"="+fullName+"&shuzi="+request.getParameter("shuzi"));
 			}else if(url.equals("product")){
