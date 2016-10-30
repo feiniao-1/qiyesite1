@@ -25,11 +25,13 @@ String jishu = "";
 String fileName = "";
 String fullName = "";
 String dhpage = "";
+String searchnr="";
 try{
 jishu = request.getParameter("jishu");
 fileName = request.getParameter("fileName");
 fullName = request.getParameter("fullName");
 dhpage = request.getParameter("page");
+searchnr = request.getParameter("searchnr");
 System.out.println("jishu"+jishu);
 }catch(Exception e){
 	
@@ -93,6 +95,26 @@ if(intdhpage==0){
 }
 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式  
 System.out.println(df.format(new Date()));// new Date()为获取当前系统时间 
+//排序类型
+String paixu;
+if(param.get("paixu")==null){
+	paixu="productmenuid";
+}else if(param.get("paixu").equals("默认")){
+	paixu="productmenuid";
+}else if(param.get("paixu").equals("收藏量")){
+	paixu="shoucang";
+}else if(param.get("paixu").equals("shoucang")){
+	paixu="shoucang";
+}else{
+	paixu="productmenuid";
+}
+String insearch;
+if(request.getParameter("searchnr")!=null){
+	insearch=new String(request.getParameter("searchnr").getBytes("iso-8859-1"),"utf-8");
+}else{
+	insearch="";
+}
+
 //菜品列表信息
 //CREATE TABLE `productmenu` (
 // `productmenuid` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜品ID',
@@ -117,7 +139,12 @@ System.out.println(df.format(new Date()));// new Date()为获取当前系统时�
 //设置标题栏信息
 String[] colNames={"菜品ID","菜名","英文名","菜品类别","创建时间","销售量","价格","收藏量","操作"};
 //菜品列表信息
-List<Mapx<String,Object>> menu=DB.getRunner().query("select productmenuid,productname,productEname,productlei,substring(createtime,1,19) as createtime,count,yprice,shoucang from productmenu where del=? order by productmenuid desc limit "+intdhpage*10+",10 ", new MapxListHandler(),"0");
+List<Mapx<String,Object>> menu;
+if((searchnr==null)||(searchnr=="")){
+	menu=DB.getRunner().query("select productmenuid,productname,productEname,productlei,substring(createtime,1,19) as createtime,count,yprice,shoucang from productmenu where del=? order by "+paixu+" desc limit "+intdhpage*10+",10 ", new MapxListHandler(),"0");
+}else{
+	menu=DB.getRunner().query("select productmenuid,productname,productEname,productlei,substring(createtime,1,19) as createtime,count,yprice,shoucang from productmenu where del=? and productname like '%"+param.get("searchnr")+"%' ", new MapxListHandler(),"0");
+}
 System.out.println(menu);
 //删除
 String dhid; 
@@ -147,6 +174,22 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
        </div>
        <div class="botton-group">
         <a href="admin_product_add.jsp" class="btn btn-danger">添加</a>
+        <form action="admin_product.jsp"  method="POST" >
+			<select name="paixu">
+			<%if((param.get("paixu")!=null)&&(param.get("paixu").equals("收藏量"))) {%>
+				<option>收藏量</option>
+				<option>默认</option>
+				<%}else if((param.get("paixu")!=null)&&(param.get("paixu").equals("shoucang"))) {%>
+				<option>收藏量</option>
+				<option>默认</option>
+				<%}else{ %>
+				<option>默认</option>
+				<option>收藏量</option>
+				<%} %>
+		 	</select>
+		 	<input type="text" Name="searchnr"  placeholder="搜索中文名">
+			<input type="submit" value="搜索" name="search">
+		</form>
         </div>
         		<!-- 表格 start -->
 				<table class="table table-striped">
@@ -163,13 +206,17 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
 							<td><%=menu.get(j).getIntView("productmenuid") %></td>
 							<td><%=menu.get(j).getStringView("productname") %></td>
 							<td><%=menu.get(j).getStringView("productEname") %></td>
-							<td><%=menu.get(j).getStringView("productlei") %></td>
+							<td><%if(menu.get(j).getStringView("productlei").equals("主食")){%>
+							美味主食
+							<%}else{ %>
+							<%=menu.get(j).getStringView("productlei")%>
+							<%} %></td>
 							<td><%=menu.get(j).getIntView("createtime") %></td>
 							<td><%=menu.get(j).getIntView("count") %></td>
 							<td><%=menu.get(j).getIntView("yprice") %></td>
 							<td><%=menu.get(j).getIntView("shoucang") %></td>
 							<td>
-								<a href="admin_product_publish.jsp?caiid=<%=menu.get(j).getIntView("productmenuid")%>">管理</a>|
+								<a href="admin_product_publish.jsp?caiid=<%=menu.get(j).getIntView("productmenuid")%>&inpage=<%=intdhpage%>&inpaixu=<%=paixu%>&insearch=<%=insearch%>">管理</a>|
 								<form action="admin_product.jsp" id="subform<%=j%>" method="POST" style="float:right;">
 									<input type="hidden" value="<%=menu.get(j).getIntView("productmenuid") %>" name="dhid">
 									<input type="hidden" value="删除" name="Action">
@@ -190,20 +237,22 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
 				</table>
 				<!-- 表格 end -->
 				<!-- 分页start -->
+				<%if((searchnr==null)||(searchnr=="")){ %>
 				<div class="nav-page">
 								    <ul class="pagination">
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=<%=minus%>">«</a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=0">1</a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?paixu=<%=param.get("paixu") %>&page=<%=minus%>">«</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?paixu=<%=param.get("paixu") %>&page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?paixu=<%=param.get("paixu") %>&page=1">2</a></li>
 								    <%if(pagetotal>=3){ %>
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=2">3</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?paixu=<%=param.get("paixu") %>&page=2">3</a></li>
 								    <%} %>
 								    <li><a>...</a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=<%=pagetotal-1%>"><%=pagetotal%></a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=<%=pagetotal%>"><%=pagetotal+1%></a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=<%=plus%>">»</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?paixu=<%=param.get("paixu") %>&page=<%=pagetotal-1%>"><%=pagetotal%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?paixu=<%=param.get("paixu") %>&page=<%=pagetotal%>"><%=pagetotal+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?paixu=<%=param.get("paixu") %>&page=<%=plus%>">»</a></li>
 								  </ul>
 				</div>
+				<%} %>
 				<!-- 分页end -->
   </div>
 </div>

@@ -25,11 +25,13 @@ String jishu = "";
 String fileName = "";
 String fullName = "";
 String dhpage = "";
+String searchnr="";
 try{
 jishu = request.getParameter("jishu");
 fileName = request.getParameter("fileName");
 fullName = request.getParameter("fullName");
 dhpage = request.getParameter("page");
+searchnr = request.getParameter("searchnr");
 System.out.println("jishu"+jishu);
 }catch(Exception e){
 	
@@ -71,6 +73,26 @@ HashMap<String,String> param= G.getParamMap(request);
 List<Mapx<String,Object>> menupage=DB.getRunner().query("select count(1) as count from article where del=? ", new MapxListHandler(),"0");
 int pagetotal=Integer.parseInt(menupage.get(0).getIntView("count"))/10;
 System.out.println("总页数="+pagetotal);
+//排序类型
+String paixu;
+if(param.get("paixu")==null){
+	paixu="articleid";
+}else if(param.get("paixu").equals("默认")){
+	paixu="articleid";
+}else if(param.get("paixu").equals("浏览量")){
+	paixu="zcount";
+}else if(param.get("paixu").equals("zcount")){
+	paixu="zcount";
+}else{
+	paixu="articleid";
+}
+String insearch;
+if(request.getParameter("searchnr")!=null){
+	insearch=new String(request.getParameter("searchnr").getBytes("iso-8859-1"),"utf-8");
+}else{
+	insearch="";
+}
+
 //如果urlpage为null
 int intdhpage;
 if(dhpage==null){
@@ -121,8 +143,14 @@ if(intdhpage==0){
 //设置标题栏信息
 String[] colNames={"新闻ID","标题","类型","作者","创建时间","浏览量","操作"};
 //博客列表信息
-List<Mapx<String,Object>> menu=DB.getRunner().query("select articleid,articletype,title,author,substring(createtime,1,19) as createtime,zcount,tagid from article where del=? order by articleid desc limit "+intdhpage*10+",10  ", new MapxListHandler(),"0");
-System.out.println(menu);
+System.out.println("searchnr"+searchnr);
+List<Mapx<String,Object>> menu;
+if((searchnr==null)||(searchnr=="")){
+	menu=DB.getRunner().query("select articleid,articletype,title,author,substring(createtime,1,19) as createtime,zcount,tagid from article where del=? order by "+paixu+" desc limit "+intdhpage*10+",10  ", new MapxListHandler(),"0");
+}else{
+	menu=DB.getRunner().query("select articleid,articletype,title,author,substring(createtime,1,19) as createtime,zcount,tagid from article where del=? and title like '%"+param.get("searchnr")+"%'  ", new MapxListHandler(),"0");
+}
+
 //删除
 String dhid; 
 if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
@@ -151,6 +179,22 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
         </div>
         <div class="botton-group">
          <a href="admin_news_edit.jsp" class="btn btn-danger">添加</a>
+         <form action="admin_news_list.jsp"  method="POST" >
+			<select name="paixu">
+			<%if((param.get("paixu")!=null)&&(param.get("paixu").equals("浏览量"))) {%>
+				<option>浏览量</option>
+				<option>默认</option>
+				<%}else if((param.get("paixu")!=null)&&(param.get("paixu").equals("zcount"))) {%>
+				<option>浏览量</option>
+				<option>默认</option>
+				<%}else{ %>
+				<option>默认</option>
+				<option>浏览量</option>
+				<%} %>
+		 	</select>
+		 	<input type="text" Name="searchnr"  placeholder="搜索标题名">
+			<input type="submit" value="搜索" name="search">
+		</form>
          </div>
         		<!-- 表格 start -->
 				<table class="table table-striped">
@@ -172,7 +216,7 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
 							<td><%=menu.get(j).getIntView("createtime") %></td>
 							<td><%=menu.get(j).getIntView("zcount") %></td>
 							<td>
-								<a href="admin_news_publish.jsp?caiid=<%=menu.get(j).getIntView("articleid")%>">管理</a>|
+								<a href="admin_news_publish.jsp?caiid=<%=menu.get(j).getIntView("articleid")%>&inpage=<%=intdhpage%>&inpaixu=<%=paixu%>&insearch=<%=insearch%>">管理</a>|
 								<form action="admin_news_list.jsp" id="subform<%=j%>" method="POST" style="float:right;">
 									<input type="hidden" value="<%=menu.get(j).getIntView("tagid") %>" name="tagid">
 									<input type="hidden" value="删除" name="Action">
@@ -193,20 +237,22 @@ testform.submit();
 				</table>
 				<!-- 表格 end -->
 				<!-- 分页start -->
+				<%if((searchnr==null)||(searchnr=="")){ %>
 				<div class="nav-page">
 								    <ul class="pagination">
-								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?page=<%=minus%>">«</a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?page=0">1</a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?paixu=<%=param.get("paixu") %>&page=<%=minus%>">«</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?paixu=<%=param.get("paixu") %>&page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?paixu=<%=param.get("paixu") %>&page=1">2</a></li>
 								    <%if(pagetotal>=3){ %>
-								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?page=2">3</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?paixu=<%=param.get("paixu") %>&page=2">3</a></li>
 								    <%} %>
 								    <li><a>...</a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?page=<%=pagetotal-1%>"><%=pagetotal%></a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?page=<%=pagetotal%>"><%=pagetotal+1%></a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?page=<%=plus%>">»</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?paixu=<%=param.get("paixu") %>&page=<%=pagetotal-1%>"><%=pagetotal%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?paixu=<%=param.get("paixu") %>&page=<%=pagetotal%>"><%=pagetotal+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_news_list.jsp?paixu=<%=param.get("paixu") %>&page=<%=plus%>">»</a></li>
 								  </ul>
 				</div>
+				<%} %>
 				<!-- 分页end -->
   </div>
 </div>

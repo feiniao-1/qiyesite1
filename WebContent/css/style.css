@@ -173,6 +173,7 @@ h4.icon-heart{background: url(../img/icon-01.png) no-repeat 0 -977px; padding-le
 .cell-list .cell span{ margin: 0 10px;}
 .bd-share{ position: absolute; right: 30px; bottom: -5px;}
 .nav-page{ text-align: center;}
+.pagination > li.on > a{ background:#dd2727!important; color:#fff; border: 1px solid #dd2727;}
 .line3{ overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;}
 /*右边css*/
 .celan{ margin-bottom: 30px; padding-bottom: 10px; border-bottom: 1px dashed #ccc;}
@@ -396,7 +397,7 @@ h4.icon-cp{background: url(../img/icon-01.png) no-repeat 0 -1033px; padding-left
 .e-book{ border: 1px solid #e5e5e5;}
 .e-book .top-title{ background: #f7f7f7; padding: 15px; box-sizing: border-box; border-bottom:1px solid #e5e5e5;}
 .e-book .top-title h4{ line-height: 50px;}
-.e-book .summary{ padding: 30px; box-sizing: border-box;}
+.e-book .summary{ padding: 30px; box-sizing: border-box;background:#fff;}
 .e-book .summary .book-fm{ width: 240px; margin-right: 50px; }
 .e-book .summary .cell_primary ul{font-size: 18px;  }
 .e-book .summary .cell_primary li{ line-height: 2em;}

@@ -96,7 +96,7 @@ if(Integer.parseInt(index_page)==1){
 		<link href="css/style.css" rel="stylesheet">
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="layer/layer.js"></script>
+		<script src="layer/layer.js"></script> 
 		<!--[if it iE8]>
 			<p class="tixin">为了达到最佳观看效果，请升级到最新浏览器</p>
         -->
@@ -228,8 +228,13 @@ if(<%=cailei%>==6){
 									<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 								</div>
 								<div class="down_read">
-									<a class="down" href=""><strong><span class="glyphicon glyphicon-circle-arrow-down"></span>免费下载</strong></a>
-									<a class="read" href=""><strong><span class="glyphicon glyphicon-sound-6-1"></span>在线阅读</strong></a>
+									<a class="down" href="magazine/20161030-1.rar"><strong><span class="glyphicon glyphicon-circle-arrow-down"></span>免费下载</strong></a>
+									<a class="media" href="magazine/20161030-1.pdf"><strong><span class="glyphicon glyphicon-sound-6-1"></span>在线阅读</strong></a>
+<script type="text/javascript">  
+    $(function() {  
+        $('a.media').media({width:800, height:600});  
+    });  
+</script>  
 								</div>
          					</div>
          				</div>

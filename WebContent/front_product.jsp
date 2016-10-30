@@ -354,7 +354,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p class="txt-indent"><%=caipinshow.get(q).getStringView("content1") %></p>
-				    					<pclass="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
+				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>

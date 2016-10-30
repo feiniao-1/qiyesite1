@@ -42,11 +42,11 @@ upydimg1 = request.getParameter("upimg3");
 upydimg2 = request.getParameter("upimg4");
 caiid = request.getParameter("caiid");
 shuzi = request.getParameter("shuzi");
+
 System.out.println("caiid"+request.getParameter("caiid"));
 }catch(Exception e){
 	
 }
-
 //验证用户登陆
 Mapx<String,Object> user = G.getUser(request);
 String pageType = null;
@@ -82,6 +82,7 @@ if(jishu==null){
 }else{	
 	url_canshu=Integer.parseInt(jishu);
 }
+String searchnr=new String(request.getParameter("insearch").getBytes("iso-8859-1"),"utf-8");
 //当前登录用户
 //int dluserid=useridc.get(0).getInt("userid");
 int dluserid=10196;	
@@ -192,7 +193,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
         <a href="admin_mail_list.jsp" class="btn btn-primary">邮件列表</a>
        </div>
         <div class="botton-group">
-        <a href="admin_news_list.jsp" class="btn btn-danger">返回</a><span style="color:red;">操作说明：如需改动图片；先上传图片，再修改内容</span>
+        <a href="admin_news_list.jsp?page=<%=request.getParameter("inpage") %>&paixu=<%=request.getParameter("inpaixu") %>&searchnr=<%= searchnr%>" class="btn btn-danger">返回</a><span style="color:red;">操作说明：如需改动图片；先上传图片，再修改内容</span>
         </div>
         		<!-- 表格 start -->
         		<div class="form-group">

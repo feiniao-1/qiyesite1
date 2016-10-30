@@ -85,6 +85,7 @@ if(jishu==null){
 //int dluserid=useridc.get(0).getInt("userid");
 int dluserid=10196;	
 HashMap<String,String> param= G.getParamMap(request); 
+String searchnr=new String(request.getParameter("insearch").getBytes("iso-8859-1"),"utf-8");
 //菜品列表信息
 //CREATE TABLE `productmenu` (
 // `productmenuid` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜品ID',
@@ -186,7 +187,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
          <a href="admin_mail_list.jsp" class="btn btn-primary">邮件列表</a>
         </div>
         <div class="botton-group">
-        <a href="admin_product.jsp" class="btn btn-danger">返回</a><span style="color:red;">操作说明：如需改动图片；先上传图片，再修改内容</span>
+        <a href="admin_product.jsp?page=<%=request.getParameter("inpage") %>&paixu=<%=new String(request.getParameter("inpaixu").getBytes("iso-8859-1"),"utf-8") %>&searchnr=<%= searchnr%>" class="btn btn-danger">返回</a><span style="color:red;">操作说明：如需改动图片；先上传图片，再修改内容</span>
         </div>
         		<!-- 表格 start -->
         		<div class="form-group">

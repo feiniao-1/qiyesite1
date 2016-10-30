@@ -11,4 +11,4 @@
 .mb15{ margin-bottom:15px;}
 .mb20{ margin-bottom:20px;}
 .mainbox h5{ font-weight: bold;}
-
+.pagination > li.on > a{ background:#dd2727!important; color:#fff; border: 1px solid #dd2727;}

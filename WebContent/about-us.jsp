@@ -233,24 +233,28 @@ if(<%=cailei%>==6){
                         <h4>2.企业使命</h4>
                         <p>传千年饮食文化，树餐饮价值典范</p>
                         <h4>3.企业环境</h4>
-                        <img src="img/us02_03.jpg" class="img-responsive mb20" />
-                        <h4>4.企业资质</h4>
+                        <img src="img/dm01.jpg" class="img-responsive mb20" />
+                        <!-- <h4>4.企业资质</h4>
                         <ul class="qualification clearfix">
                         	<li><img src="img/us03.jpg" class="img-responsive"></li>
                         	<li><img src="img/us03.jpg" class="img-responsive"></li>
                         	<li class="mr0"><img src="img/us03.jpg" class="img-responsive"></li>
-                        </ul>
+                        </ul> -->
                     </div>
                     <%} %>
  <%if(cailei==3){ %>
                     <div class="tab-content">
                         <h3>线下活动</h3>
-                        <ul class="exercise clearfix mb20">
-                        	<li class="fl mr30"><img src="img/us04_03.jpg" class="img-responsive"></li>
-                   			<li class="fl"><img src="img/us05_03.jpg" class="img-responsive"></li>
-                        </ul>
-                        <p class="txt-indent">饺耳世家，是全国首家致力于传承千年传统饮食文化的饺子店。我们倡导健康养生的饮食观念,将饺子的食用与四季及二十四节气紧密相连， 回归千年前张仲景发明饺子的初衷，让饺子作为美味的同时延续其治病养生的使命。饺耳世家制作饺子的独到之处在于调馅与制皮，饺子秘制配方为老北京宫廷御厨张氏传人张芳女士提供，至今已过百年。秘制的配方，讲究的选料，精细的制作过程，铸就了饺耳世家一个个口味鲜醇的纯手工水饺。</p>
-                        <P class="txt-indent"> 金秋九月，秋风送爽。9月13日上午9点30分，在主持人清亮高昂的声音中，饺耳世家开业典礼正式开始。此次到场的领导与嘉宾有：著名歌唱家于文华，中央首长保健医周超凡，仲景世家餐饮集团董事长徐洪明等。北京城里的各路“吃货”也纷纷闻讯而来，呼朋引伴，络绎不绝，就是为了一起大块朵颐！</P>
+                        <p class="mb20">
+                          <img src="img/hd01.jpg" class="img-responsive" />
+                        </p>
+                        <h4 class="color-dd2727">活动一</h4>
+                        <p>现在只要到店消费，就送饺子一盘。什么？就吃送的一盘饺子就饱了，不点别的了行吗?小编告诉你，这样也可以</p>
+                        <h4 class="color-dd2727">活动二</h4>
+                        <p>生日当天持卡消费还将获赠镇店菜、长寿面各一份(详情请质询店内服务员)</p>
+                        <h4 class="color-dd2727">活动三</h4>
+                        <p>店内充值卡满赠活动正在火热进行。充1000赠100，充5000赠750，最高赠到4000！！！</br>还有金牌饺子券和豪礼相送拿着充值卡，享受会员价</p>
+                         <p class="color-dd2727">注释：具体活动详情请到店咨询，本活动最终解释权归饺耳世家所有。</p>
                     </div>
 <%} %>
 <%if(cailei==6){ %>
@@ -449,7 +453,7 @@ if(<%=cailei%>==6){
     }
     function createMap(){ 
       map = new BMap.Map("map"); 
-      map.centerAndZoom(new BMap.Point(116.536373,39.924598),19);
+      map.centerAndZoom(new BMap.Point(116.538173,39.923708),19);
     }
     function setMapEvent(){
       map.enableScrollWheelZoom();
