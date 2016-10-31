@@ -201,12 +201,12 @@ System.out.println("caipinshow"+caipinshow);
 		         				<div class="txt-indent color-666666 mb30 dash-line"><%=caipinshow.get(0).getStringView("content1") %></div>
 		         				<%if(!caipinshow.get(0).getStringView("productlei").equals("酒水饮料")){ %>
 	         					<h4 class="icon-cp mb20">菜品介绍</h4>
-	         					<div><%=caipinshow.get(0).getStringView("content2") %></div>
+	         					<div class="img_W100"><%=caipinshow.get(0).getStringView("content2") %></div>
 	         					<%} %>
 	         					<h4 class="icon-xg">店长推荐</h4>
 		         				<ul class="about-food clearfix">
 		         				<%List<Mapx<String,Object>> caipinshow2;
-		         				caipinshow2=DB.getRunner().query("select productmenuid,productname,img1 from productmenu where del=?  order by count desc limit 4", new MapxListHandler(), "0"); 
+		         				caipinshow2=DB.getRunner().query("select productmenuid,productname,img1 from productmenu where del=?  order by shoucang desc limit 4", new MapxListHandler(), "0"); 
 		         				for(int i=0;i<caipinshow2.size();i++){%>
 		         				<%if(i==3){ %>
 		         					<li class="mr0">
@@ -246,7 +246,7 @@ System.out.println("caipinshow"+caipinshow);
 		         			<table width="100%" border="0" cellspacing="0" class="recommend">
 		         				<tbody>
 		         				<%List<Mapx<String,Object>> caipinshow1;
-		         				caipinshow1=DB.getRunner().query("select productmenuid,productname from productmenu where del=?  order by productmenuid desc limit 10", new MapxListHandler(), "0"); 
+		         				caipinshow1=DB.getRunner().query("select productmenuid,productname from productmenu where del=?  order by shoucang desc limit 10", new MapxListHandler(), "0"); 
 		         				for(int i=0;i<caipinshow1.size();i++){%>
 		         					<tr>
 		         						<td width="50%"><a href="front_product-inner.jsp?caiid=<%=caipinshow1.get(i).getIntView("productmenuid")%>" target="_blank"><%=caipinshow1.get(i).getStringView("productname") %></a></td>

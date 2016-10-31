@@ -82,7 +82,13 @@ if(jishu==null){
 }else{	
 	url_canshu=Integer.parseInt(jishu);
 }
-String searchnr=new String(request.getParameter("insearch").getBytes("iso-8859-1"),"utf-8");
+String searchnr;
+if(request.getParameter("insearch")==null){
+	searchnr=null;
+}else{
+	searchnr=new String(request.getParameter("insearch").getBytes("iso-8859-1"),"utf-8");
+}
+
 //当前登录用户
 //int dluserid=useridc.get(0).getInt("userid");
 int dluserid=10196;	

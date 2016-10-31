@@ -26,7 +26,7 @@ if(username==null){
 	flag=1;
 }
 //文章信息
-List<Mapx<String, Object>> article=DB.getRunner().query("select articleid,author,title,content1,content2,zcount,tag1,tag2,tag3,tag4,img1,createtime from article where tagid=?", new MapxListHandler(),request.getParameter("tagid"));
+List<Mapx<String, Object>> article=DB.getRunner().query("select articleid,author,title,content1,content2,zcount,tag1,tag2,tag3,tag4,img1,ydimg2,createtime from article where tagid=?", new MapxListHandler(),request.getParameter("tagid"));
 int zcount;
 if(article.get(0).getIntView("zcount").equals("")){
 	zcount=0;
@@ -156,7 +156,7 @@ if(Integer.parseInt(discuss_page)==0){
 					<p class="size12">来源：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=article.get(0).getStringView("createtime") %></p>
 				</div>
 				<div class="news-inner-warp">
-					<img src="<%=article.get(0).getStringView("img1") %>" />
+					<img src="<%=article.get(0).getStringView("ydimg2") %>" />
 					<p><%=article.get(0).getStringView("content1") %></p>
 					<p><%=article.get(0).getStringView("content2") %></p>
 					<div class="share">

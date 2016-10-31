@@ -76,7 +76,7 @@ String searchtj;
 			    <div class="course-slide">
 			    <!-- 推荐 -->
 			    	<div class="news-type">
-			    		<% List<Mapx<String,Object>> tuijian=DB.getRunner().query("select img1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid,tagid from article where del=? order by zcount desc limit 30", new MapxListHandler(),"0");
+			    		<% List<Mapx<String,Object>> tuijian=DB.getRunner().query("select ydimg1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid,tagid from article where del=? order by zcount desc limit 30", new MapxListHandler(),"0");
 			    		List<Mapx<String,Object>> count1=DB.getRunner().query("select count(1)  as count from article where del=? ", new MapxListHandler(),"0");
 			    		int max1;
 			    		if(Integer.parseInt(count1.get(0).getIntView("count"))<10){
@@ -91,7 +91,7 @@ String searchtj;
 	            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=tuijian.get(i).getIntView("tagid") %>">
 	            		<div class="cell bg-white">
 		            			<div class="news-pic">
-		            				<img src="<%=tuijian.get(i).getStringView("img1")%>">
+		            				<img src="<%=tuijian.get(i).getStringView("ydimg1")%>">
 		            			</div>
 		            			<div class="cell_primary">
 		            				<h4 class="line2"><%=tuijian.get(i).getStringView("title")%></h4>
@@ -116,7 +116,7 @@ String searchtj;
 	            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=tuijian.get(i).getIntView("tagid") %>">
 	            		<div class="cell bg-white">
 		            			<div class="news-pic">
-		            				<img src="<%=tuijian.get(i).getStringView("img1")%>">
+		            				<img src="<%=tuijian.get(i).getStringView("ydimg1")%>">
 		            			</div>
 		            			<div class="cell_primary">
 		            				<h4 class="line2"><%=tuijian.get(i).getStringView("title")%></h4>
@@ -140,7 +140,7 @@ String searchtj;
 			            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=tuijian.get(i).getIntView("tagid") %>">
 			            		<div class="cell bg-white">
 				            			<div class="news-pic">
-				            				<img src="<%=tuijian.get(i).getStringView("img1")%>">
+				            				<img src="<%=tuijian.get(i).getStringView("ydimg1")%>">
 				            			</div>
 				            			<div class="cell_primary">
 				            				<h4 class="line2"><%=tuijian.get(i).getStringView("title")%></h4>
@@ -178,7 +178,7 @@ String searchtj;
 			    	</div>
 			    	<!-- 热门-->
 			    	<div class="news-type" style="display: none;">
-	            		<% List<Mapx<String,Object>> remen=DB.getRunner().query("select img1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid ,tagid from article where del=? and articletype=? order by articleid desc limit 30", new MapxListHandler(),"0","热门");
+	            		<% List<Mapx<String,Object>> remen=DB.getRunner().query("select ydimg1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid ,tagid from article where del=? and articletype=? order by articleid desc limit 30", new MapxListHandler(),"0","热门");
 			    		List<Mapx<String,Object>> count2=DB.getRunner().query("select count(1)  as count from article where del=? and articletype=? ", new MapxListHandler(),"0","热门");
 			    		int max2;
 			    		if(Integer.parseInt(count2.get(0).getIntView("count"))<10){
@@ -193,7 +193,7 @@ String searchtj;
 	            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=remen.get(i).getIntView("tagid") %>">
 	            		<div class="cell bg-white">
 		            			<div class="news-pic">
-		            				<img src="<%=remen.get(i).getStringView("img1")%>">
+		            				<img src="<%=remen.get(i).getStringView("ydimg1")%>">
 		            			</div>
 		            			<div class="cell_primary">
 		            				<h4 class="line2"><%=remen.get(i).getStringView("title")%></h4>
@@ -217,7 +217,7 @@ String searchtj;
 	            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=remen.get(i).getIntView("tagid") %>">
 	            		<div class="cell bg-white">
 		            			<div class="news-pic">
-		            				<img src="<%=remen.get(i).getStringView("img1")%>">
+		            				<img src="<%=remen.get(i).getStringView("ydimg1")%>">
 		            			</div>
 		            			<div class="cell_primary">
 		            				<h4 class="line2"><%=remen.get(i).getStringView("title")%></h4>
@@ -241,7 +241,7 @@ String searchtj;
 			            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=remen.get(i).getIntView("tagid") %>">
 			            		<div class="cell bg-white">
 				            			<div class="news-pic">
-				            				<img src="<%=remen.get(i).getStringView("img1")%>">
+				            				<img src="<%=remen.get(i).getStringView("ydimg1")%>">
 				            			</div>
 				            			<div class="cell_primary">
 				            				<h4 class="line2"><%=remen.get(i).getStringView("title")%></h4>
@@ -268,7 +268,7 @@ String searchtj;
 			    	</div>
 			    	<!-- 美食 -->
 			    	<div class="news-type" style="display: none;">
-	            		<% List<Mapx<String,Object>> meishi=DB.getRunner().query("select img1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid,tagid from article where del=? and articletype=? order by articleid desc limit 30", new MapxListHandler(),"0","美食");
+	            		<% List<Mapx<String,Object>> meishi=DB.getRunner().query("select ydimg1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid,tagid from article where del=? and articletype=? order by articleid desc limit 30", new MapxListHandler(),"0","美食");
 			    		List<Mapx<String,Object>> count3=DB.getRunner().query("select count(1)  as count from article where del=? and articletype=? ", new MapxListHandler(),"0","美食");
 			    		int max3;
 			    		if(Integer.parseInt(count3.get(0).getIntView("count"))<10){
@@ -283,7 +283,7 @@ String searchtj;
 	            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=meishi.get(i).getIntView("tagid") %>">
 	            		<div class="cell bg-white">
 		            			<div class="news-pic">
-		            				<img src="<%=meishi.get(i).getStringView("img1")%>">
+		            				<img src="<%=meishi.get(i).getStringView("ydimg1")%>">
 		            			</div>
 		            			<div class="cell_primary">
 		            				<h4 class="line2"><%=meishi.get(i).getStringView("title")%></h4>
@@ -307,7 +307,7 @@ String searchtj;
 	            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=meishi.get(i).getIntView("tagid") %>">
 	            		<div class="cell bg-white">
 		            			<div class="news-pic">
-		            				<img src="<%=meishi.get(i).getStringView("img1")%>">
+		            				<img src="<%=meishi.get(i).getStringView("ydimg1")%>">
 		            			</div>
 		            			<div class="cell_primary">
 		            				<h4 class="line2"><%=meishi.get(i).getStringView("title")%></h4>
@@ -331,7 +331,7 @@ String searchtj;
 			            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=meishi.get(i).getIntView("tagid") %>">
 			            		<div class="cell bg-white">
 				            			<div class="news-pic">
-				            				<img src="<%=meishi.get(i).getStringView("img1")%>">
+				            				<img src="<%=meishi.get(i).getStringView("ydimg1")%>">
 				            			</div>
 				            			<div class="cell_primary">
 				            				<h4 class="line2"><%=meishi.get(i).getStringView("title")%></h4>
@@ -357,7 +357,7 @@ String searchtj;
 			    	</div>
 			    	<!-- 科技 -->
 			    	<div class="news-type" style="display: none;">
-	            		<% List<Mapx<String,Object>> tiyu=DB.getRunner().query("select img1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid,tagid from article where del=? and articletype=? order by articleid desc limit 30", new MapxListHandler(),"0","科技");
+	            		<% List<Mapx<String,Object>> tiyu=DB.getRunner().query("select ydimg1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid,tagid from article where del=? and articletype=? order by articleid desc limit 30", new MapxListHandler(),"0","科技");
 			    		List<Mapx<String,Object>> count4=DB.getRunner().query("select count(1)  as count from article where del=? and articletype=? ", new MapxListHandler(),"0","科技");
 			    		int max4;
 			    		if(Integer.parseInt(count4.get(0).getIntView("count"))<10){
@@ -372,7 +372,7 @@ String searchtj;
 	            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=tiyu.get(i).getIntView("tagid") %>">
 	            		<div class="cell bg-white">
 		            			<div class="news-pic">
-		            				<img src="<%=tiyu.get(i).getStringView("img1")%>">
+		            				<img src="<%=tiyu.get(i).getStringView("ydimg1")%>">
 		            			</div>
 		            			<div class="cell_primary">
 		            				<h4 class="line2"><%=tiyu.get(i).getStringView("title")%></h4>
@@ -396,7 +396,7 @@ String searchtj;
 	            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=tiyu.get(i).getIntView("tagid") %>">
 	            		<div class="cell bg-white">
 		            			<div class="news-pic">
-		            				<img src="<%=tiyu.get(i).getStringView("img1")%>">
+		            				<img src="<%=tiyu.get(i).getStringView("ydimg1")%>">
 		            			</div>
 		            			<div class="cell_primary">
 		            				<h4 class="line2"><%=tiyu.get(i).getStringView("title")%></h4>
@@ -420,7 +420,7 @@ String searchtj;
 			            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=tiyu.get(i).getIntView("tagid") %>">
 			            		<div class="cell bg-white">
 				            			<div class="news-pic">
-				            				<img src="<%=tiyu.get(i).getStringView("img1")%>">
+				            				<img src="<%=tiyu.get(i).getStringView("ydimg1")%>">
 				            			</div>
 				            			<div class="cell_primary">
 				            				<h4 class="line2"><%=tiyu.get(i).getStringView("title")%></h4>
@@ -447,7 +447,7 @@ String searchtj;
 			    	</div>
 			    	<!-- 娱乐-->
 			    	<div class="news-type" style="display: none;">
-			    		<% List<Mapx<String,Object>> yule=DB.getRunner().query("select img1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid,tagid from article where del=? and articletype=? order by articleid desc limit 30", new MapxListHandler(),"0","娱乐");
+			    		<% List<Mapx<String,Object>> yule=DB.getRunner().query("select ydimg1,subString(title,1,10) as title,author,subString(createtime,1,19) as createtime ,articleid,tagid from article where del=? and articletype=? order by articleid desc limit 30", new MapxListHandler(),"0","娱乐");
 			    		List<Mapx<String,Object>> count5=DB.getRunner().query("select count(1)  as count from article where del=? and articletype=? ", new MapxListHandler(),"0","娱乐");
 			    		int max5;
 			    		if(Integer.parseInt(count5.get(0).getIntView("count"))<10){
@@ -462,7 +462,7 @@ String searchtj;
 	            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=yule.get(i).getIntView("tagid") %>">
 	            		<div class="cell bg-white">
 		            			<div class="news-pic">
-		            				<img src="<%=yule.get(i).getStringView("img1")%>">
+		            				<img src="<%=yule.get(i).getStringView("ydimg1")%>">
 		            			</div>
 		            			<div class="cell_primary">
 		            				<h4 class="line2"><%=yule.get(i).getStringView("title")%></h4>
@@ -486,7 +486,7 @@ String searchtj;
 	            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=yule.get(i).getIntView("tagid") %>">
 	            		<div class="cell bg-white">
 		            			<div class="news-pic">
-		            				<img src="<%=yule.get(i).getStringView("img1")%>">
+		            				<img src="<%=yule.get(i).getStringView("ydimg1")%>">
 		            			</div>
 		            			<div class="cell_primary">
 		            				<h4 class="line2"><%=yule.get(i).getStringView("title")%></h4>
@@ -510,7 +510,7 @@ String searchtj;
 			            		<a href="yd_front_news_inner.jsp??page=0&tagid=<%=yule.get(i).getIntView("tagid") %>">
 			            		<div class="cell bg-white">
 				            			<div class="news-pic">
-				            				<img src="<%=yule.get(i).getStringView("img1")%>">
+				            				<img src="<%=yule.get(i).getStringView("ydimg1")%>">
 				            			</div>
 				            			<div class="cell_primary">
 				            				<h4 class="line2"><%=yule.get(i).getStringView("title")%></h4>

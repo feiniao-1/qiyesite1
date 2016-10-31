@@ -261,15 +261,14 @@ if(<%=cailei%>==6){
                     <div class="tab-content">
                         <h3>电子杂志</h3>
                         <ul class="clearfix  e-zine">
-                        	<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/zazhi.jpg" class="img-responsive"><p>饺耳杂志</p></a></li>
+                        	<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
                         </ul>
                         <!--分页内容标签开始-->
 								<div class="nav-page">

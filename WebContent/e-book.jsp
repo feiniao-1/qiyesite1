@@ -207,7 +207,7 @@ if(<%=cailei%>==6){
          			<div class="summary">
          				<div class="cell cell-start">
          					<div class="book-fm">
-         						<img src="img/book-fm.jpg" class="img-responsive"/>
+         						<img src="img/book01.jpg" class="img-responsive"/>
          					</div>
          					<div class="cell_primary">
          						<ul class="clearfix">
@@ -229,7 +229,7 @@ if(<%=cailei%>==6){
 								</div>
 								<div class="down_read">
 									<a class="down" href="magazine/20161030-1.rar"><strong><span class="glyphicon glyphicon-circle-arrow-down"></span>免费下载</strong></a>
-									<a class="media" href="magazine/20161030-1.pdf"><strong><span class="glyphicon glyphicon-sound-6-1"></span>在线阅读</strong></a>
+									<a class="media" href="magazine/20161030-1.pdf" target="_blank"><strong><span class="glyphicon glyphicon-sound-6-1"></span>在线阅读</strong></a>
 <script type="text/javascript">  
     $(function() {  
         $('a.media').media({width:800, height:600});  
@@ -239,20 +239,20 @@ if(<%=cailei%>==6){
          					</div>
          				</div>
          				<div class="about-word">
-         					<strong>杂志关键词:</strong>少女电子杂志在线阅读，幽默电子杂志下载，暖心杂志在线阅读
-         				</div>
-         				<div class="book-infor">
-         					<h4>杂志描述</h4>
-         					<p>《暖暖刊》由暖暖文学社编写的一本暖心幽默的杂志，内容励志有趣，适合所有少女。只要你有一颗少女心，我们就会精心打造最完美的你。暖暖大家族的倾心原创暖心文章尽在此刊中。</p>
-         				</div>
+                   <strong>杂志关键词:</strong>二十四节气之寒露，饺耳红烧肉，养生美食
+                 </div>
+                 <div class="book-infor">
+                   <h4>杂志描述</h4>
+                   <p>《饺耳美食》杂志是一本倡导提高人们生活质量，专注美食与健康的生活期刊。“二十四节气的秘密”和您一起讨论节气、饮食、健康之间联系，而“美食地图”将带您遍尝饺耳美食；如果想要亲自下厨大展身手，可以从“养生食单”中找到简单好吃又营养的菜谱。“饺耳趣闻”里那些关于饺子不得不说的故事；还有饺耳世家相关新闻、活动等内容让您更了解我们。饺耳美食，关于吃，关于健康，关于生活，关于爱。</p>
+                 </div>
          				<div class="about-book">
          					<h4>相关杂志</h4>
          					<ul class="clearfix">
-         						<li><a href=""><img src="img/book-fm.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
-         						<li><a href=""><img src="img/book-fm.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
-         						<li><a href=""><img src="img/book-fm.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
-         						<li><a href=""><img src="img/book-fm.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
-         						<li><a href=""><img src="img/book-fm.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
+         						<li><a href=""><img src="img/book01.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
+         						<li><a href=""><img src="img/book01.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
+         						<li><a href=""><img src="img/book01.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
+         						<li><a href=""><img src="img/book01.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
+         						<li><a href=""><img src="img/book01.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
          					</ul>
          				</div>
          			</div>
