@@ -37,7 +37,7 @@ if(article.get(0).getIntView("zcount").equals("")){
 DB.getRunner().update("update article set zcount=? where tagid=?",zcount+1,request.getParameter("tagid"));
 DB.getRunner().update("update news set count=? where tagid=?",zcount+1,request.getParameter("tagid"));
 //当前文章的下一条文章信息
-List<Mapx<String, Object>> articlenext=DB.getRunner().query("select title,tagid from article where articleid<? order by articleid desc limit 1", new MapxListHandler(),article.get(0).getIntView("articleid"));
+List<Mapx<String, Object>> articlenext=DB.getRunner().query("select title,tagid from article where articleid<? and del=? order by articleid desc limit 1", new MapxListHandler(),article.get(0).getIntView("articleid"),"0");
 System.out.println(articlenext);
 //获取文章作者
 List<Mapx<String, Object>> authorxx= DB.getRunner().query("SELECT username FROM user where userid=?", new MapxListHandler(),article.get(0).getStringView("author"));
@@ -199,21 +199,22 @@ if(param.get("Action")!=null && param.get("Action").equals("zan")){
 						<li class="nLi">
 								<h3><a href="about-us.jsp" >关于饺耳</a></h3>
 								<ul class="sub">
-									<li><a href="about-us.jsp">公司介绍</a></li>
-									<li><a href="about-us.jsp">公司文化</a></li>
-									<li><a href="about-us.jsp">店铺活动</a></li>
-									<li><a href="about-us.jsp">人才招聘</a></li>
-									<li><a href="about-us.jsp">联系我们</a></li>
+									<li><a href="about-us.jsp?cailei=1">公司介绍</a></li>
+									<li><a href="about-us.jsp?cailei=2">公司文化</a></li>
+									<li><a href="about-us.jsp?cailei=3">线下活动</a></li>
+									<li><a href="about-us.jsp?cailei=6">电子杂志</a></li>
+									<li><a href="about-us.jsp?cailei=4">人才招聘</a></li>
+									<li><a href="about-us.jsp?cailei=5">联系我们</a></li>
 								</ul>
 						</li>
 						<li class="nLi">
-								<h3><a href="about-us.jsp">线下活动</a></h3>
+								<h3><a href="about-us.jsp?cailei=3">线下活动</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="about-us.jsp">人才招聘</a></h3>
+								<h3><a href="about-us.jsp?cailei=4">人才招聘</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="about-us.jsp">联系我们</a></h3>
+								<h3><a href="about-us.jsp?cailei=5">联系我们</a></h3>
 						</li>
 						
 					</ul>

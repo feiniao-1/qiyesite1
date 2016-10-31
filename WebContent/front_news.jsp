@@ -141,21 +141,22 @@ if(Integer.parseInt(index_page)==1){
 						<li class="nLi">
 								<h3><a href="about-us.jsp" >关于饺耳</a></h3>
 								<ul class="sub">
-									<li><a href="about-us.jsp">公司介绍</a></li>
-									<li><a href="about-us.jsp">公司文化</a></li>
-									<li><a href="about-us.jsp">店铺活动</a></li>
-									<li><a href="about-us.jsp">人才招聘</a></li>
-									<li><a href="about-us.jsp">联系我们</a></li>
+									<li><a href="about-us.jsp?cailei=1">公司介绍</a></li>
+									<li><a href="about-us.jsp?cailei=2">公司文化</a></li>
+									<li><a href="about-us.jsp?cailei=3">线下活动</a></li>
+									<li><a href="about-us.jsp?cailei=6">电子杂志</a></li>
+									<li><a href="about-us.jsp?cailei=4">人才招聘</a></li>
+									<li><a href="about-us.jsp?cailei=5">联系我们</a></li>
 								</ul>
 						</li>
 						<li class="nLi">
-								<h3><a href="about-us.jsp">线下活动</a></h3>
+								<h3><a href="about-us.jsp?cailei=3">线下活动</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="about-us.jsp">人才招聘</a></h3>
+								<h3><a href="about-us.jsp?cailei=4">人才招聘</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="about-us.jsp">联系我们</a></h3>
+								<h3><a href="about-us.jsp?cailei=5">联系我们</a></h3>
 						</li>
 						
 					</ul>

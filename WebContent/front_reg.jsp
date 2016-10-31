@@ -14,21 +14,12 @@ if(param==null){//临时，未正式交付，无法创建新用户
 }
 HashMap<String,Object> myparam = new HashMap<String,Object>();//存储自用的一些变量
 String opt = param.get("opt");
-if(opt==null){
-	opt="add";
-	param.put("opt",opt);
-}
-if(opt.equals("add")){//创建用户
-	int id = Ukey.getKey("user");
-	param.put("id", ""+id);
-}
 System.out.println(param.get("id"));
 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
 ///保存用户注册信息 -start  下面定义的变量 仅在此处使用     
 if(param.get("Action")!=null && param.get("Action").equals("立即注册")){
 	List<String> errors = new ArrayList<String>();
-			int id = Integer.parseInt(param.get("id"));
 			String name = (String)G.commonCheckx(errors,param.get("username"),"用户名","must","string","between,2,50");
 			String phone = (String)G.commonCheckx(errors,param.get("phone"),"电话","phone","string","between,11,20");
 			String mail = (String)G.commonCheckx(errors,param.get("mail"),"邮箱","mail","string","between,5,50");
@@ -46,7 +37,7 @@ if(param.get("Action")!=null && param.get("Action").equals("立即注册")){
 					myparam.put("errorStr", G.toErrorStr(errors));
 				}else{//验证通过，存库
 					password = DesUtils.encrypt(password);
-					DB.getRunner().update("insert into user(userid,username,password,shenhe,status,createtime,phone,mail) values(?,?,?,?,?,?,?,?)", id,name,password,"审核通过","有效",df.format(new Date()),phone,mail);
+					DB.getRunner().update("insert into user(username,password,shenhe,status,createtime,phone,mail) values(?,?,?,?,?,?,?)",name,password,"审核通过","有效",df.format(new Date()),phone,mail);
 					myparam.put("addResult", "1");
 					out.print("<script>alert('注册成功'); window.location='front_index.jsp' </script>");
 					//response.sendRedirect("front_boke.jsp");
