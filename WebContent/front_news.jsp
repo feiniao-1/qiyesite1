@@ -210,7 +210,7 @@ if(<%=xwlei%>==5){
 						<!--下部内容-->
 						<div class="course-slide">
 						 <%if(xwlei==1){ %>
-							<!--板块一内容 即热门部分--> 
+							<!--板块一内容 即全部部分--> 
 							<div class="tab-inner cell-list">
 							<%
 							//判断是否是搜索显示
@@ -244,7 +244,7 @@ if(<%=xwlei%>==5){
 										<div class="cell_primary">
 											<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
 											<div class="mb20 txt-indent">
-											<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
+											<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><div><%=one.getStringView("content") %></div></a>
 											</div>
 											<div class="color-666666">来自：
 											<%if(one.getStringView("origin").equals("")){ %>
@@ -277,7 +277,7 @@ if(<%=xwlei%>==5){
 										<div class="cell_primary">
 											<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
 											<div class="mb20 txt-indent">
-													<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
+													<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><div><%=one.getStringView("content") %></div></a>
 											</div>
 											<div class="color-666666">来自：
 											<%if(one.getStringView("origin").equals("")){ %>
@@ -355,7 +355,7 @@ if(<%=xwlei%>==5){
 									<div class="cell_primary">
 										<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
 										<div class="mb20 txt-indent">
-												<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
+												<a href="front_news-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><div><%=one.getStringView("content") %></div></a>
 										</div>
 										
 										<div class="color-666666">来自：

@@ -86,16 +86,16 @@ if(jishu==null){
 int dluserid=10196;	
 HashMap<String,String> param= G.getParamMap(request); 
 String searchnr;
-if(request.getParameter("insearch")==null){
+if(request.getParameter("searchnr")==null){
 	searchnr=null;
 }else{
-	searchnr=new String(request.getParameter("insearch").getBytes("iso-8859-1"),"utf-8");
+	searchnr=new String(request.getParameter("searchnr").getBytes("iso-8859-1"),"utf-8");
 }
 String paixu;
-if(request.getParameter("inpaixu")==null){
+if(request.getParameter("paixu")==null){
 	paixu=null;
 }else{
-	paixu=new String(request.getParameter("inpaixu").getBytes("iso-8859-1"),"utf-8");
+	paixu=new String(request.getParameter("paixu").getBytes("iso-8859-1"),"utf-8");
 }
 //菜品列表信息
 //CREATE TABLE `productmenu` (
@@ -119,7 +119,7 @@ if(request.getParameter("inpaixu")==null){
 //  PRIMARY KEY (`productmenuid`)
 //) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 //菜品列表信息
-List<Mapx<String,Object>> menu=DB.getRunner().query("select productmenuid,productname,productEname,productlei,content1,content2,img1,img2,ydimg1,ydimg2,substring(createtime,1,19) as createtime,substring(updatetime,1,19) as updatetime,count,yprice,shoucang,author from productmenu where del=? and productmenuid=?", new MapxListHandler(),"0",caiid);
+List<Mapx<String,Object>> menu=DB.getRunner().query("select productmenuid,productname,productEname,productlei,content1,content2,img1,img2,ydimg1,ydimg2,substring(createtime,1,19) as createtime,substring(updatetime,1,19) as updatetime,count,yprice,xprice,shoucang,author from productmenu where del=? and productmenuid=?", new MapxListHandler(),"0",caiid);
 System.out.println("menu"+menu);
 //显示该菜品的随机数信息
 List<Mapx<String,Object>> showdiscuss1 = DB.getRunner().query("select canshu_url as canshu_url from productmenu where  author=? order by productmenuid desc limit 1",new MapxListHandler(),menu.get(0).getIntView("author"));
@@ -130,6 +130,7 @@ String productlei;
 String productname;
 String productEname;
 String yprice;
+String xprice;
 String content1;
 String content2;
 String count;
@@ -145,6 +146,11 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 	productname=param.get("productname");
 	productEname=param.get("productEname");
 	yprice=param.get("yprice");
+	if(param.get("xprice").equals("")){
+		xprice="0";
+	}else{
+		xprice=param.get("xprice");
+	}
 	content1=param.get("content1");
 	content2=param.get("content2");
 	count=param.get("count");
@@ -170,7 +176,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 		ydimg2="upload/"+(String)session.getAttribute("fullName4");
 	}
 	System.out.println(productlei+productname+productEname+yprice+content1+count+shoucang+img1);
-		DB.getRunner().update("update productmenu set productlei=?,productname=?,productEname=?,content1=?,content2=?,img1=?,img2=?,ydimg1=?,ydimg2=?,updatetime=?,count=?,canshu_url=?,yprice=?,shoucang=? where productmenuid=?",productlei,productname,productEname,content1,content2,img1,img2,ydimg1,ydimg2,df.format(new Date()),count,url_canshu,yprice,shoucang,param.get("id"));
+		DB.getRunner().update("update productmenu set productlei=?,productname=?,productEname=?,content1=?,content2=?,img1=?,img2=?,ydimg1=?,ydimg2=?,updatetime=?,count=?,canshu_url=?,yprice=?,xprice=?,shoucang=? where productmenuid=?",productlei,productname,productEname,content1,content2,img1,img2,ydimg1,ydimg2,df.format(new Date()),count,url_canshu,yprice,xprice,shoucang,param.get("id"));
 		session.removeAttribute("fullName1");
 		session.removeAttribute("fullName2");
 		session.removeAttribute("fullName3");
@@ -178,7 +184,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 		%>
 		<script type="text/javascript" language="javascript">
 				alert("修改成功");                                            // 弹出提示信息
-				window.location='admin_product.jsp' ;                           
+				window.location='admin_product.jsp?page=<%=request.getParameter("page") %>&paixu=<%=paixu %>&searchnr=<%= param.get("searchnr")%>' ;                          
 		</script>
 	<%
 }else{
@@ -196,14 +202,15 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
          <a href="admin_news_list.jsp" class="btn btn-primary">发表新闻</a>
          <a href="admin_product.jsp" class="btn btn-warning">发表菜品</a>
          <a href="admin_mail_list.jsp" class="btn btn-primary">邮件列表</a>
+         <a href="photo.jsp" class="btn btn-primary" target="_blank">图片上传</a>
         </div>
         <div class="botton-group">
-        <a href="admin_product.jsp?page=<%=request.getParameter("inpage") %>&paixu=<%=paixu %>&searchnr=<%= searchnr%>" class="btn btn-danger">返回</a><span style="color:red;">操作说明：如需改动图片；先上传图片，再修改内容</span>
+        <a href="admin_product.jsp?page=<%=request.getParameter("page") %>&paixu=<%=paixu %>&searchnr=<%= searchnr%>" class="btn btn-danger">返回</a><span style="color:red;">操作说明：如需改动图片；先上传图片，再修改内容</span>
         </div>
         		<!-- 表格 start -->
         		<div class="form-group">
         		<h5>PC商品封面图片<span style="color:red;">*(370*247)</span></h5> 
-						<form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=1" method="post" enctype="multipart/form-data">
+						<form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=1&page=<%=request.getParameter("page") %>&paixu=<%=paixu %>&searchnr=<%= param.get("searchnr")%>" method="post" enctype="multipart/form-data">
 						<div class="mb10">
 						<input type="file" name="attr_file1" style="display:inline-block; width:220px;">
 						<input type="submit" value="上传">  
@@ -237,7 +244,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							 	<img alt="" src="<%=menu.get(0).getStringView("img1") %>" style="width:220px!important;" height="150px">
 							 <%} %>
 							 <h5>PC商品详情图片<span style="color:red;">*(798*532)</span></h5> 
-						<form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=3" method="post" enctype="multipart/form-data">
+						<form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=3&page=<%=request.getParameter("page") %>&paixu=<%=paixu %>&searchnr=<%= param.get("searchnr")%>" method="post" enctype="multipart/form-data">
 						<div class="mb10">
 						<input type="file" name="attr_file3" style="display:inline-block; width:220px;">
 						<input type="submit" value="上传">  
@@ -271,7 +278,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							 	<img alt="" src="<%=menu.get(0).getStringView("img2") %>" style="width:220px!important;" height="150px">
 							 <%} %>
 					    <h5>移动端商品封面图片<span style="color:red;">*</span></h5> 
-					    <form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=2" method="post" enctype="multipart/form-data">
+					    <form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=2&page=<%=request.getParameter("page") %>&paixu=<%=paixu %>&searchnr=<%= param.get("searchnr")%>" method="post" enctype="multipart/form-data">
 						<div class="mb10">
 						<input type="file" name="attr_file1" style="display:inline-block; width:220px">
 						<input type="submit" value="上传">
@@ -305,7 +312,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							 	<img alt="" src="<%=menu.get(0).getStringView("ydimg1") %>" style="width:120px!important;" height="90px">
 							 <%} %>
 					<h5>移动端商品详情图片<span style="color:red;">*</span></h5> 
-					    <form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=4" method="post" enctype="multipart/form-data">
+					    <form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=4&page=<%=request.getParameter("page") %>&paixu=<%=paixu %>&searchnr=<%= param.get("searchnr")%>" method="post" enctype="multipart/form-data">
 						<div class="mb10">
 						<input type="file" name="attr_file4" style="display:inline-block; width:220px">
 						<input type="submit" value="上传">
@@ -340,7 +347,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							 <%} %>
 				</div>
 				
-				<form role="form" action="admin_product_publish.jsp?jishu=<%=val%>&caiid=<%=caiid %>&fileName=tijiao" method="POST" name="form1"
+				<form role="form" action="admin_product_publish.jsp?jishu=<%=val%>&caiid=<%=caiid %>&fileName=tijiao&page=<%=request.getParameter("page") %>&paixu=<%=paixu %>&searchnr=<%= param.get("searchnr")%>" method="POST" name="form1"
 					novalidate>
 					<div class="form-group">
 						<h5>ID</h5> 
@@ -375,6 +382,11 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 						<h5>价格 ￥：<span style="color:red;">*</span></h5><input type="text" class="form-control" style="width:200px;"
 							name="yprice"
 							value="<%=menu.get(0).getIntView("yprice") %>">
+					</div>
+					<div class="form-group">
+						<h5>会员价￥：<span style="color:red;">*</span></h5><input type="text" class="form-control" style="width:200px;"
+							name="xprice"
+							value="<%=menu.get(0).getIntView("xprice") %>">
 					</div>
 					<div class="form-group">
 						<h5>菜品简介<span style="color:red;">(字数为1行或最多65字)*</span></h5> 

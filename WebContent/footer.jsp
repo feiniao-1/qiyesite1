@@ -56,6 +56,7 @@
         					urlfootor=requestURIa+"?"+request.getQueryString();
         					
         				}
+        				System.out.println("urlfootor:"+urlfootor); 
         				//CREATE TABLE `mail` (
         				//		  `mailid` int(11) NOT NULL AUTO_INCREMENT COMMENT '邮箱ID',
         				//		  `username` varchar(255) DEFAULT NULL COMMENT '用户名',

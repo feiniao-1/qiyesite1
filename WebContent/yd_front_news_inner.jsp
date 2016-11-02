@@ -159,18 +159,54 @@ if(Integer.parseInt(discuss_page)==0){
 					<img src="<%=article.get(0).getStringView("ydimg2") %>" />
 					<p><%=article.get(0).getStringView("content1") %></p>
 					<p><%=article.get(0).getStringView("content2") %></p>
-					<div class="share">
-			            <dl>
-			                <dt>分享到</dt>
-			                <dd>
-			                	<span class="share-wx"></span>
-			                    <span class="share-qzone"></span>
-			                    <span class="share-wb"></span>
-			                </dd>
-			            </dl>
-        			</div>
+			            <div class="icon-link bdsharebuttonbox" data-tag="share_1">
+								<a style="background-image:url(img/mwx-icon.png);" data-cmd="weixin"></a>
+								<a style="background-image:url(img/mxl-icon.png);" data-cmd="tsina"></a>
+								<a style="background-image:url(img/mqq-icon.png);" data-cmd="qzone"></a>
+								<a style="background-image:url(img/mrr-icon.png);" data-cmd="renren"></a>
+						</div>	
 				</div>
 			</div>
 		</div>	
+		<!--百度分享js-->
+		<%//获取url
+        				HashMap<String,String> param1= G.getParamMap(request);
+        				String  urlfootor;
+        				String patha = request.getContextPath();  
+        				String basePatha = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+patha+"/";   
+        				String servletPatha=request.getServletPath();    
+        				String requestURIa=request.getRequestURI();     
+        				if(request.getQueryString()==null){
+        					urlfootor=basePatha+servletPatha;
+        					
+        				}else{
+        					urlfootor=basePatha+servletPatha+request.getQueryString();
+        					
+        				}
+        				System.out.println("urlfootor:"+urlfootor); %>
+<script>
+	window._bd_share_config = {
+		common : {
+			bdText : '饺耳',	
+			bdDesc : '饺耳首页',	
+			bdUrl : '<%=urlfootor%>', 	
+			bdPic : 'img/logo_03.jpg'
+		},
+		share : [{
+			"bdSize" : 16
+		}],
+		image : [{
+			viewType : 'list',
+			viewPos : 'top',
+			viewColor : 'black',
+			viewSize : '16',
+			viewList : ['qzone','tsina','huaban','tqq','renren']
+		}],
+		selectShare : [{
+			"bdselectMiniList" : ['qzone','tqq','kaixin001','bdxc','tqf']
+		}]
+	}
+	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 	</body>
 </html>

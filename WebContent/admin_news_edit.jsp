@@ -155,6 +155,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
         <a href="admin_news_list.jsp" class="btn btn-warning">发表新闻</a>
         <a href="admin_product.jsp" class="btn btn-primary">发表菜品</a>
         <a href="admin_mail_list.jsp" class="btn btn-primary">邮件列表</a>
+        <a href="photo.jsp" class="btn btn-primary" target="_blank">图片上传</a>
         </div>
         <div class="botton-group">
         <a href="admin_news_list.jsp" class="btn btn-danger">返回</a>

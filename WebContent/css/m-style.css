@@ -295,6 +295,12 @@ a {
 .share-wb {
     background-position: -66px 0;
 }
+.icon-link{float:right;}
+.icon-link a {
+    display: inline-block!important;
+    width: 26px!important;
+    height: 26px!important;
+}
 /*绾夸笅娲诲姩*/
 .activity-list{ padding:15px; box-sizing: border-box;}
 .activity-list h3,.activity-list p,.activity-list img{ margin-bottom: 10px;}
@@ -318,3 +324,4 @@ a {
 .blog-inner .form textarea{ width: 100%; padding: 5px; box-sizing: border-box; margin-bottom: 10px; height: 5em; overflow-y: auto;}
 .blog-inner .form .submit{ padding: 3px 15px; float: right; display:block;}
 .blog-plate:last-child{ margin: 0;}
+

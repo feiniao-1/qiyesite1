@@ -166,16 +166,16 @@ if (!browser.versions.mobile)
                 <div class="slider">
                   <ul>
                         <li style="float: left; display: inline;">
-                            <a href=""><img src="images/M-banner01_02.jpg" style="width: 100%; height: 100%;"/></a>
+                            <a href=""><img src="images/mbanner01.jpg" style="width: 100%; height: 100%;"/></a>
                         </li>
                         <li style="float: left; display: inline;"> 
-                            <a href=""><img src="images/M-banner01_02.jpg" style="width: 100%; height: 100%;"/></a>
+                            <a href=""><img src="images/mbanner02.jpg" style="width: 100%; height: 100%;"/></a>
                         </li>
                         <li style="float: left; display: inline;">
-                            <a href=""><img src="images/M-banner01_02.jpg" style="width: 100%; height: 100%;"/></a>
+                            <a href=""><img src="images/mbanner03.jpg" style="width: 100%; height: 100%;"/></a>
                         </li>
                         <li style="float: left; display: inline;">
-                            <a href=""><img src="images/M-banner01_02.jpg" style="width: 100%; height: 100%;"/></a>
+                            <a href=""><img src="images/mbanner04.jpg" style="width: 100%; height: 100%;"/></a>
                         </li>
                   </ul>
                 </div>

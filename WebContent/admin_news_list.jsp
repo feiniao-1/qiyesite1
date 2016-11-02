@@ -218,7 +218,7 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
 							<td><%=menu.get(j).getIntView("createtime") %></td>
 							<td><%=menu.get(j).getIntView("zcount") %></td>
 							<td>
-								<a href="admin_news_publish.jsp?caiid=<%=menu.get(j).getIntView("articleid")%>&inpage=<%=intdhpage%>&inpaixu=<%=paixu%>&insearch=<%=insearch%>">管理</a>|
+								<a href="admin_news_publish.jsp?caiid=<%=menu.get(j).getIntView("articleid")%>&page=<%=intdhpage%>&paixu=<%=paixu%>&searchnr=<%=insearch%>">管理</a>|
 								<form action="admin_news_list.jsp" id="subform<%=j%>" method="POST" style="float:right;">
 									<input type="hidden" value="<%=menu.get(j).getIntView("tagid") %>" name="tagid">
 									<input type="hidden" value="删除" name="Action">
