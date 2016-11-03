@@ -10,19 +10,15 @@ HashMap<String,String> param= G.getParamMap(request);
 //获取url
 String  url  =  "http://"  +  request.getServerName()  +  ":"  +  request.getServerPort()  +  request.getContextPath()+request.getServletPath().substring(0,request.getServletPath().lastIndexOf("/")+1);
 String url1 = request.getRequestURI(); 
-/*char[] jiequhou;
-int q=0;
-for(int n=0;n<jiequ.length;n++){
-	System.out.println(jiequ[n]);
-	if(jiequ[n]=='f'){
-		for(int m=n;m<jiequ.length;m++){
-			jiequhou[q]=jiequ[m];
-		q++;
-		}
-	}
-}*/
-
-System.out.println("url1"+url1);
+//获取当前url
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String id = "";
+try{
+id = request.getParameter("id");
+}catch(Exception e){
+	
+}
 if(url1.matches("^index$")){
 	System.out.println("YES");
 }else{
@@ -44,6 +40,37 @@ if(username==null){
 }else{
 	flag=1;
 }
+String diji="";
+String size="";
+String pageshu="";
+String keyword="";
+String describe="";
+int intid=Integer.parseInt(id);
+System.out.println("id="+id);
+if(intid==1){
+	System.out.println("yes1");
+	diji="一";
+	size="29.1";
+	pageshu="14";
+	keyword="饺耳世家文化  寒露养生  饺耳红烧肉";
+	describe="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;饺耳世家，是全国首家致力于传承千年养生饮食文化的饺子店。秉承“传以古法，注以新意，精于食材，通于传达。”品牌理念和“养生食疗”的经营宗旨，让饺子的食疗养生文化在老北京宫廷御厨祖传配方接班人张芳女士的手上，继续发扬光大，铸就饺耳金质品牌。让饺耳世家成为中国餐饮业价值典范。";
+}
+if(intid==2){
+	System.out.println("yes2");
+	diji="二";
+	size="30.1";
+	pageshu="14";
+	keyword="秋分竖蛋，应季水果，脆海野生海鲈鱼";
+	describe="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自古以来，国人“天人合一”的思想无不在生活中每一个角度体现。二十四节气的变化也在影响着百姓的衣、食、住、行。寒露到来，万物随寒气增长，逐渐萧落。北京亦开始呈现深秋景象，白云红叶，偶见早霜。小编也开始手脚冰凉了。”秋意浓，舞秋风“，赶快看看，寒露节气如何养生！别让秋风吹走你的健康好身体！";
+}
+if(intid==3){
+	System.out.println("yes3");
+	diji="三";
+	size="55.3";
+	pageshu="14";
+	keyword="霜降养生，吃饺子蘸什么，家乡菜的味道，饺耳钵子鸡 ";
+	describe="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;霜降后，万物皆开始一场新的修行。植物凋零等待来年新的枝丫，动物储存粮食准备过冬。大家都开始用属于自己的方法为御寒做准备。你呢？你怎么办？你该拿出个态度迎接冬天了!";
+}
 //获取页数信息
 String index_page;
 if(request.getParameter("page")==null){
@@ -62,7 +89,6 @@ List<Mapx<String,Object>> sqlPreCount1 =  DB.getRunner().query(sqlPreCount, new 
 int total = sqlPreCount1.get(0).getInt("count");
 //商品页数
 int count_page=total/5;
-System.out.println("count_page"+count_page);
 
 int plus;
 int minus;
@@ -175,7 +201,7 @@ if(Integer.parseInt(index_page)==1){
                         <a href="about-us.jsp?cailei=5"><li id="d5" class="js-tab">联系我们 <i></i></li></a>
 
                     </ul>
-                    			    <script type="text/javascript">
+<script type="text/javascript">
 if(<%=cailei%>==1){
 	$("#d1").addClass("active"); 
 }
@@ -202,21 +228,21 @@ if(<%=cailei%>==6){
          	<div class="us-right">
          		<div class="e-book">
          			<div class="top-title">
-         				<h3>饺耳电子杂志（第一期）</h3>
+         				<h3>饺耳电子杂志（第<%=diji %>期）</h3>
          			</div>
          			<div class="summary">
          				<div class="cell cell-start">
          					<div class="book-fm">
-         						<img src="img/book01.jpg" class="img-responsive"/>
+         						<img src="img/book0<%=request.getParameter("id") %>.jpg" class="img-responsive"/>
          					</div>
          					<div class="cell_primary">
          						<ul class="clearfix">
-			                    	<li>【饺耳世家】：暖暖刊（第一期）</li>
+			                    	<li>【饺耳世家】：饺耳美食（第<%=diji %>期）</li>
 			                    	<li>【发布日期】：2016-10-24</li>
 			                    	<li>【所属分类】：电子杂志</li>
 			                    	<li>【出版商】：饺耳世家</li>
-			                    	<li>【案例大小】：6.94MB</li>
-			                    	<li>【页数】：23页</li>
+			                    	<li>【案例大小】：<%=size %>MB</li>
+			                    	<li>【页数】：<%=pageshu %>页</li>
 			                   </ul>
 							    <div class="bdsharebuttonbox">
 							    	<span class="fl" style="margin: 6px 6px 6px 0;font-size: 18px;">分享到</span>
@@ -228,8 +254,8 @@ if(<%=cailei%>==6){
 									<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 								</div>
 								<div class="down_read">
-									<a class="down" href="magazine/20161030-1.rar"><strong><span class="glyphicon glyphicon-circle-arrow-down"></span>免费下载</strong></a>
-									<a class="media" href="magazine/20161030-1.pdf" target="_blank"><strong><span class="glyphicon glyphicon-sound-6-1"></span>在线阅读</strong></a>
+									<a class="down" href="magazine/jiaoear-<%=request.getParameter("id") %>.rar"><strong><span class="glyphicon glyphicon-circle-arrow-down"></span>免费下载</strong></a>
+									<a class="media" href="magazine/jiaoear-<%=request.getParameter("id") %>.pdf" target="_blank"><strong><span class="glyphicon glyphicon-sound-6-1"></span>在线阅读</strong></a>
 <script type="text/javascript">  
     $(function() {  
         $('a.media').media({width:800, height:600});  
@@ -239,20 +265,18 @@ if(<%=cailei%>==6){
          					</div>
          				</div>
          				<div class="about-word">
-                   <strong>杂志关键词:</strong>二十四节气之寒露，饺耳红烧肉，养生美食
+                   <strong>杂志关键词:</strong><%=keyword %>
                  </div>
                  <div class="book-infor">
                    <h4>杂志描述</h4>
-                   <p>《饺耳美食》杂志是一本倡导提高人们生活质量，专注美食与健康的生活期刊。“二十四节气的秘密”和您一起讨论节气、饮食、健康之间联系，而“美食地图”将带您遍尝饺耳美食；如果想要亲自下厨大展身手，可以从“养生食单”中找到简单好吃又营养的菜谱。“饺耳趣闻”里那些关于饺子不得不说的故事；还有饺耳世家相关新闻、活动等内容让您更了解我们。饺耳美食，关于吃，关于健康，关于生活，关于爱。</p>
+                   <p><%=describe %></p>
                  </div>
          				<div class="about-book">
          					<h4>相关杂志</h4>
          					<ul class="clearfix">
-         						<li><a href=""><img src="img/book01.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
-         						<li><a href=""><img src="img/book01.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
-         						<li><a href=""><img src="img/book01.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
-         						<li><a href=""><img src="img/book01.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
-         						<li><a href=""><img src="img/book01.jpg" class="img-responsive"/><p>饺耳杂志</p></a></li>
+         						<li><a href="e-book.jsp?cailei=6&id=1"><img src="img/book01.jpg" class="img-responsive"/><p>饺耳美食第一期</p></a></li>
+         						<li><a href="e-book.jsp?cailei=6&id=2"><img src="img/book02.jpg" class="img-responsive"/><p>饺耳美食第二期</p></a></li>
+         						<li><a href="e-book.jsp?cailei=6&id=3"><img src="img/book03.jpg" class="img-responsive"/><p>饺耳美食第三期</p></a></li>
          					</ul>
          				</div>
          			</div>

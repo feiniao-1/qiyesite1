@@ -113,7 +113,7 @@ if(param.get("Action")!=null && param.get("Action").equals("喜欢")){
 		            				<h3><%=caipinshow.get(0).getStringView("productname") %></h3>
 		            				<p class="color-999999"><%=caipinshow.get(0).getStringView("productEname") %></p>
 		            				<p class="color-666666 mb5">月售<%=caipinshow.get(0).getIntView("count") %><span class="ml10">好评率100%</span></p>
-		            				<p><span class="color-dd2727 size18">￥<%=caipinshow.get(0).getIntView("yprice") %></span><del class="color-666666 ml10">58</del></p>
+		            				<p><span class="color-dd2727 size18">￥<%=caipinshow.get(0).getIntView("yprice") %></span></p>
 		            			</div>
             			<form  id="subform" method="POST" >
             				<input type="hidden" value="<%=caipinshow.get(0).getIntView("productmenuid")%>" name="xxid">

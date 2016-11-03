@@ -261,17 +261,12 @@ if(<%=cailei%>==6){
                     <div class="tab-content">
                         <h3>电子杂志</h3>
                         <ul class="clearfix  e-zine">
-                        	<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
-                   			<li><a href="e-book.jsp?cailei=6"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
+                        	<li><a href="e-book.jsp?cailei=6&id=1"><img src="img/book01.jpg" class="img-responsive"><p>饺耳美食第一期</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6&id=2"><img src="img/book02.jpg" class="img-responsive"><p>饺耳美食第二期</p></a></li>
+                   			<li><a href="e-book.jsp?cailei=6&id=3"><img src="img/book03.jpg" class="img-responsive"><p>饺耳美食第三期</p></a></li>
                         </ul>
                         <!--分页内容标签开始-->
-								<div class="nav-page">
+							<!-- <div class="nav-page">
 								  <ul class="pagination">
 								    <li><a href="#">&laquo;</a></li>
 								    <li><a href="#">1</a></li>
@@ -282,7 +277,7 @@ if(<%=cailei%>==6){
 								    <li><a href="#">10</a></li>
 								    <li><a href="#">&raquo;</a></li>
 								  </ul>
-								</div>
+								</div> -->	
                     </div>
 <%} %>
 <%if(cailei==4){ %>

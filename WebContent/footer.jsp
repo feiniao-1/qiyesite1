@@ -97,6 +97,22 @@
         		</div>
         	</div>
         </div>
+        <script type="text/javascript">    
+							//function checkformfoot(){ 
+								//电子邮箱正则表达式  
+							//	var idemail = document.getElementById("idmail");    
+								//获取email控件对象         
+							//	var reg = /[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
+							//	if(!reg.test(idemail.Value)){
+							//		alert("请正确填写邮箱！");
+							  //      obj.value="";
+							//	}else{
+								//	var test2form=document.getElementById("footsubform");
+								//	test2form.action="<%=urlfootor%>";
+								//	test2form.submit();
+								//}
+							//}
+							</script>
         <!--页面底部板块结束-->
         <!--返回顶部-->
 		<div id="topcontrol" style="position: fixed; bottom: 80px; right: 30px;cursor: pointer; z-index: 9; display: none;" title="返回顶部">
