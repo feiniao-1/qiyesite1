@@ -48,7 +48,6 @@ String describe="";
 int intid=Integer.parseInt(id);
 System.out.println("id="+id);
 if(intid==1){
-	System.out.println("yes1");
 	diji="一";
 	size="29.1";
 	pageshu="14";
@@ -56,7 +55,6 @@ if(intid==1){
 	describe="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;饺耳世家，是全国首家致力于传承千年养生饮食文化的饺子店。秉承“传以古法，注以新意，精于食材，通于传达。”品牌理念和“养生食疗”的经营宗旨，让饺子的食疗养生文化在老北京宫廷御厨祖传配方接班人张芳女士的手上，继续发扬光大，铸就饺耳金质品牌。让饺耳世家成为中国餐饮业价值典范。";
 }
 if(intid==2){
-	System.out.println("yes2");
 	diji="二";
 	size="30.1";
 	pageshu="14";
@@ -64,7 +62,6 @@ if(intid==2){
 	describe="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自古以来，国人“天人合一”的思想无不在生活中每一个角度体现。二十四节气的变化也在影响着百姓的衣、食、住、行。寒露到来，万物随寒气增长，逐渐萧落。北京亦开始呈现深秋景象，白云红叶，偶见早霜。小编也开始手脚冰凉了。”秋意浓，舞秋风“，赶快看看，寒露节气如何养生！别让秋风吹走你的健康好身体！";
 }
 if(intid==3){
-	System.out.println("yes3");
 	diji="三";
 	size="55.3";
 	pageshu="14";
@@ -114,8 +111,8 @@ if(Integer.parseInt(index_page)==1){
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		  <meta name="viewport" content="width=device-width, initial-scale=1">
-		  <meta name="description" content="">
-		  <meta name="keywords" content="饺耳、美食">
+		  <meta name="description" content="饺耳世家，是全国首家致力于传承千年养生饮食文化的饺子店。 秉承“传以古法，注以新意，精于食材，通于传达。”品牌理念和“养生食疗”的经营宗旨， 让饺子的食疗养生文化在老北京宫廷御厨祖传配方接班人张芳女士的手上，继续发扬光大， 铸就饺耳金质品牌。让饺耳世家成为中国餐饮行业的价值典范。">
+      <meta name="keywords" content="饺耳世家，饺子，饺耳，美食，特色饺子，十大美食，饺耳文化，私房菜，中国味，养生菜，张仲景，医圣，食疗文化，养生文化，全国首家，营养搭配">
 		<title>电子杂志</title>
 		<link href="img/m-icon.png" type="image/x-icon" rel="shortcut icon" />	
 		<link href="css/_main.css" rel="stylesheet">

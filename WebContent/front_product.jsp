@@ -125,8 +125,8 @@ System.out.println("caipinshow"+caipinshow);
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		  <meta name="viewport" content="width=device-width, initial-scale=1">
-		  <meta name="description" content="">
-		  <meta name="keywords" content="饺耳、美食">
+		  <meta name="description" content="饺耳世家，是全国首家致力于传承千年养生饮食文化的饺子店。 秉承“传以古法，注以新意，精于食材，通于传达。”品牌理念和“养生食疗”的经营宗旨， 让饺子的食疗养生文化在老北京宫廷御厨祖传配方接班人张芳女士的手上，继续发扬光大， 铸就饺耳金质品牌。让饺耳世家成为中国餐饮行业的价值典范。">
+      <meta name="keywords" content="饺耳世家，饺子，饺耳，美食，特色饺子，十大美食，饺耳文化，私房菜，中国味，养生菜，张仲景，医圣，食疗文化，养生文化，全国首家，营养搭配">
 		<title>饺耳产品页面</title>
 		<link href="img/toubiao.png" rel="SHORTCUT ICON">
 		<!--<link href="css/bootstrap.css" rel="stylesheet">-->

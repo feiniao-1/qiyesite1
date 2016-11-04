@@ -147,8 +147,8 @@ if(param.get("Action")!=null && param.get("Action").equals("zan")){
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		  <meta name="viewport" content="width=device-width, initial-scale=1">
-		  <meta name="description" content="">
-		  <meta name="keywords" content="饺耳、美食">
+		  <meta name="description" content="饺耳世家，是全国首家致力于传承千年养生饮食文化的饺子店。 秉承“传以古法，注以新意，精于食材，通于传达。”品牌理念和“养生食疗”的经营宗旨， 让饺子的食疗养生文化在老北京宫廷御厨祖传配方接班人张芳女士的手上，继续发扬光大， 铸就饺耳金质品牌。让饺耳世家成为中国餐饮行业的价值典范。">
+      <meta name="keywords" content="饺耳世家，饺子，饺耳，美食，特色饺子，十大美食，饺耳文化，私房菜，中国味，养生菜，张仲景，医圣，食疗文化，养生文化，全国首家，营养搭配">
 		<title>新闻咨询</title>
 		<link href="img/m-icon.png" type="image/x-icon" rel="shortcut icon" />	
 		<link href="css/_main.css" rel="stylesheet">
@@ -273,16 +273,16 @@ if(param.get("Action")!=null && param.get("Action").equals("zan")){
 	         					<%
 	         					if(!article.get(0).getStringView("tag1").equals("")){
 	         					%>
-	         					<a href="" target="_blank"><%=article.get(0).getStringView("tag1") %></a>
+	         					<a href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu&wd=<%=article.get(0).getStringView("tag1") %>&rsv_pq=ef8ff8b2000107d3&rsv_t=539fv3OednOCU8H3mP%2BGn0qNTHMjZWGcq3sMUjvyv%2FioPrhdVEi%2Bx2jarQM&rqlang=cn&rsv_enter=1&rsv_sug3=8&rsv_sug1=6&rsv_sug7=100&rsv_sug2=0&inputT=2022&rsv_sug4=2880" target="_blank"><%=article.get(0).getStringView("tag1") %></a>
 	         					<%}%>
 	         					<%if(!article.get(0).getStringView("tag2").equals("")){%>
-	         					<a href="" target="_blank"><%=article.get(0).getStringView("tag2") %></a>
+	         					<a href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu&wd=<%=article.get(0).getStringView("tag2") %>&rsv_pq=ef8ff8b2000107d3&rsv_t=539fv3OednOCU8H3mP%2BGn0qNTHMjZWGcq3sMUjvyv%2FioPrhdVEi%2Bx2jarQM&rqlang=cn&rsv_enter=1&rsv_sug3=8&rsv_sug1=6&rsv_sug7=100&rsv_sug2=0&inputT=2022&rsv_sug4=2880" target="_blank"><%=article.get(0).getStringView("tag2") %></a>
 	         					<%}%>
 	         					<%if(!article.get(0).getStringView("tag3").equals("")){%>
-	         					<a href="" target="_blank"><%=article.get(0).getStringView("tag3") %></a>
+	         					<a href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu&wd=<%=article.get(0).getStringView("tag3") %>&rsv_pq=ef8ff8b2000107d3&rsv_t=539fv3OednOCU8H3mP%2BGn0qNTHMjZWGcq3sMUjvyv%2FioPrhdVEi%2Bx2jarQM&rqlang=cn&rsv_enter=1&rsv_sug3=8&rsv_sug1=6&rsv_sug7=100&rsv_sug2=0&inputT=2022&rsv_sug4=2880" target="_blank"><%=article.get(0).getStringView("tag3") %></a>
 	         					<%}%>
 	         					<%if(!article.get(0).getStringView("tag4").equals("")){%>
-	         					<a href="" target="_blank"><%=article.get(0).getStringView("tag4") %></a>
+	         					<a href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu&wd=<%=article.get(0).getStringView("tag4") %>&rsv_pq=ef8ff8b2000107d3&rsv_t=539fv3OednOCU8H3mP%2BGn0qNTHMjZWGcq3sMUjvyv%2FioPrhdVEi%2Bx2jarQM&rqlang=cn&rsv_enter=1&rsv_sug3=8&rsv_sug1=6&rsv_sug7=100&rsv_sug2=0&inputT=2022&rsv_sug4=2880" target="_blank"><%=article.get(0).getStringView("tag4") %></a>
 	         					<%}%>
 	         					</p>
 	         					<h4 class="next-article-tilte"><a href="front_news-inner.jsp?page=0&tagid=<%=articlenext.get(0).getIntView("tagid")%>" target="_blank">下一篇：<%=articlenext.get(0).getStringView("title") %></a></h4>
