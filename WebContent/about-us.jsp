@@ -126,9 +126,6 @@ if(Integer.parseInt(index_page)==1){
 								<h3><a href="front_index.jsp" >首页</a></h3>
 						</li>
 						<li class="nLi ">
-								<h3><a href="front_news.jsp" >饺耳资讯</a></h3>
-						</li>
-						<li class="nLi ">
 								<h3><a href="front_product.jsp?cailei=1" >饺耳菜品</a></h3>
 								<ul class="sub">
 									<li><a href="front_product.jsp?cailei=6">店长推荐</a></li>
@@ -138,6 +135,9 @@ if(Integer.parseInt(index_page)==1){
 									<li><a href="front_product.jsp?cailei=5">酒水饮料</a></li>
 									<li><a href="front_product.jsp?cailei=4">美味主食</a></li>
 								</ul>
+						</li>
+						<li class="nLi ">
+								<h3><a href="front_news.jsp" >饺耳资讯</a></h3>
 						</li>
 						<li class="nLi on">
 								<h3><a href="about-us.jsp" >关于饺耳</a></h3>

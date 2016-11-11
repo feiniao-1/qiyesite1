@@ -91,7 +91,7 @@ if(Integer.parseInt(index_page)==1){
 		  <meta name="viewport" content="width=device-width, initial-scale=1">
 		  <meta name="description" content="饺耳世家，是全国首家致力于传承千年养生饮食文化的饺子店。 秉承“传以古法，注以新意，精于食材，通于传达。”品牌理念和“养生食疗”的经营宗旨， 让饺子的食疗养生文化在老北京宫廷御厨祖传配方接班人张芳女士的手上，继续发扬光大， 铸就饺耳金质品牌。让饺耳世家成为中国餐饮行业的价值典范。">
       <meta name="keywords" content="饺耳世家，饺子，饺耳，美食，特色饺子，十大美食，饺耳文化，私房菜，中国味，养生菜，张仲景，医圣，食疗文化，养生文化，全国首家，营养搭配">
-		<title>新闻咨询</title>
+		<title>新闻资讯</title>
 		<link href="img/m-icon.png" type="image/x-icon" rel="shortcut icon" />	
 		<link href="css/_main.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
@@ -124,10 +124,7 @@ if(Integer.parseInt(index_page)==1){
 						<li class="nLi">
 								<h3><a href="front_index.jsp" >首页</a></h3>
 						</li>
-						<li class="nLi on">
-								<h3><a href="front_news.jsp" >饺耳资讯</a></h3>
-						</li>
-						<li class="nLi">
+						<li class="nLi ">
 								<h3><a href="front_product.jsp?cailei=1" >饺耳菜品</a></h3>
 								<ul class="sub">
 									<li><a href="front_product.jsp?cailei=6">店长推荐</a></li>
@@ -137,6 +134,9 @@ if(Integer.parseInt(index_page)==1){
 									<li><a href="front_product.jsp?cailei=5">酒水饮料</a></li>
 									<li><a href="front_product.jsp?cailei=4">美味主食</a></li>
 								</ul>
+						</li>
+						<li class="nLi on">
+								<h3><a href="front_news.jsp" >饺耳资讯</a></h3>
 						</li>
 						<li class="nLi">
 								<h3><a href="about-us.jsp" >关于饺耳</a></h3>
@@ -229,7 +229,7 @@ if(<%=xwlei%>==5){
 								}
 								System.out.println("search yes"+"searchSql"+searchSql);
 								//获取新闻资讯的信息
-								String xinwenSql="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count,tagid,origin from news where newstype=? and (del is NULL or del <>1) and (title LIKE '%"+searchtj+"%' or content like '%"+searchtj+"%' or  author=(select userid from user where username like '%"+searchtj+"%'))  order BY newsid DESC   limit "+page_ye+",5";
+								String xinwenSql="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,10) as createtime ,type,count,tagid,origin from news where newstype=? and (del is NULL or del <>1) and (title LIKE '%"+searchtj+"%' or content like '%"+searchtj+"%' or  author=(select userid from user where username like '%"+searchtj+"%'))  order BY newsid DESC   limit "+page_ye+",5";
 								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler(),"boke");
 								for(int i=0;i<xinwens.size();i++){
 									Mapx<String,Object> one = xinwens.get(i);
@@ -262,7 +262,7 @@ if(<%=xwlei%>==5){
 							}else{
 								System.out.println("search no");
 								//获取新闻资讯的信息
-								String xinwenSql="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid ,origin from news where  newstype=? and  (del is NULL or del <>1)  order BY newsid DESC  limit "+page_ye+",5";
+								String xinwenSql="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,10) as createtime ,type,count ,tagid ,origin from news where  newstype=? and  (del is NULL or del <>1)  order BY newsid DESC  limit "+page_ye+",5";
 								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler(),"boke");
 								for(int i=0;i<xinwens.size();i++){
 									Mapx<String,Object> one = xinwens.get(i);
@@ -340,7 +340,7 @@ if(<%=xwlei%>==5){
 							<!--板块二内容开始  热门-->
 							<div class="tab-inner cell-list">
 							<%//获取新闻资讯的信息
-							String xinwenSqlrm="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid,origin from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+							String xinwenSqlrm="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,10) as createtime ,type,count ,tagid,origin from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
 							List<Mapx<String,Object>> xinwensrm =  DB.getRunner().query(xinwenSqlrm, new MapxListHandler(),"boke","热门");
 							for(int i=0;i<xinwensrm.size();i++){
 								Mapx<String,Object> one = xinwensrm.get(i);
@@ -419,7 +419,7 @@ if(<%=xwlei%>==5){
 							<!--板块三内容开始  美食-->
 							<div class="tab-inner cell-list">
 							<%//获取新闻资讯的信息
-							String xinwenSqlms="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid,origin from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+							String xinwenSqlms="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,10) as createtime ,type,count ,tagid,origin from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
 							List<Mapx<String,Object>> xinwensms =  DB.getRunner().query(xinwenSqlms, new MapxListHandler(),"boke","美食");
 							for(int i=0;i<xinwensms.size();i++){
 								Mapx<String,Object> one = xinwensms.get(i);
@@ -498,7 +498,7 @@ if(<%=xwlei%>==5){
 							<!--板块四内容开始  科技-->
 							<div class="tab-inner cell-list" >
 							<%//获取新闻资讯的信息
-							String xinwenSqltu="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid,origin from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+							String xinwenSqltu="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,10) as createtime ,type,count ,tagid,origin from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
 							List<Mapx<String,Object>> xinwenstu =  DB.getRunner().query(xinwenSqltu, new MapxListHandler(),"boke","科技");
 							for(int i=0;i<xinwenstu.size();i++){
 								Mapx<String,Object> one = xinwenstu.get(i);
@@ -577,7 +577,7 @@ if(<%=xwlei%>==5){
 							<!--板块五内容开始  娱乐-->
 							<div class="tab-inner cell-list" >
 							<%//获取新闻资讯的信息
-							String xinwenSqlyl="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,19) as createtime ,type,count ,tagid,origin from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+							String xinwenSqlyl="select author,subString(title,1,22) as title,img1,subString(content,1,120) as content, subString(createtime,1,10) as createtime ,type,count ,tagid,origin from news where  newstype=? and type=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
 							List<Mapx<String,Object>> xinwensyl =  DB.getRunner().query(xinwenSqlyl, new MapxListHandler(),"boke","娱乐");
 							for(int i=0;i<xinwensyl.size();i++){
 								Mapx<String,Object> one = xinwensyl.get(i);
@@ -691,9 +691,9 @@ if(<%=xwlei%>==5){
 		         			<div class="celan celan2">
 		         				<h4>最新文章</h4>
 		         				<ul>
-		         				<%List<Mapx<String, Object>> wzm=DB.getRunner().query("select title,tagid from news where newstype=? and (del is NULL or del <>1) order by newsid desc limit 6", new MapxListHandler(),"boke");
+		         				<%List<Mapx<String, Object>> wzm=DB.getRunner().query("select title,subString(createtime,1,10) as createtime,tagid from news where newstype=? and (del is NULL or del <>1) order by newsid desc limit 6", new MapxListHandler(),"boke");
 		         				for(int index_wz=0;index_wz<wzm.size();index_wz++){ %>
-		         					<li><a href="front_news-inner.jsp?page=0&tagid=<%=wzm.get(index_wz).getIntView("tagid") %>" target="_blank"><%=wzm.get(index_wz).getStringView("title") %></a></li>
+		         					<li><span class="date"><%=wzm.get(index_wz).getStringView("createtime")%></span><a href="front_news-inner.jsp?page=0&tagid=<%=wzm.get(index_wz).getIntView("tagid") %>" target="_blank"><%=wzm.get(index_wz).getStringView("title") %></a></li>
 		         				<%} %>
 		         				</ul>
 		         			</div>
